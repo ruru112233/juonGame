@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     const float DOWN_MOVE_LIMIT = -4.8f;
     const float RIGHT_MOVE_LIMIT = 2.6f;
     const float LEFT_MOVE_LIMIT = -2.6f;
+    const float SHOT_TIME = 0.1f;
 
     /// <summary>
     /// ïœêî
@@ -19,10 +20,16 @@ public class Player : MonoBehaviour
 
     private float speed = 2.0f;
 
+    [SerializeField] private Transform bulletSpawnPoint;
+    private float bulletSpeed = 15f;
+
+    // î≠éÀéûä‘
+    private float shotTime = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        shotTime = SHOT_TIME;
     }
 
     // Update is called once per frame
@@ -32,11 +39,51 @@ public class Player : MonoBehaviour
         
     }
 
+
     void PlayerAction()
     {
         PlayerMove();
+
+        if (ShotTimer())
+        {
+            Fire();
+        }
     }
 
+    // î≠éÀéûä‘
+    bool ShotTimer()
+    {
+        bool shotFlag = false;
+
+        shotTime -= Time.deltaTime;
+
+        if (shotTime <= 0)
+        {
+            shotTime = SHOT_TIME;
+            shotFlag = true;
+        }
+
+        return shotFlag;
+    }
+
+    // íeÇÃî≠éÀ
+    void Fire()
+    {
+        GameObject bullet = BulletPool.Instance.GetPooledObject();
+
+        if (bullet != null)
+        {
+            bullet.transform.position = bulletSpawnPoint.position;
+            bullet.transform.rotation = Quaternion.identity;
+            bullet.SetActive(true);
+
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            rb.velocity = new Vector2(0, bulletSpeed);
+        }
+
+    }
+
+    // ÉvÉåÉCÉÑÅ[ÇÃà⁄ìÆ
     void PlayerMove()
     {
         // è„
