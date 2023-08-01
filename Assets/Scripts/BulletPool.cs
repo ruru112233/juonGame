@@ -7,7 +7,7 @@ public class BulletPool : MonoBehaviour
     public static BulletPool Instance;
 
     public GameObject pooledObject;
-    private int pooledAmount = 30;
+    private int pooledAmount = 10;
 
     List<GameObject> pooledObjects;
 
@@ -40,6 +40,10 @@ public class BulletPool : MonoBehaviour
                 return pooledObjects[i];
             }
         }
+
+        GameObject obj = (GameObject)Instantiate(pooledObject);
+        obj.SetActive(false);
+        pooledObjects.Add(obj);
 
         return null;
     }
