@@ -8,7 +8,10 @@ public class Bullet : MonoBehaviour
     /// íËêî
     /// </summary>
 
-    const float UP_BULLET_LIMIT = 5.0f;
+    protected const float UP_BULLET_LIMIT = 5.0f;
+    protected const float DOWN_BULLET_LIMIT = -5.0f;
+    protected const float LEFT_BULLET_LIMIT = -2.9f;
+    protected const float RIGHT_BULLET_LIMIT = 2.9f;
 
     // Start is called before the first frame update
     void Start()
@@ -17,17 +20,12 @@ public class Bullet : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
-        if (this.transform.position.y >= UP_BULLET_LIMIT)
-        {
-            this.gameObject.SetActive(false);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (this.transform.position.y >= UP_BULLET_LIMIT ||
+            this.transform.position.y <= DOWN_BULLET_LIMIT ||
+            this.transform.position.x <= LEFT_BULLET_LIMIT ||
+            this.transform.position.x >= RIGHT_BULLET_LIMIT)
         {
             this.gameObject.SetActive(false);
         }
