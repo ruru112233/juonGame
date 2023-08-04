@@ -4,46 +4,50 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private int EnemyHp = 5;
+    private int numberObBullets = 12; // 発射する弾の数
+    private float bulletSpeed = 4f; // 弾の速度
+    private float shotCooldown = 1.5f; // 発射のクールダウン時間
 
-    private float speed = 2f;
-    private float a = 1f;
-    private float b = -5f;
-    private float c = 10f;
-
-    private float initialX;
-    private float initialY;
-    private float t;
+    private float lastShotTime;
 
     // Start is called before the first frame update
     void Start()
     {
-        initialX = transform.position.x;
-        initialY = transform.position.y;
-        t = 0;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (EnemyHp <= 0)
+        if (Time.time > lastShotTime + shotCooldown)
         {
-            Destroy(this.gameObject);
+            Debug.Log("発射");
+            ShootBullets();
+            lastShotTime = Time.time;
         }
 
-        t += Time.deltaTime;
-
-        float x = initialX + speed * t;
-        float y = initialY + (a * t * t + b * t + c);
-
-        transform.position = new Vector2(x, y);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void ShootBullets()
     {
-        if (collision.gameObject.CompareTag("Bullet"))
+        for (int i = 0; i < numberObBullets; i++)
         {
-            EnemyHp--;
+            float angle = (360f / numberObBullets) * i;
+            Vector3 direction = Quaternion.Euler(0, 0, angle) * transform.up;
+            GameObject bullet = BulletPool.Instance.GetEnemyPooledObject();
+            
+            bullet.transform.position = transform.position;
+            bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            bullet.SetActive(true);
+            if (rb != null)
+            {
+                
+                rb.velocity = direction * bulletSpeed;
+                
+            }
         }
     }
+
 }
