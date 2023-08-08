@@ -9,8 +9,8 @@ public class BulletPool : MonoBehaviour
     public GameObject pooledObject;
     public GameObject enemyPooledObject;
 
-    private int pooledAmount = 30;
-    private int enemyPooledAmount = 30;
+    private int pooledAmount = 20;
+    private int enemyPooledAmount = 20;
 
     List<GameObject> pooledObjects;
     List<GameObject> enemyPooledObjects;
@@ -27,14 +27,14 @@ public class BulletPool : MonoBehaviour
     void Start()
     {
         // プレイヤーの弾の生成
-        CreateObjectPoole(ref pooledObjects, pooledObject, pooledAmount);
+        CreateObjectPoole(pooledObject, pooledAmount, ref pooledObjects);
 
         // エネミーの弾の生成
-        CreateObjectPoole(ref enemyPooledObjects, enemyPooledObject, enemyPooledAmount);
+        CreateObjectPoole(enemyPooledObject, enemyPooledAmount, ref enemyPooledObjects);
     }
 
     // オブジェクトプールの初期作成
-    private void CreateObjectPoole(ref List<GameObject> pooledObjs, GameObject prefab, int amount)
+    private void CreateObjectPoole(GameObject prefab, int amount, ref List<GameObject> pooledObjs)
     {
         pooledObjs = new List<GameObject>();
         for (int i = 0; i < amount; i++)
@@ -60,7 +60,7 @@ public class BulletPool : MonoBehaviour
         obj.SetActive(false);
         pooledObjects.Add(obj);
 
-        return null;
+        return obj;
     }
 
     // エネミーの弾取得
@@ -78,6 +78,6 @@ public class BulletPool : MonoBehaviour
         obj.SetActive(false);
         enemyPooledObjects.Add(obj);
 
-        return null;
+        return obj;
     }
 }

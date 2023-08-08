@@ -2,33 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class CircleShoot : MonoBehaviour
 {
     private int numberObBullets = 12; // 発射する弾の数
-    private float bulletSpeed = 4f; // 弾の速度
-    private float shotCooldown = 1.5f; // 発射のクールダウン時間
+    private float bulletSpeed = 2.0f; // 弾の速度
+    private float shotCooldown = 2.0f; // 発射のクールダウン時間
+    private float lastShotTime = 0;
 
-    private float lastShotTime;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (Time.time > lastShotTime + shotCooldown)
         {
-            Debug.Log("発射");
-            ShootBullets();
+            CircleShootBullets();
             lastShotTime = Time.time;
         }
-
     }
 
-    void ShootBullets()
+    void CircleShootBullets()
     {
         for (int i = 0; i < numberObBullets; i++)
         {
@@ -43,9 +33,7 @@ public class Enemy : MonoBehaviour
             bullet.SetActive(true);
             if (rb != null)
             {
-                
                 rb.velocity = direction * bulletSpeed;
-                
             }
         }
     }
