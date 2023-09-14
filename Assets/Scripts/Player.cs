@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
 
         if (ShotTimer())
         {
-            Fire();
+            //Fire();
         }
     }
 
