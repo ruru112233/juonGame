@@ -15,21 +15,49 @@ public class EnemyGeneretor : EnemyMove
 
     IEnumerator EnemyPattern()
     {
-        Vector3 RightPos = new Vector3(2,5,0);
-        Vector3 LeftPos = new Vector3(-2, 5, 0);
+        GameObject enemyA = SpawnEnemy(minionEnemyObj, new Vector3(2, 6, 0));
+        GameObject enemyB = SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0));
+        yield return new WaitForSeconds(1);
 
-        GameObject enemyA = Instantiate(minionEnemyObj, RightPos, Quaternion.identity);
+        SetEnemyInfo(enemyA, CreateEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+        SetEnemyInfo(enemyB, CreateEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+        
+        yield return new WaitForSeconds(7);
+
+        SetEnemyInfo(enemyA, CreateEnemyGenInfo(MoveDirectionType.TOP_RIGHT, 0.2f, 0));
+        SetEnemyInfo(enemyB, CreateEnemyGenInfo(MoveDirectionType.TOP_LEFT, 0.2f, 0));
+
+        GameObject enemyC = SpawnEnemy(minionEnemyObj, new Vector3(1, 6, 0));
+        GameObject enemyD = SpawnEnemy(minionEnemyObj, new Vector3(-1, 6, 0));
 
         yield return new WaitForSeconds(1);
 
-        EnemyGenInfo enemyInfo = CreateEnemyGenInfo(MoveDirectionType.BOTTOM, 2);
-        Debug.Log(enemyInfo.enemyDirectionType);
+        SetEnemyInfo(enemyC, CreateEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+        SetEnemyInfo(enemyD, CreateEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
 
-        enemyA.GetComponent<MinionEnemy>().SetEnemyGenInfo(enemyInfo);
+        yield return new WaitForSeconds(6);
+
+        SetEnemyInfo(enemyC, CreateEnemyGenInfo(MoveDirectionType.TOP, 0));
+        SetEnemyInfo(enemyD, CreateEnemyGenInfo(MoveDirectionType.TOP, 0));
+
+        yield return new WaitForSeconds(5);
+
+        SetEnemyInfo(enemyC, CreateEnemyGenInfo(MoveDirectionType.BOTTOM_LEFT, 0));
+        SetEnemyInfo(enemyD, CreateEnemyGenInfo(MoveDirectionType.BOTTOM_RIGHT, 0));
 
         yield return null;
 
 
+    }
+
+    GameObject SpawnEnemy(GameObject enemy, Vector3 position)
+    {
+        return Instantiate(enemy, position, Quaternion.identity);
+    }
+
+    void SetEnemyInfo(GameObject enemy, EnemyGenInfo info)
+    {
+        enemy.GetComponent<MinionEnemy>().SetEnemyGenInfo(info);
     }
 
     EnemyGenInfo CreateEnemyGenInfo(MoveDirectionType enemyDirectionType, int shotPattern)

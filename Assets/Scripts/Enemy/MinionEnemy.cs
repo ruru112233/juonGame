@@ -15,12 +15,13 @@ public class MinionEnemy : EnemyShotPattern
         EnemyGenInfoInit();
 
     }
+
     void EnemyGenInfoInit()
     {
         enemyGenInfo_.enemyDirectionType = MoveDirectionType.NO_MOVE;
         enemyGenInfo_.firstSpeed = 0;
         enemyGenInfo_.secondSpeed = 0;
-        enemyGenInfo_.shotPattern = 0;
+        enemyGenInfo_.shotPattern = ShotScriptList.Count;
     }
 
 
@@ -28,10 +29,14 @@ public class MinionEnemy : EnemyShotPattern
     public override void Update()
     {
         base.Update();
-        CreateEnemy(enemyGenInfo_);
+        // エネミーの移動
+        MoveEnemy(enemyGenInfo_);
+
+        // エネミーの攻撃パターン決定
+        SetShotScript();
     }
 
-    public void CreateEnemy(EnemyGenInfo enemyInfo)
+    private void MoveEnemy(EnemyGenInfo enemyInfo)
     {
         switch (CheckMethod(enemyInfo))
         {
@@ -47,6 +52,14 @@ public class MinionEnemy : EnemyShotPattern
             default:
                 Debug.Log("定義値以外");
                 break;
+        }
+    }
+
+    private void SetShotScript()
+    {
+        if (enemyGenInfo_.shotPattern < ShotScriptList.Count)
+        {
+            ActiveScriptByIndex(enemyGenInfo_.shotPattern);
         }
     }
 
