@@ -8,14 +8,19 @@ public class CircleShoot : MonoBehaviour
     private float bulletSpeed = 2.0f; // 弾の速度
     private float shotCooldown = 2.0f; // 発射のクールダウン時間
     private float lastShotTime = 0;
-
-    void Update()
+    // ---------------------------
+    private void OnEnable()
     {
         if (Time.time > lastShotTime + shotCooldown)
         {
             CircleShootBullets();
             lastShotTime = Time.time;
         }
+    }
+    // ---------------------------
+    void Update()
+    {
+
     }
 
     void CircleShootBullets()

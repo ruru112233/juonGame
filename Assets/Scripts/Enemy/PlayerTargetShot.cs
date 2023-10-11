@@ -9,9 +9,8 @@ public class PlayerTargetShot : MonoBehaviour
     private float lastShotTime = 0;
 
     private Transform playerTransform; // プレイヤーの位置
-
-    // Update is called once per frame
-    void Update()
+    // ---------------------------
+    private void OnEnable()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -20,6 +19,13 @@ public class PlayerTargetShot : MonoBehaviour
             PlayerShootBullet();
             lastShotTime = Time.time;
         }
+    }
+    // ---------------------------
+
+    // Update is called once per frame
+    void Update()
+    {
+
     }
 
     private void PlayerShootBullet()

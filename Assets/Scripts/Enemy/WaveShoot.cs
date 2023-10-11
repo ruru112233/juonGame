@@ -16,8 +16,8 @@ public class WaveShoot : MonoBehaviour
     float offsetLastTime = 0;
 
     float shootAngle = 10.0f;
-
-    void Update()
+    // ---------------------------
+    private void OnEnable()
     {
         ChengeTimer();
 
@@ -26,6 +26,11 @@ public class WaveShoot : MonoBehaviour
             WaveShootBullet();
             timeSinceLastShoot = Time.time;
         }
+    }
+    // ---------------------------
+    void Update()
+    {
+
     }
 
     private void ChengeTimer()
