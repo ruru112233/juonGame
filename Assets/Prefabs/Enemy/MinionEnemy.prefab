@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1935988003489828829}
   - component: {fileID: 1935988003489828828}
   - component: {fileID: 1935988003489828827}
-  - component: {fileID: 1935988003489828826}
   - component: {fileID: 1935988003489828825}
   - component: {fileID: 1935988003489828824}
   - component: {fileID: 1935988003489828807}
+  - component: {fileID: -9184187170494292055}
   m_Layer: 0
   m_Name: MinionEnemy
   m_TagString: Untagged
@@ -101,18 +101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807c7026e9928df4c9eaadb83c54b987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1935988003489828826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1935988003489828806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 524e4e9bbe6ac974b91002644d944693, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1935988003489828825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,5 +135,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d6ed5acc96a4fa4fbd2db741221e84b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-9184187170494292055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935988003489828806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aee29edabdb7524898582e1759f74cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

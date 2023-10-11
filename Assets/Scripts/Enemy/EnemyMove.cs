@@ -11,10 +11,11 @@ public class EnemyMove : MonoBehaviour
     public struct EnemyGenInfo
     {
         public MoveDirectionType enemyDirectionType; // Enemyの方向
-        public float xSpeed; // Enemyのx軸のスピード値
-        public float ySpeed; // Enemyのy軸のスピード値
-        Vector3 enemyPos; // Enemyの座標
+        public float firstSpeed; // スピードを１種類のみ設定する場合に利用
+        public float secondSpeed; // スピードを２種類設定する場合に利用（firstSpeedはx軸、secondSpeedはy軸）
+        public int shotPattern; // 攻撃パターン ： 配列に設定する番号を格納する
     }
+
     // -----------------------------
 
     public enum MoveDirectionType
@@ -39,15 +40,16 @@ public class EnemyMove : MonoBehaviour
         {
             methodNo++;
 
-            if (enemyGenInfo.xSpeed != 0)
+            if (enemyGenInfo.firstSpeed != 0)
             {
                 methodNo++;
+
+                if (enemyGenInfo.secondSpeed != 0)
+                {
+                    methodNo++;
+                }
             }
 
-            if (enemyGenInfo.ySpeed != 0)
-            {
-                methodNo++;
-            }
         }
         else
         {
