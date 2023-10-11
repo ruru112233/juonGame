@@ -10,17 +10,38 @@ public class BossEnemy : EnemyShotPattern
     private bool rightMoveFlag = false;
     private float bossMoveSpeed = 1.0f;
 
+    // ----------------------------
+    private float shotChengeTime = 5.0f;
+    private float currentTime = 0;
+    private int currentShotIndex = 0;
+    // ----------------------------
+
+
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
         rightMoveFlag = true;
+        // ----------------------------
+        ActiveScriptByIndex(currentShotIndex);
+        // ----------------------------
     }
 
     // Update is called once per frame
     public override void Update()
     {
         base.Update();
+        // ----------------------------
+        currentTime += Time.deltaTime;
+
+        if (shotChengeTime <= currentTime)
+        {
+            UpdateScriptIndex();
+            ActiveScriptByIndex(currentShotIndex);
+            currentTime = 0;
+        }
+        // ----------------------------
+
         BossMove();
     }
 
@@ -45,11 +66,18 @@ public class BossEnemy : EnemyShotPattern
         // ¶‰E‚ÉˆÚ“®‚³‚¹‚éB
         if (rightMoveFlag)
         {
-            base.MoveToRight(bossMoveSpeed);
+            base.MoveDirection(MoveDirectionType.RIGHT);
         }
         else
         {
-            base.MoveToLeft(bossMoveSpeed);
+            base.MoveDirection(MoveDirectionType.LEFT);
         }
     }
+    // ----------------------------
+    protected void UpdateScriptIndex()
+    {
+        currentShotIndex = (currentShotIndex + 1) % ShotScriptList.Count;
+    }
+    // ----------------------------
+
 }
