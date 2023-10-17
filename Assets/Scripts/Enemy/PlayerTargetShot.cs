@@ -9,23 +9,26 @@ public class PlayerTargetShot : MonoBehaviour
     private float lastShotTime = 0;
 
     private Transform playerTransform; // プレイヤーの位置
-    // ---------------------------
     private void OnEnable()
     {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-
-        if (Time.time > lastShotTime + shotCooldown)
-        {
-            PlayerShootBullet();
-            lastShotTime = Time.time;
-        }
+        Update();
     }
-    // ---------------------------
 
     // Update is called once per frame
     void Update()
     {
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
 
+        if (playerObj != null)
+        {
+            playerTransform = playerObj.transform;
+
+            if (Time.time > lastShotTime + shotCooldown)
+            {
+                PlayerShootBullet();
+                lastShotTime = Time.time;
+            }
+        }
     }
 
     private void PlayerShootBullet()

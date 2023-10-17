@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class MinionEnemy : EnemyShotPattern
 {
-    // -----------------------------
     private EnemyGenInfo enemyGenInfo_;
+
+    private int enemyHp_ = 0;
 
     // Start is called before the first frame update
     public override void Start()
@@ -13,6 +14,8 @@ public class MinionEnemy : EnemyShotPattern
         base.Start();
         // EnemyGenInfoÇÃèâä˙âª
         EnemyGenInfoInit();
+
+        enemyHp_ = 10;
 
     }
 
@@ -63,12 +66,23 @@ public class MinionEnemy : EnemyShotPattern
         }
     }
 
-
-
     public void SetEnemyGenInfo(EnemyGenInfo enemyInfo)
     {
+        EnemyGenInfoInit();
         enemyGenInfo_ = enemyInfo;
     }
 
-    // -----------------------------
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            enemyHp_--;
+
+            if (enemyHp_ <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+
 }

@@ -4,12 +4,11 @@ using UnityEngine;
 public class EnemyShotPattern : EnemyMove
 {
     private List<MonoBehaviour> shotScriptList = new List<MonoBehaviour>();
-    // ----------------------
+
     public List<MonoBehaviour> ShotScriptList
     {
         get { return shotScriptList; }
     }
-    // ----------------------
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -49,9 +48,7 @@ public class EnemyShotPattern : EnemyMove
     // Update is called once per frame
     public override void Update()
     {
-        // --------------------
 
-        // --------------------
     }
 
 }
