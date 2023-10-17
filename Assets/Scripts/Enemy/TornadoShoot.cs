@@ -11,21 +11,19 @@ public class TornadoShoot : MonoBehaviour
     private float lastShotTime = 0;
     private float currentAngle = 0f;
 
-    // ---------------------------
     private void OnEnable()
+    {
+        Update();
+    }
+
+
+    void Update()
     {
         if (Time.time > lastShotTime + shotCooldown)
         {
             TornadoBulletShoot();
             lastShotTime = Time.time;
         }
-    }
-
-    // ---------------------------
-
-    void Update()
-    {
-
     }
 
     private void TornadoBulletShoot()

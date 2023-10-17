@@ -6,7 +6,7 @@ public class EnemyMove : MonoBehaviour
     const float DESTROY_RIGHT_LINE = 8.0f;
     const float DESTROY_REFT_LINE = -8.0f;
     const float DESTROY_BOTTOM_LINE = -10.0f;
-    // -----------------------------
+
     // Enemyに情報を渡す構造体
     public struct EnemyGenInfo
     {
@@ -16,7 +16,6 @@ public class EnemyMove : MonoBehaviour
         public int shotPattern; // 攻撃パターン ： 配列に設定する番号を格納する
     }
 
-    // -----------------------------
 
     public enum MoveDirectionType
     {
@@ -30,36 +29,30 @@ public class EnemyMove : MonoBehaviour
         BOTTOM_LEFT,    // 左下方向
         NO_MOVE,        // 移動しない
     }
-    // ---------------------------------
+
     // methodをチェックする。-1:エラー、0:引数１つ 1:引数２つ 2:引数３つ
     public int CheckMethod(EnemyGenInfo enemyGenInfo)
     {
-        int methodNo = -1;
-
-        if (enemyGenInfo.enemyDirectionType != MoveDirectionType.NO_MOVE)
-        {
-            methodNo++;
-
-            if (enemyGenInfo.firstSpeed != 0)
-            {
-                methodNo++;
-
-                if (enemyGenInfo.secondSpeed != 0)
-                {
-                    methodNo++;
-                }
-            }
-
-        }
-        else
+        if (enemyGenInfo.enemyDirectionType == MoveDirectionType.NO_MOVE)
         {
             // エラー
             Debug.Log("方向を指定してください");
+            return -1;
+        }
+
+        int methodNo = 0;
+
+        if (enemyGenInfo.firstSpeed != 0)
+        {
+            methodNo++;
+            if (enemyGenInfo.secondSpeed != 0)
+            {
+                methodNo++;
+            }
         }
 
         return methodNo;
     }
-    // ---------------------------------
 
     // キャラクターに移動させる（スピードは、x軸、y軸ともに1.0f）
     public virtual void MoveDirection(MoveDirectionType moveDirectionType)
