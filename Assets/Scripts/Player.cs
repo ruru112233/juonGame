@@ -17,9 +17,21 @@ public class Player : MonoBehaviour
     /// <summary>
     /// ïœêî
     /// </summary>
+    
+    private GameObject playerGeneretorObj;
+    private PlayerGeneretor playerGeneretor;
 
     private float speed = 2.0f;
+    
+    private bool reviveFlag;
+    float reviveTime = 2.0f;
+    float reviveCounter = 0;
 
+    private SpriteRenderer sprite;
+    private float colorChengeTime = 0.05f;
+    private float colorChengeCounter = 0;
+    private bool colorChengeFlag = false;
+    
     [SerializeField] private Transform bulletSpawnPoint;
     private float bulletSpeed = 15f;
 
@@ -29,13 +41,47 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerGeneretorObj = GameObject.FindGameObjectWithTag("PlayerGeneretor");
+        playerGeneretor = playerGeneretorObj.GetComponent<PlayerGeneretor>();
+     
         shotTime = SHOT_TIME;
+        
+        reviveFlag = true;
+        colorChengeFlag = false;
+        sprite = GetComponent<SpriteRenderer>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         PlayerAction();
+
+        reviveCounter += Time.deltaTime;
+        if (reviveCounter >= reviveTime)
+        {
+            // àÍíËéûä‘åoÇ¡ÇΩÇÁÅAñ≥ìGéûä‘ÇèCóπÇ∑ÇÈ
+            reviveFlag = false;
+            sprite.color = new Color(255, 255, 255, 255);
+        }
+        else
+        {
+            // ñ≥ìGéûä‘íÜÇÕì_ñ≈Ç∑ÇÈ
+            colorChengeCounter += Time.deltaTime;
+            if (colorChengeCounter >= colorChengeTime)
+            {
+                colorChengeCounter = 0;
+                colorChengeFlag = !colorChengeFlag;
+                if (colorChengeFlag)
+                {
+                    sprite.color = new Color(255, 255, 255, 255);
+                }
+                else
+                {
+                    sprite.color = new Color(255, 255, 255, 0);
+                }
+            }
+        }
     }
 
 
@@ -127,6 +173,10 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("EnemyBullet"))
         {
+            if (reviveFlag) return;
+
+            playerGeneretor.ReducePlayerLife(1);
+         
             Destroy(gameObject);
         }
     }

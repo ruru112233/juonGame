@@ -7,6 +7,9 @@ TagManager:
   - Bullet
   - Enemy
   - EnemyBullet
+  - UiManager
+  - PlayerGeneretor
+  - ScorePoint
   layers:
   - Default
   - TransparentFX
