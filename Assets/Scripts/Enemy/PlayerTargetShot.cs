@@ -21,7 +21,7 @@ public class PlayerTargetShot : MonoBehaviour
 
         if (playerObj != null)
         {
-            playerTransform = playerObj.transform;
+            playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
             if (Time.time > lastShotTime + shotCooldown)
             {

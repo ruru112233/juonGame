@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossEnemy : EnemyShotPattern
 {
@@ -24,15 +25,33 @@ public class BossEnemy : EnemyShotPattern
         set { bossMoveFlag = value; }
     }
 
+    UiManager uiManager; // UiManagerのコンポーネント格納用
+    Slider bossHpSlider; // Sliderのコンポーネント格納用
+
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
         rightMoveFlag = true;
 
-        ActiveScriptByIndex(currentShotIndex);
+        
 
         bossHp_ = 100;
+
+        // UiManagerの取得
+        uiManager = GameObject.FindGameObjectWithTag("UiManager").GetComponent<UiManager>();
+        
+        // BossHpSliderObjのSliderを取得
+        bossHpSlider = uiManager.bossHpSliderObj.GetComponent<Slider>();
+        
+        // SliderのMaxValueに最大HPを代入
+        bossHpSlider.maxValue = bossHp_;
+        // SliderのValueに最大HPを代入
+        bossHpSlider.value = bossHp_;
+
+        // Sliderを表示
+        bossHpSlider.gameObject.SetActive(true);
+
     }
 
     // Update is called once per frame
@@ -40,18 +59,18 @@ public class BossEnemy : EnemyShotPattern
     {
         base.Update();
 
-        currentTime += Time.deltaTime;
-
-        if (shotChengeTime <= currentTime)
-        {
-            UpdateScriptIndex();
-            ActiveScriptByIndex(currentShotIndex);
-            currentTime = 0;
-        }
-
         if (bossMoveFlag)
         {
+            ActiveScriptByIndex(currentShotIndex);
             BossMove();
+            currentTime += Time.deltaTime;
+
+            if (shotChengeTime <= currentTime)
+            {
+                UpdateScriptIndex();
+                ActiveScriptByIndex(currentShotIndex);
+                currentTime = 0;
+            }
         }
         else
         {
@@ -96,7 +115,11 @@ public class BossEnemy : EnemyShotPattern
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
+            if (!bossMoveFlag) return; // bossMoveFlagがfalseの時、ダメージを受けない 
+
             bossHp_--;
+
+            bossHpSlider.value = bossHp_;
 
             if (bossHp_ <= 0)
             {

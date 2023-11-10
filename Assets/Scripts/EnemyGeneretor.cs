@@ -20,7 +20,7 @@ public class EnemyGeneretor : EnemyMove
 
         SetEnemyInfo(enemyA, SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
         SetEnemyInfo(enemyB, SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-        
+
         yield return new WaitForSeconds(7);
 
         SetEnemyInfo(enemyA, SetEnemyGenInfo(MoveDirectionType.TOP_RIGHT, 0.2f, 0));

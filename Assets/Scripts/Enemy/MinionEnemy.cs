@@ -1,12 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MinionEnemy : EnemyShotPattern
 {
     private EnemyGenInfo enemyGenInfo_;
 
     private int enemyHp_ = 0;
+
+    private Slider hpSlider;
+
+    // Itemオブジェクトの格納用
+    [SerializeField] private GameObject itemObj;
+    // Itemオブジェクトのドロップする数
+    private int dropItemCount = 5;
 
     // Start is called before the first frame update
     public override void Start()
@@ -17,6 +25,12 @@ public class MinionEnemy : EnemyShotPattern
 
         enemyHp_ = 10;
 
+        // 子要素のスライダーを取得
+        hpSlider = GetComponentInChildren<Slider>();
+        // スライダーの最大値と現在値に最大HPを代入する
+        hpSlider.maxValue = enemyHp_;
+        hpSlider.value = enemyHp_;
+        
     }
 
     void EnemyGenInfoInit()
@@ -78,11 +92,35 @@ public class MinionEnemy : EnemyShotPattern
         {
             enemyHp_--;
 
+            hpSlider.value = enemyHp_;
+            
             if (enemyHp_ <= 0)
             {
+                ScatterItem();
                 Destroy(gameObject);
             }
         }
+    }
+
+    // Itemを散らして配置する関数
+    private void ScatterItem()
+    {
+        for (int i = 0; i < dropItemCount; i++)
+        {
+            Vector3 randomItemPos = RandomPosition(transform.position);
+            Instantiate(itemObj, randomItemPos, Quaternion.Euler(0, 0, 45));
+        }
+    }
+
+    // Itemオブジェクトをランダムに配置するための関数
+    private Vector3 RandomPosition(Vector3 targetPos)
+    {
+        Vector3 pos = targetPos;
+
+        pos.x = Random.Range(targetPos.x - 0.5f, targetPos.x + 0.5f);
+        pos.y = Random.Range(targetPos.y - 0.5f, targetPos.y + 0.5f);
+
+        return pos;
     }
 
 }
