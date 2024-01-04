@@ -93,12 +93,9 @@ public class MinionEnemy : EnemyShotPattern
         if (collision.gameObject.CompareTag("Bullet"))
         {
 
-            Debug.Log("enemyHp:" + enemyHp_);
             enemyHp_--;
 
             //hpSlider.value = enemyHp_;
-
-
             if (enemyHp_ <= 0)
             {
                 enemyHp_ = enemyMaxHp_;
