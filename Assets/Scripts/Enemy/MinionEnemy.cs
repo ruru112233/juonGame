@@ -7,9 +7,10 @@ public class MinionEnemy : EnemyShotPattern
 {
     private EnemyGenInfo enemyGenInfo_;
 
+    private int enemyMaxHp_ = 0;
     private int enemyHp_ = 0;
 
-    private Slider hpSlider;
+    //private Slider hpSlider;
 
     // Itemオブジェクトの格納用
     [SerializeField] private GameObject itemObj;
@@ -23,13 +24,14 @@ public class MinionEnemy : EnemyShotPattern
         // EnemyGenInfoの初期化
         EnemyGenInfoInit();
 
-        enemyHp_ = 10;
+        enemyMaxHp_ = 10;
+        enemyHp_ = enemyMaxHp_;
 
         // 子要素のスライダーを取得
-        hpSlider = GetComponentInChildren<Slider>();
+        //hpSlider = GetComponentInChildren<Slider>();
         // スライダーの最大値と現在値に最大HPを代入する
-        hpSlider.maxValue = enemyHp_;
-        hpSlider.value = enemyHp_;
+        //hpSlider.maxValue = enemyHp_;
+        //hpSlider.value = enemyHp_;
         
     }
 
@@ -90,14 +92,18 @@ public class MinionEnemy : EnemyShotPattern
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
+
+            Debug.Log("enemyHp:" + enemyHp_);
             enemyHp_--;
 
-            hpSlider.value = enemyHp_;
-            
+            //hpSlider.value = enemyHp_;
+
+
             if (enemyHp_ <= 0)
             {
+                enemyHp_ = enemyMaxHp_;
                 ScatterItem();
-                Destroy(gameObject);
+                //Destroy(gameObject);
             }
         }
     }
