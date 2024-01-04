@@ -13,7 +13,7 @@ public class EnemyShotPattern : EnemyMove
     // Start is called before the first frame update
     public virtual void Start()
     {
-        InitializeScriptList();
+        //InitializeScriptList();
     }
 
     // スクリプトリストの初期化

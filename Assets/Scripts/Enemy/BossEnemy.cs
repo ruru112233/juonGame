@@ -9,7 +9,7 @@ public class BossEnemy : EnemyShotPattern
     const float LEFT_MOVE_LIMIT = -1.5f;
 
     private bool rightMoveFlag = false;
-    private float bossMoveSpeed = 1.0f;
+    //private float bossMoveSpeed = 1.0f;
 
     private float shotChengeTime = 5.0f;
     private float currentTime = 0;

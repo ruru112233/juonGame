@@ -25,7 +25,7 @@ public class Item : MonoBehaviour
         // Rigidbody2d‚ðŽæ“¾
         rb = GetComponent<Rigidbody2D>();
         
-        float randX = Random.Range(0, 100.0f);
+        float randX = Random.Range(-100.0f, 100.0f);
         
         Vector2 force = new Vector2(randX, 200.0f);
 
