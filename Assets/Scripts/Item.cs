@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    private int itemPoint = 10; // アイテムの加算ポイント
-    private GameObject uiManagerObj; // UiManagerのオブジェクト
-    private UiManager uiManager; // UiManagerのコンポーネント
+    //private int itemPoint = 10; // アイテムの加算ポイント
+    //private GameObject uiManagerObj; // UiManagerのオブジェクト
+    //private UiManager uiManager; // UiManagerのコンポーネント
 
     private Rigidbody2D rb; // Rigidbody取得用変数
+
+    [SerializeField] private GameObject scoreBall;
     // Start is called before the first frame update
     void Start()
     {
         // UiManagerのオブジェクトを取得する
-        uiManagerObj = GameObject.FindGameObjectWithTag("UiManager");
+        //uiManagerObj = GameObject.FindGameObjectWithTag("UiManager");
         // UiManagerのコンポーネントを取得する。
-        uiManager = uiManagerObj.GetComponent<UiManager>();
+        //uiManager = uiManagerObj.GetComponent<UiManager>();
 
         RandomForce();
     }
@@ -44,7 +46,8 @@ public class Item : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             // スコアの加算
-            uiManager.SetScore(itemPoint);
+            //uiManager.SetScore(itemPoint);
+            Instantiate(scoreBall, this.transform.position, Quaternion.identity);
             // Itemオブジェクトを削除する
             Destroy(gameObject);
         }

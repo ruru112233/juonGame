@@ -10,6 +10,7 @@ TagManager:
   - UiManager
   - PlayerGeneretor
   - ScorePoint
+  - ScorePos
   layers:
   - Default
   - TransparentFX
