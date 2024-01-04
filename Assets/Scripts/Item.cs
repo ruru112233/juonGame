@@ -7,6 +7,8 @@ public class Item : MonoBehaviour
     private int itemPoint = 10; // アイテムの加算ポイント
     private GameObject uiManagerObj; // UiManagerのオブジェクト
     private UiManager uiManager; // UiManagerのコンポーネント
+
+    private Rigidbody2D rb; // Rigidbody取得用変数
     // Start is called before the first frame update
     void Start()
     {
@@ -14,12 +16,27 @@ public class Item : MonoBehaviour
         uiManagerObj = GameObject.FindGameObjectWithTag("UiManager");
         // UiManagerのコンポーネントを取得する。
         uiManager = uiManagerObj.GetComponent<UiManager>();
+
+        RandomForce();
+    }
+
+    private void RandomForce()
+    {
+        // Rigidbody2dを取得
+        rb = GetComponent<Rigidbody2D>();
+        
+        float randX = Random.Range(0, 100.0f);
+        
+        Vector2 force = new Vector2(randX, 200.0f);
+
+        rb.AddForce(force);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        PlayerItemMove();
+        // PlayerItemMove();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
