@@ -10,10 +10,10 @@ public class MsgManager : MonoBehaviour
     public TextMeshProUGUI msgText;
 
     private int currentLine = 0;
-
     private bool isClicked = false;
-
     private bool isMsgFullText = false;
+
+    public EventManager eventManager;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +50,9 @@ public class MsgManager : MonoBehaviour
         isClicked = false;
         isMsgFullText = false;
 
-        string fullText = fullTexts[currentLine];
+        //string fullText = fullTexts[currentLine];
+
+        string fullText = SetText(currentLine);
         msgText.text = "";
 
         for (int i = 0; i < fullText.Length; i++)
@@ -82,6 +84,41 @@ public class MsgManager : MonoBehaviour
         currentLine = (currentLine + 1) % fullTexts.Length;
         isMsgFullText = true;
 
+    }
+
+    private string SetText(int currentLine)
+    {
+        string msg = "";
+        SetImage(currentLine);
+        msg = fullTexts[currentLine];
+
+        return msg;
+    }
+
+    private void SetImage(int currentLine)
+    {
+        switch (currentLine)
+        {
+            case 0:
+                eventManager.ChengeImage(EventManager.ImagePosition.LEFT, 0, "ƒLƒƒƒ‰A");
+                break;
+            case 1:
+                eventManager.ChengeImage(EventManager.ImagePosition.RIGHT, 1, "ƒLƒƒƒ‰B");
+                break;
+            case 2:
+                eventManager.ChengeImage(EventManager.ImagePosition.LEFT, 2, "ƒLƒƒƒ‰C");
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            default:
+                break;
+        }
     }
 
 }
