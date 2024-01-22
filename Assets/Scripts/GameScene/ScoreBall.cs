@@ -40,7 +40,8 @@ public class ScoreBall : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("ScorePoint"))
         {
-            string scoreMsg = "Score: ";
+            //string scoreMsg = "Score: ";
+            string scoreMsg = "       ";
 
             TextMeshProUGUI text = GameObject.FindGameObjectWithTag("ScorePoint").GetComponent<TextMeshProUGUI>();
 
