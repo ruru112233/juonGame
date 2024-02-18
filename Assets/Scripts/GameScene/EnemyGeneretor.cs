@@ -26,29 +26,50 @@ public class EnemyGeneretor : EnemyMove
         SetEnemyInfo(enemyA, SetEnemyGenInfo(MoveDirectionType.TOP_RIGHT, 0.2f, 0));
         SetEnemyInfo(enemyB, SetEnemyGenInfo(MoveDirectionType.TOP_LEFT, 0.2f, 0));
 
-        GameObject enemyC = SpawnEnemy(minionEnemyObj, new Vector3(1, 6, 0));
-        GameObject enemyD = SpawnEnemy(minionEnemyObj, new Vector3(-1, 6, 0));
+        //GameObject enemyC = SpawnEnemy(minionEnemyObj, new Vector3(1, 6, 0));
+        //GameObject enemyD = SpawnEnemy(minionEnemyObj, new Vector3(-1, 6, 0));
 
+        //yield return new WaitForSeconds(1);
+
+        //SetEnemyInfo(enemyC, SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+        //SetEnemyInfo(enemyD, SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+
+        //yield return new WaitForSeconds(6);
+
+        //SetEnemyInfo(enemyC, SetEnemyGenInfo(MoveDirectionType.TOP, 0));
+        //SetEnemyInfo(enemyD, SetEnemyGenInfo(MoveDirectionType.TOP, 0));
+
+        //yield return new WaitForSeconds(5);
+
+        //SetEnemyInfo(enemyC, SetEnemyGenInfo(MoveDirectionType.BOTTOM_LEFT, 0));
+        //SetEnemyInfo(enemyD, SetEnemyGenInfo(MoveDirectionType.BOTTOM_RIGHT, 0));
+
+        yield return new WaitForSeconds(3);
+
+        GameObject boss = SpawnEnemy(bossObj, new Vector3(0, 6, 0));
         yield return new WaitForSeconds(1);
 
-        SetEnemyInfo(enemyC, SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-        SetEnemyInfo(enemyD, SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+        SetEnemyInfo(boss, SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
 
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(3.5f);
 
-        SetEnemyInfo(enemyC, SetEnemyGenInfo(MoveDirectionType.TOP, 0));
-        SetEnemyInfo(enemyD, SetEnemyGenInfo(MoveDirectionType.TOP, 0));
+        SetEnemyInfo(boss, SetEnemyGenInfo(MoveDirectionType.RIGHT, 0));
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
 
-        SetEnemyInfo(enemyC, SetEnemyGenInfo(MoveDirectionType.BOTTOM_LEFT, 0));
-        SetEnemyInfo(enemyD, SetEnemyGenInfo(MoveDirectionType.BOTTOM_RIGHT, 0));
+        SetEnemyInfo(boss, SetEnemyGenInfo(MoveDirectionType.LEFT, 0));
 
-        //yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
 
-        //GameObject boss = SpawnEnemy(bossObj, new Vector3(0, 6, 0));
+        SetEnemyInfo(boss, SetEnemyGenInfo(MoveDirectionType.RIGHT, 0));
 
-        //yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
+
+        SetEnemyInfo(boss, SetEnemyGenInfo(MoveDirectionType.LEFT, 0));
+
+        yield return new WaitForSeconds(4);
+
+        SetEnemyInfo(boss, SetEnemyGenInfo(MoveDirectionType.RIGHT, 0));
 
         //boss.GetComponent<BossEnemy>().BossMoveFlag = true;
 
