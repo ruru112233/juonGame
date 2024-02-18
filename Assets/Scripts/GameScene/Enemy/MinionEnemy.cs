@@ -10,6 +10,8 @@ public class MinionEnemy : EnemyShotPattern
     private int enemyMaxHp_ = 0;
     private int enemyHp_ = 0;
 
+    private Animator anime;
+
     //private Slider hpSlider;
 
     // Itemオブジェクトの格納用
@@ -27,12 +29,14 @@ public class MinionEnemy : EnemyShotPattern
         enemyMaxHp_ = 10;
         enemyHp_ = enemyMaxHp_;
 
+        anime = this.GetComponent<Animator>();
+
         // 子要素のスライダーを取得
         //hpSlider = GetComponentInChildren<Slider>();
         // スライダーの最大値と現在値に最大HPを代入する
         //hpSlider.maxValue = enemyHp_;
         //hpSlider.value = enemyHp_;
-        
+
     }
 
     void EnemyGenInfoInit()
@@ -98,6 +102,13 @@ public class MinionEnemy : EnemyShotPattern
             //hpSlider.value = enemyHp_;
             if (enemyHp_ <= 0)
             {
+                // ダメージアニメーション
+                if (anime)
+                {
+                    anime.SetTrigger("damage");
+                }
+
+                // MaxHpの更新
                 enemyHp_ = enemyMaxHp_;
                 ScatterItem();
                 //Destroy(gameObject);
