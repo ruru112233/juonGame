@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1935988003489828807}
   - component: {fileID: -9184187170494292055}
   - component: {fileID: 3029246330994604298}
+  - component: {fileID: -7579219954261378748}
   m_Layer: 0
   m_Name: JimiBoss
   m_TagString: Enemy
@@ -168,6 +169,26 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.07}
   serializedVersion: 2
   m_Radius: 0.15325719
+--- !u!95 &-7579219954261378748
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935988003489828806}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f9756bb927f74c84285fb9024c60c3f8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &2807358317567581834
 GameObject:
   m_ObjectHideFlags: 0
