@@ -1707,8 +1707,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c93c6bf314aba3c4eb7d7aa62191195a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossObj: {fileID: 6721384831370635749, guid: 3b4f3b5b82aefb341854f574cad37fae, type: 3}
-  minionEnemyObj: {fileID: 1935988003489828806, guid: 6ede5569258980948a35600e3bdbf6f3, type: 3}
+  bossObj: {fileID: 1935988003489828806, guid: 9fc5747d70d819c41809d658ef872302, type: 3}
+  minionEnemyObj: {fileID: 1935988003489828806, guid: d40a381743d50454a8c53a733316a59e, type: 3}
 --- !u!4 &1471595520
 Transform:
   m_ObjectHideFlags: 0
