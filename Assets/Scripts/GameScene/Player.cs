@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     const float DOWN_MOVE_LIMIT = -4.8f;
     const float RIGHT_MOVE_LIMIT = 2.6f;
     const float LEFT_MOVE_LIMIT = -2.6f;
-    const float SHOT_TIME = 0.1f;
+    const float SHOT_TIME = 0.3f;
 
     /// <summary>
     /// ïœêî
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     private bool colorChengeFlag = false;
     
     [SerializeField] private Transform bulletSpawnPoint;
-    private float bulletSpeed = 15f;
+    private float bulletSpeed = 10f;
 
     // î≠éÀéûä‘
     private float shotTime = 0.0f;

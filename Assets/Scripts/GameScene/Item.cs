@@ -1,24 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class Item : MonoBehaviour
 {
-    //private int itemPoint = 10; // アイテムの加算ポイント
-    //private GameObject uiManagerObj; // UiManagerのオブジェクト
-    //private UiManager uiManager; // UiManagerのコンポーネント
+    // 色
+    private Color COLOR_WHITE = new Color(1f, 1f, 1f, 1f); // 白
+    private Color COLOR_YELLOW = new Color(1f, 0.9f, 0.1f, 1f); // 黄色
+    private Color COLOR_PINK = new Color(0.8113208f, 0.0956746f, 0.5544159f, 1f); // ピンク
+
+    // スケール
+    private Vector3 OMP_SCALE = new Vector3(0.4f, 0.4f, 0.5f);
+    private Vector3 THUNDER_SCALE = new Vector3(1.2f, 1.2f, 1f);
+
+    // スコアの得点
+    private const int JIMI_SCORE = 100;
+    private const int JOHN_SCORE = 50;
+    private const int THUNDER_SCORE = -30;
+
+    // item情報の格納用構造体
+    struct ItemInfo
+    {
+        public Sprite sprite;
+        public Color color;
+        public Vector3 imageScale;
+    }
+
+    private ItemInfo itemInfo;
 
     private Rigidbody2D rb; // Rigidbody取得用変数
 
     [SerializeField] private GameObject scoreBall;
+
+    // アイテムの種類
+    public enum ItemPattern
+    {
+        JIMI_GUITAR,    // ジミヘンギター
+        JOHN_GUITAR,    // ジョンギター
+        THUNDER,        // 稲妻
+        UNSETTILED,     // 未確定 
+    }
+
+    public ItemPattern itemPattern;
+
     // Start is called before the first frame update
     void Start()
     {
-        // UiManagerのオブジェクトを取得する
-        //uiManagerObj = GameObject.FindGameObjectWithTag("UiManager");
-        // UiManagerのコンポーネントを取得する。
-        //uiManager = uiManagerObj.GetComponent<UiManager>();
-
         RandomForce();
     }
 
@@ -47,7 +75,22 @@ public class Item : MonoBehaviour
         {
             // スコアの加算
             //uiManager.SetScore(itemPoint);
-            Instantiate(scoreBall, this.transform.position, Quaternion.identity);
+            // ItemPatternが未確定意外はアイテムをスコアのアイテムを出現させる
+            if (itemPattern != ItemPattern.UNSETTILED)
+            {
+                GameObject scoreBallObj = (GameObject)Instantiate(scoreBall, this.transform.position, Quaternion.identity);
+                // アイテムのイメージを更新
+                SpriteRenderer spriteRnd = scoreBallObj.GetComponent<SpriteRenderer>();
+                ItemInfo itemInfo = SetScoreImage();
+                spriteRnd.sprite = itemInfo.sprite;
+                spriteRnd.color = itemInfo.color;
+                scoreBallObj.transform.localScale = itemInfo.imageScale;
+
+                // スコアを更新
+                ScoreBall scoreBallScript = scoreBallObj.GetComponent<ScoreBall>();
+                scoreBallScript.SetScorePoint(ItemCheckValue());
+            }
+
             // Itemオブジェクトを削除する
             Destroy(gameObject);
         }
@@ -71,6 +114,61 @@ public class Item : MonoBehaviour
                 transform.position += playerDistance * itemMoveSpeed * Time.deltaTime;
             }
         }
+    }
+
+    private int ItemCheckValue()
+    {
+        int value = 0;
+
+        switch (itemPattern)
+        {
+            case ItemPattern.JIMI_GUITAR: // ジミヘンギター
+                value = JIMI_SCORE;
+                break;
+            case ItemPattern.JOHN_GUITAR: // ジョンギター
+                value = JOHN_SCORE;
+                break;
+            case ItemPattern.THUNDER: // 稲妻
+                value = THUNDER_SCORE;
+                break;
+            case ItemPattern.UNSETTILED: // 未確定
+            default:
+                break;
+        }
+
+        return value;
+    }
+
+    private ItemInfo SetScoreImage()
+    {
+
+        itemInfo.sprite = null;
+        itemInfo.color = new Color(255, 255, 255, 255);
+        itemInfo.imageScale = Vector3.one;
+
+        switch (itemPattern)
+        {
+            case ItemPattern.JIMI_GUITAR:
+                itemInfo.sprite = GameManager.instance.itemStock.eighth;
+                itemInfo.color = COLOR_PINK;
+                itemInfo.imageScale = OMP_SCALE;
+                break;
+            case ItemPattern.JOHN_GUITAR:
+                itemInfo.sprite = GameManager.instance.itemStock.eighth;
+                itemInfo.color = COLOR_YELLOW;
+                itemInfo.imageScale = OMP_SCALE;
+                break;
+            case ItemPattern.THUNDER:
+                itemInfo.sprite = GameManager.instance.itemStock.thunderImage;
+                itemInfo.color = COLOR_WHITE;
+                itemInfo.imageScale = THUNDER_SCALE;
+                break;
+            case ItemPattern.UNSETTILED:
+            default:
+                break;
+        }
+
+        return itemInfo;
     }
 
 }

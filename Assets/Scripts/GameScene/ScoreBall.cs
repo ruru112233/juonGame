@@ -8,7 +8,7 @@ public class ScoreBall : MonoBehaviour
     private float magnification = 1.0f;
     private float magCut = 0.01f;
 
-    [SerializeField]private int scorePoint;
+    private int scorePoint;
 
     // Start is called before the first frame update
     void Start()
@@ -54,5 +54,10 @@ public class ScoreBall : MonoBehaviour
 
             Destroy(gameObject);
         }
+    }
+
+    public void SetScorePoint(int point)
+    {
+        scorePoint = point;
     }
 }
