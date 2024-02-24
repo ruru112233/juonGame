@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 
     public ScoreManager scoreManager;
 
+    public ItemStock itemStock;
+
     private void Awake()
     {
         if (instance == null)

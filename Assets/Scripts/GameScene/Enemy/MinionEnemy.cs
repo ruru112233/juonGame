@@ -14,8 +14,7 @@ public class MinionEnemy : EnemyShotPattern
 
     //private Slider hpSlider;
 
-    // Itemオブジェクトの格納用
-    [SerializeField] private GameObject itemObj;
+    
     // Itemオブジェクトのドロップする数
     private int dropItemCount = 5;
 
@@ -121,8 +120,17 @@ public class MinionEnemy : EnemyShotPattern
     {
         for (int i = 0; i < dropItemCount; i++)
         {
-            Vector3 randomItemPos = RandomPosition(transform.position);
-            Instantiate(itemObj, randomItemPos, Quaternion.Euler(0, 0, 45));
+            GameObject obj = SetItemObj();
+
+            Debug.Log(obj);
+
+            if (obj)
+            {
+                Vector3 randomItemPos = RandomPosition(transform.position);
+                Instantiate(obj, randomItemPos, Quaternion.Euler(0, 0, 45));
+            }
+
+            
         }
     }
 
@@ -135,6 +143,33 @@ public class MinionEnemy : EnemyShotPattern
         pos.y = Random.Range(targetPos.y - 0.5f, targetPos.y + 0.5f);
 
         return pos;
+    }
+
+    private GameObject SetItemObj()
+    {
+        GameObject obj = null;
+
+        int rand = Random.Range(0, 5);
+
+        switch (rand)
+        {
+            case 0:
+                obj = GameManager.instance.itemStock.jimiGuiterObj;
+                break;
+            case 1:
+            case 2:
+                obj = GameManager.instance.itemStock.johnGuiterObj;
+                break;
+            case 3:
+            case 4:
+                obj = GameManager.instance.itemStock.thunder;
+                break;
+            default:
+                Debug.Log("SetItemObj error");
+                break;
+        }
+
+        return obj;
     }
 
 }
