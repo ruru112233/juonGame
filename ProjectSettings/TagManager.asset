@@ -11,6 +11,7 @@ TagManager:
   - PlayerGeneretor
   - ScorePoint
   - ScorePos
+  - Thunder
   layers:
   - Default
   - TransparentFX

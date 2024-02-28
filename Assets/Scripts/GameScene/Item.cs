@@ -76,7 +76,7 @@ public class Item : MonoBehaviour
             // スコアの加算
             //uiManager.SetScore(itemPoint);
             // ItemPatternが未確定意外はアイテムをスコアのアイテムを出現させる
-            if (itemPattern != ItemPattern.UNSETTILED)
+            if ((itemPattern != ItemPattern.UNSETTILED) && (itemPattern != ItemPattern.THUNDER))
             {
                 GameObject scoreBallObj = (GameObject)Instantiate(scoreBall, this.transform.position, Quaternion.identity);
                 // アイテムのイメージを更新
