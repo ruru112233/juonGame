@@ -13,11 +13,12 @@ public class Player : MonoBehaviour
     const float RIGHT_MOVE_LIMIT = 2.6f;
     const float LEFT_MOVE_LIMIT = -2.6f;
     const float SHOT_TIME = 0.3f;
+    const float PARALYSIS_TIME = 2.0f;
 
     /// <summary>
     /// •Ï”
     /// </summary>
-    
+
     private GameObject playerGeneretorObj;
     private PlayerGeneretor playerGeneretor;
 
@@ -38,6 +39,10 @@ public class Player : MonoBehaviour
     // ”­ËŠÔ
     private float shotTime = 0.0f;
 
+    // áƒ‚êŠÔ
+    private float paralysisTime = 0.0f;
+    private bool stopFlag = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,9 +50,11 @@ public class Player : MonoBehaviour
         playerGeneretor = playerGeneretorObj.GetComponent<PlayerGeneretor>();
      
         shotTime = SHOT_TIME;
+
         
         reviveFlag = true;
         colorChengeFlag = false;
+        stopFlag = false;
         sprite = GetComponent<SpriteRenderer>();
         
     }
@@ -111,6 +118,22 @@ public class Player : MonoBehaviour
         return shotFlag;
     }
 
+    // áƒ‚êŠÔ
+    bool ParalysisTimer()
+    {
+        if (!stopFlag) return false;
+
+        paralysisTime += Time.deltaTime;
+
+        if (paralysisTime >= PARALYSIS_TIME)
+        {
+            paralysisTime = 0;
+            stopFlag = false;
+        }
+
+        return true;
+    }
+
     // ’e‚Ì”­Ë
     void Fire()
     {
@@ -131,6 +154,7 @@ public class Player : MonoBehaviour
     // ƒvƒŒƒCƒ„[‚ÌˆÚ“®
     void PlayerMove()
     {
+        if (ParalysisTimer()) return;
         // ã
         if (this.transform.position.y < UP_MOVE_LIMIT)
         {
@@ -178,6 +202,11 @@ public class Player : MonoBehaviour
             playerGeneretor.ReducePlayerLife(1);
          
             Destroy(gameObject);
+        }
+
+        if (collision.gameObject.CompareTag("Thunder"))
+        {
+            stopFlag = true;
         }
     }
 }
