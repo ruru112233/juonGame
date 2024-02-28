@@ -22,6 +22,9 @@ public class Player : MonoBehaviour
     private GameObject playerGeneretorObj;
     private PlayerGeneretor playerGeneretor;
 
+    // ジョイスティック
+    [SerializeField] FloatingJoystick joystick;
+
     private float speed = 2.0f;
     
     private bool reviveFlag;
@@ -155,40 +158,15 @@ public class Player : MonoBehaviour
     void PlayerMove()
     {
         if (ParalysisTimer()) return;
-        // 上
-        if (this.transform.position.y < UP_MOVE_LIMIT)
-        {
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                this.transform.position += new Vector3(0, speed * Time.deltaTime, 0);
-            }
-        }
 
-        // 下
-        if (this.transform.position.y > DOWN_MOVE_LIMIT)
+        
+        if (this.transform.position.y < UP_MOVE_LIMIT &&
+            this.transform.position.y > DOWN_MOVE_LIMIT &&
+            this.transform.position.x < RIGHT_MOVE_LIMIT &&
+            this.transform.position.x > LEFT_MOVE_LIMIT)
         {
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                this.transform.position -= new Vector3(0, speed * Time.deltaTime, 0);
-            }
-        }
-
-        // 右
-        if (this.transform.position.x < RIGHT_MOVE_LIMIT)
-        {
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                this.transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
-            }
-        }
-
-        // 左
-        if (this.transform.position.x > LEFT_MOVE_LIMIT)
-        {
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                this.transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
-            }
+            this.transform.position += new Vector3(0, joystick.Vertical * speed * Time.deltaTime, 0);
+            this.transform.position += new Vector3(joystick.Horizontal * speed * Time.deltaTime, 0, 0);
         }
 
     }
