@@ -159,15 +159,32 @@ public class Player : MonoBehaviour
     {
         if (ParalysisTimer()) return;
 
-        
-        if (this.transform.position.y < UP_MOVE_LIMIT &&
-            this.transform.position.y > DOWN_MOVE_LIMIT &&
-            this.transform.position.x < RIGHT_MOVE_LIMIT &&
-            this.transform.position.x > LEFT_MOVE_LIMIT)
+        float joyconX = joystick.Horizontal;
+        float joyconY = joystick.Vertical;
+        Vector3 newPosition = this.transform.position;
+
+        // X軸の移動範囲をチェック
+        if (joyconX > 0 && newPosition.x < RIGHT_MOVE_LIMIT) // 右に移動
         {
-            this.transform.position += new Vector3(0, joystick.Vertical * speed * Time.deltaTime, 0);
-            this.transform.position += new Vector3(joystick.Horizontal * speed * Time.deltaTime, 0, 0);
+            newPosition.x += joyconX * speed * Time.deltaTime;
         }
+        else if (joyconX < 0 && newPosition.x > LEFT_MOVE_LIMIT) // 左に移動
+        {
+            newPosition.x += joyconX * speed * Time.deltaTime;
+        }
+
+        // Y軸の移動範囲をチェック
+        if (joyconY > 0 && newPosition.y < UP_MOVE_LIMIT) // 上に移動
+        {
+            newPosition.y += joyconY * speed * Time.deltaTime;
+        }
+        else if (joyconY < 0 && newPosition.y > DOWN_MOVE_LIMIT) // 下に移動
+        {
+            newPosition.y += joyconY * speed * Time.deltaTime;
+        }
+
+        // 新しい位置を設定
+        this.transform.position = newPosition;
 
     }
 
