@@ -10,13 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1935988003489828829}
   - component: {fileID: 1935988003489828828}
-  - component: {fileID: 1935988003489828827}
-  - component: {fileID: 1935988003489828825}
-  - component: {fileID: 1935988003489828824}
-  - component: {fileID: 1935988003489828807}
-  - component: {fileID: -9184187170494292055}
   - component: {fileID: 3029246330994604298}
   - component: {fileID: -7579219954261378748}
+  - component: {fileID: -3119623996843830366}
   m_Layer: 0
   m_Name: JimiBoss
   m_TagString: Enemy
@@ -92,67 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1935988003489828827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1935988003489828806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 807c7026e9928df4c9eaadb83c54b987, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemObj: {fileID: 6231166231172959162, guid: 3727fd75a309df9428b14d23119d3764, type: 3}
---- !u!114 &1935988003489828825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1935988003489828806}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f7e17c394cbddb4993187f310c95948, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1935988003489828824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1935988003489828806}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5a59c9a1250b2e48a431058ab2ce492, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1935988003489828807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1935988003489828806}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d6ed5acc96a4fa4fbd2db741221e84b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-9184187170494292055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1935988003489828806}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5aee29edabdb7524898582e1759f74cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &3029246330994604298
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -189,6 +124,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &-3119623996843830366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935988003489828806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f9361b8a70e0045a42890d8fbc86fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2807358317567581834
 GameObject:
   m_ObjectHideFlags: 0

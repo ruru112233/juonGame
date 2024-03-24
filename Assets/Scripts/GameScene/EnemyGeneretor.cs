@@ -49,28 +49,10 @@ public class EnemyGeneretor : EnemyMove
         GameObject boss = SpawnEnemy(bossObj, new Vector3(0, 6, 0));
         yield return new WaitForSeconds(1);
 
-        SetEnemyInfo(boss, SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+        //SetEnemyInfo(boss, SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
 
-        yield return new WaitForSeconds(3.5f);
-
-        SetEnemyInfo(boss, SetEnemyGenInfo(MoveDirectionType.RIGHT, 0));
-
-        yield return new WaitForSeconds(2);
-
-        SetEnemyInfo(boss, SetEnemyGenInfo(MoveDirectionType.LEFT, 0));
-
-        yield return new WaitForSeconds(4);
-
-        SetEnemyInfo(boss, SetEnemyGenInfo(MoveDirectionType.RIGHT, 0));
-
-        yield return new WaitForSeconds(4);
-
-        SetEnemyInfo(boss, SetEnemyGenInfo(MoveDirectionType.LEFT, 0));
-
-        yield return new WaitForSeconds(4);
-
-        SetEnemyInfo(boss, SetEnemyGenInfo(MoveDirectionType.RIGHT, 0));
-
+        
+        
         //boss.GetComponent<BossEnemy>().BossMoveFlag = true;
 
     }
