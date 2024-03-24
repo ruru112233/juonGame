@@ -72,7 +72,7 @@ public class MinionEnemy : EnemyShotPattern
                 MoveDirection(enemyInfo.enemyDirectionType, enemyInfo.firstSpeed, enemyInfo.secondSpeed);
                 break;
             default:
-                Debug.Log("定義値以外");
+                //Debug.Log("定義値以外");
                 break;
         }
     }
@@ -165,7 +165,7 @@ public class MinionEnemy : EnemyShotPattern
                 obj = GameManager.instance.itemStock.thunder;
                 break;
             default:
-                Debug.Log("SetItemObj error");
+                //Debug.Log("SetItemObj error");
                 break;
         }
 

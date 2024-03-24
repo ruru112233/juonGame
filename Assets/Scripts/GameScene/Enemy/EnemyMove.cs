@@ -36,7 +36,7 @@ public class EnemyMove : MonoBehaviour
         if (enemyGenInfo.enemyDirectionType == MoveDirectionType.NO_MOVE)
         {
             // エラー
-            Debug.Log("方向を指定してください");
+            //Debug.Log("方向を指定してください");
             return -1;
         }
 
