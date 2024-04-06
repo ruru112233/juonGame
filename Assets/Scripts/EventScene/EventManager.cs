@@ -19,43 +19,26 @@ public class EventManager : MonoBehaviour
     private Color defaultColor = new Color(1f, 1f, 1f, 1f);
     private Color alfaColor = new Color(0.3f, 0.3f, 0.3f, 0.9f);
 
-    public enum ImagePosition
-    {
-        RIGHT,
-        LEFT,
-        NONE,
-    }
+    private string nowMsgPlayer = null;
+    private bool msgLeftFlag = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
-       CharImageOff();
+        msgLeftFlag = true;
+        CharImageOff();
     }
 
-    public void ChengeImage(ImagePosition imagePos, int num, string charNmae)
+    public void ChengeImage(int num, string charNmae)
     {
         rightText = charNameRight.GetComponentInChildren<TextMeshProUGUI>();
         leftText = charNameLeft.GetComponentInChildren<TextMeshProUGUI>();
-        
-        if (imagePos == ImagePosition.RIGHT)
-        {
-            //CharImageOff();
-            
-            rightText.text = charNmae;
-            leftText.text = "";
-            charRight.sprite = charImageList[num];
-            charRight.color = defaultColor;
-            charLeft.color = alfaColor;
 
-            charImageRight.SetActive(true);
+        ImagePosCheck(charNmae);
 
-            charNameRight.SetActive(true);
-        }
-        else if (imagePos == ImagePosition.LEFT)
+        if (msgLeftFlag)
         {
-            //CharImageOff();
-            
+            // 左側にキャラクターを表示
             leftText.text = charNmae;
             rightText.text = "";
             charLeft.sprite = charImageList[num];
@@ -69,7 +52,16 @@ public class EventManager : MonoBehaviour
         }
         else
         {
+            // 右側にキャラクターを表示
+            rightText.text = charNmae;
+            leftText.text = "";
+            charRight.sprite = charImageList[num];
+            charRight.color = defaultColor;
+            charLeft.color = alfaColor;
 
+            charImageRight.SetActive(true);
+
+            charNameRight.SetActive(true);
         }
     }
 
@@ -79,6 +71,15 @@ public class EventManager : MonoBehaviour
         charImageLeft.SetActive(false);
         charNameRight.SetActive(false);
         charNameLeft.SetActive(false);
+    }
+
+    private void ImagePosCheck( string msgPlayer )
+    {
+        if (nowMsgPlayer != msgPlayer)
+        {
+            nowMsgPlayer = msgPlayer;
+            msgLeftFlag = !msgLeftFlag;
+        }
     }
 
 }
