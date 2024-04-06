@@ -1629,6 +1629,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joystick: {fileID: 0}
   bulletSpawnPoint: {fileID: 1748128971}
+  bulletLeftPoint: {fileID: 0}
+  bulletRightPoint: {fileID: 0}
 --- !u!58 &1320415864
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1967,6 +1969,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pooledObject: {fileID: 5831117494709813674, guid: 6f1564a57a8565f46876486374254839, type: 3}
+  stickPooledObject: {fileID: 1011222428060229827, guid: 281781b017a7302499c75bc38edd35b9, type: 3}
   enemyPooledObject: {fileID: 5840099444055205246, guid: 3b9eeee50d6a2bf4ab669c309fad65ee, type: 3}
 --- !u!1 &1748128970
 GameObject:

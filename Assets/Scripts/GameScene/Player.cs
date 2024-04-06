@@ -36,8 +36,12 @@ public class Player : MonoBehaviour
     private float colorChengeCounter = 0;
     private bool colorChengeFlag = false;
     
-    [SerializeField] private Transform bulletSpawnPoint;
-    private float bulletSpeed = 10f;
+    [SerializeField] private Transform bulletSpawnPoint, bulletLeftPoint, bulletRightPoint;
+    private float pickSpeed = 10f;
+    private float stickSpeed = 5f;
+
+    // 攻撃パターンフラグ
+    private bool sideFireFlag = false;
 
     // 発射時間
     private float shotTime = 0.0f;
@@ -46,6 +50,7 @@ public class Player : MonoBehaviour
     private float paralysisTime = 0.0f;
     private bool stopFlag = false;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,8 +58,8 @@ public class Player : MonoBehaviour
         playerGeneretor = playerGeneretorObj.GetComponent<PlayerGeneretor>();
      
         shotTime = SHOT_TIME;
+        sideFireFlag = true;
 
-        
         reviveFlag = true;
         colorChengeFlag = false;
         stopFlag = false;
@@ -102,6 +107,8 @@ public class Player : MonoBehaviour
         if (ShotTimer())
         {
             Fire();
+            RightFire();
+            LeftFire();
         }
     }
 
@@ -149,9 +156,45 @@ public class Player : MonoBehaviour
             bullet.SetActive(true);
 
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.velocity = new Vector2(0, bulletSpeed);
+            rb.velocity = new Vector2(0, pickSpeed);
         }
 
+    }
+
+    private void RightFire()
+    {
+        if (!sideFireFlag) return;
+
+        GameObject rightBullet = BulletPool.Instance.GetSticksObject();
+
+        if (rightBullet != null)
+        {
+            Debug.Log("右側");
+            rightBullet.transform.position = bulletRightPoint.position;
+            rightBullet.transform.rotation = Quaternion.identity;
+            rightBullet.SetActive(true);
+
+            Rigidbody2D rb = rightBullet.GetComponent<Rigidbody2D>();
+            rb.velocity = new Vector2(2, stickSpeed);
+        }
+
+    }
+    private void LeftFire()
+    {
+        if (!sideFireFlag) return;
+
+        GameObject LeftBullet = BulletPool.Instance.GetSticksObject();
+
+        if (LeftBullet != null)
+        {
+            Debug.Log("左側");
+            LeftBullet.transform.position = bulletLeftPoint.position;
+            LeftBullet.transform.rotation = Quaternion.identity;
+            LeftBullet.SetActive(true);
+
+            Rigidbody2D rb = LeftBullet.GetComponent<Rigidbody2D>();
+            rb.velocity = new Vector2(-2, stickSpeed);
+        }
     }
 
     // プレイヤーの移動
