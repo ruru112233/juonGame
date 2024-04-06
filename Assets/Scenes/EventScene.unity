@@ -1298,7 +1298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 0.5686275}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1367,10 +1367,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b74a8f0180fa946b822ee2fd67278d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullTexts:
-  - "\u3053\u308C\u306F\u30C6\u30B9\u30C8\u3067\u3059\u3002"
-  - "\u30E1\u30C3\u30BB\u30FC\u30B8\u304C\u8868\u793A\u3055\u308C\u308B\u304B\u3092\u8A66\u3057\u3066\u3044\u307E\u3059\u3002"
-  - "\u30E1\u30C3\u30BB\u30FC\u30B8\u306E\u6700\u5F8C\u307E\u3067\u518D\u751F\u3055\u308C\u308B\u3068\u3001\u6700\u521D\u306E\u30C6\u30AD\u30B9\u30C8\u306B\u623B\u308A\u307E\u3059\u3002"
+  messages:
+  - speaker: 0
+    message: "\u4F1A\u8A71\u30C6\u30B9\u30C8\u3067\u3059\u3002"
+    imagePos: 0
+  - speaker: 0
+    message: "\u3053\u306E\u3088\u3046\u306A\u304B\u305F\u3061\u3067"
+    imagePos: 0
+  - speaker: 1
+    message: "\u4EA4\u4E92\u306B\u4F1A\u8A71\u51FA\u6765\u307E\u3059\u3002"
+    imagePos: 1
+  - speaker: 1
+    message: "\u5225\u306E\u4EBA\u304C\u8A71\u3059\u3068\u3001"
+    imagePos: 1
+  - speaker: 0
+    message: "\u6700\u521D\u3044\u30AD\u30E3\u30E9\u30AF\u30BF\u30FC\u306F\u9ED2\u3063\u307D\u3044\u8272\u306B\u5909\u66F4\u3055\u308C\u307E\u3059\u3002"
+    imagePos: 0
   msgText: {fileID: 689168811}
   eventManager: {fileID: 2072825514}
 --- !u!1 &2072825512
@@ -1418,13 +1430,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charImageList:
-  - {fileID: 21300000, guid: f2c97361243271749b3fca186d495618, type: 3}
-  - {fileID: 21300000, guid: 125e54adaeb10124e99ff396a16e7a1b, type: 3}
-  - {fileID: 21300000, guid: 538c5cc617a1e2048870a3534324d395, type: 3}
+  - {fileID: 21300000, guid: 4d5ccd467f2531246aaf980c34c8012b, type: 3}
+  - {fileID: 21300000, guid: cf20d33152ca30b4a9a71e016dab402b, type: 3}
+  - {fileID: 0}
   charImageRight: {fileID: 971952965}
   charImageLeft: {fileID: 2012217415}
   charNameRight: {fileID: 1650054539}
   charNameLeft: {fileID: 956780144}
+  charRight: {fileID: 971952967}
+  charLeft: {fileID: 2012217417}
 --- !u!1 &2116691050
 GameObject:
   m_ObjectHideFlags: 0

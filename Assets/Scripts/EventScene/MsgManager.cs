@@ -5,8 +5,23 @@ using TMPro;
 
 public class MsgManager : MonoBehaviour
 {
+
+    public enum Speaker
+    {
+        JUON,
+        SATOKO,
+    }
+
+    [System.Serializable]
+    public struct MessageData
+    {
+        public Speaker speaker;
+        public string message;
+        public EventManager.ImagePosition imagePos;
+    }
+
     private float delay = 0.1f;
-    public string[] fullTexts;
+    public MessageData[] messages;
     public TextMeshProUGUI msgText;
 
     private int currentLine = 0;
@@ -27,33 +42,28 @@ public class MsgManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            bool canAccessPreviousLine = currentLine > 0;
-            bool isNotLastLine = currentLine < fullTexts.Length;
-
-            if (!string.IsNullOrEmpty(msgText.text) &&
-                ((isNotLastLine && isMsgFullText && canAccessPreviousLine && msgText.text != fullTexts[currentLine - 1]) ||
-                (!isMsgFullText && msgText.text != fullTexts[currentLine]))) 
+            if (!isMsgFullText)
             {
-                    isClicked = true;
+                isClicked = true;
             }
             else
             {
                 StopAllCoroutines();
                 StartCoroutine(ShowText());
             }
-
         }
     }
 
     IEnumerator ShowText()
     {
+        yield return new WaitForSeconds(delay);
         isClicked = false;
         isMsgFullText = false;
 
-        //string fullText = fullTexts[currentLine];
-
-        string fullText = SetText(currentLine);
+        string fullText = messages[currentLine].message;
         msgText.text = "";
+
+        SetImage(messages[currentLine].speaker);
 
         for (int i = 0; i < fullText.Length; i++)
         {
@@ -64,57 +74,24 @@ public class MsgManager : MonoBehaviour
                 break;
             }
 
-            if (i + 1 < fullText.Length)
-            {
-
-                if ((fullText[i + 1] == '。' || fullText[i + 1] == '、' || fullText[i + 1] == '？'))
-                {
-                    msgText.text += fullText[i].ToString() + fullText[i + 1].ToString();
-                    i++;
-                }
-                else
-                {
-                    msgText.text += fullText[i];
-                }
-            }
-            
+            msgText.text += fullText[i];
             yield return new WaitForSeconds(delay);
         }
 
-        currentLine = (currentLine + 1) % fullTexts.Length;
+        currentLine = (currentLine + 1) % messages.Length;
         isMsgFullText = true;
 
     }
 
-    private string SetText(int currentLine)
+    private void SetImage(Speaker speaker)
     {
-        string msg = "";
-        SetImage(currentLine);
-        msg = fullTexts[currentLine];
-
-        return msg;
-    }
-
-    private void SetImage(int currentLine)
-    {
-        switch (currentLine)
+        switch (speaker)
         {
-            case 0:
-                eventManager.ChengeImage(EventManager.ImagePosition.LEFT, 0, "キャラA");
+            case Speaker.JUON:
+                eventManager.ChengeImage(messages[currentLine].imagePos, 0, "ジュオン");
                 break;
-            case 1:
-                eventManager.ChengeImage(EventManager.ImagePosition.RIGHT, 1, "キャラB");
-                break;
-            case 2:
-                eventManager.ChengeImage(EventManager.ImagePosition.LEFT, 2, "キャラC");
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
+            case Speaker.SATOKO:
+                eventManager.ChengeImage(messages[currentLine].imagePos, 1, "サトコ");
                 break;
             default:
                 break;

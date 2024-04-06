@@ -12,7 +12,12 @@ public class EventManager : MonoBehaviour
 
     [SerializeField] private GameObject charNameRight, charNameLeft;
 
-    private Image charRight, charLeft;
+    private TextMeshProUGUI rightText, leftText;
+
+    public Image charRight, charLeft;
+
+    private Color defaultColor = new Color(1f, 1f, 1f, 1f);
+    private Color alfaColor = new Color(0.3f, 0.3f, 0.3f, 0.9f);
 
     public enum ImagePosition
     {
@@ -25,30 +30,42 @@ public class EventManager : MonoBehaviour
     void Start()
     {
         
-        //CharImageOff();
+       CharImageOff();
     }
 
     public void ChengeImage(ImagePosition imagePos, int num, string charNmae)
     {
+        rightText = charNameRight.GetComponentInChildren<TextMeshProUGUI>();
+        leftText = charNameLeft.GetComponentInChildren<TextMeshProUGUI>();
+        
         if (imagePos == ImagePosition.RIGHT)
         {
-            CharImageOff();
-            charImageRight.SetActive(true);
-            charRight = charImageRight.GetComponent<Image>();
-            charNameRight.SetActive(true);
-            TextMeshProUGUI rightText = charNameRight.GetComponentInChildren<TextMeshProUGUI>();
+            //CharImageOff();
+            
             rightText.text = charNmae;
+            leftText.text = "";
             charRight.sprite = charImageList[num];
+            charRight.color = defaultColor;
+            charLeft.color = alfaColor;
+
+            charImageRight.SetActive(true);
+
+            charNameRight.SetActive(true);
         }
         else if (imagePos == ImagePosition.LEFT)
         {
-            CharImageOff();
-            charImageLeft.SetActive(true);
-            charLeft = charImageLeft.GetComponent<Image>();
-            charNameLeft.SetActive(true);
-            TextMeshProUGUI leftText = charNameLeft.GetComponentInChildren<TextMeshProUGUI>();
+            //CharImageOff();
+            
             leftText.text = charNmae;
+            rightText.text = "";
             charLeft.sprite = charImageList[num];
+            charLeft.color = defaultColor;
+            charRight.color = alfaColor;
+
+            charImageLeft.SetActive(true);
+
+            charNameLeft.SetActive(true);
+
         }
         else
         {
