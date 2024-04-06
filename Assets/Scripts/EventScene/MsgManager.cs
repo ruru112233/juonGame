@@ -10,6 +10,7 @@ public class MsgManager : MonoBehaviour
     {
         JUON,
         SATOKO,
+        PLAYER3,
     }
 
     [System.Serializable]
@@ -17,7 +18,6 @@ public class MsgManager : MonoBehaviour
     {
         public Speaker speaker;
         public string message;
-        public EventManager.ImagePosition imagePos;
     }
 
     private float delay = 0.1f;
@@ -56,7 +56,9 @@ public class MsgManager : MonoBehaviour
 
     IEnumerator ShowText()
     {
-        yield return new WaitForSeconds(delay);
+        // 1フレーム止める
+        yield return null;
+
         isClicked = false;
         isMsgFullText = false;
 
@@ -88,10 +90,13 @@ public class MsgManager : MonoBehaviour
         switch (speaker)
         {
             case Speaker.JUON:
-                eventManager.ChengeImage(messages[currentLine].imagePos, 0, "ジュオン");
+                eventManager.ChengeImage(0, "ジュオン");
                 break;
             case Speaker.SATOKO:
-                eventManager.ChengeImage(messages[currentLine].imagePos, 1, "サトコ");
+                eventManager.ChengeImage(1, "サトコ");
+                break;
+            case Speaker.PLAYER3:
+                eventManager.ChengeImage(2, "Player");
                 break;
             default:
                 break;
