@@ -7,12 +7,14 @@ public class BulletPool : MonoBehaviour
     public static BulletPool Instance;
 
     public GameObject pooledObject;
+    public GameObject stickPooledObject;
     public GameObject enemyPooledObject;
 
     private int pooledAmount = 20;
     private int enemyPooledAmount = 20;
 
     List<GameObject> pooledObjects;
+    List<GameObject> stickObjects;
     List<GameObject> enemyPooledObjects;
 
     private void Awake()
@@ -28,6 +30,7 @@ public class BulletPool : MonoBehaviour
     {
         // プレイヤーの弾の生成
         CreateObjectPoole(pooledObject, pooledAmount, ref pooledObjects);
+        CreateObjectPoole(stickPooledObject, pooledAmount, ref stickObjects); // スティックの生成
 
         // エネミーの弾の生成
         CreateObjectPoole(enemyPooledObject, enemyPooledAmount, ref enemyPooledObjects);
@@ -59,6 +62,24 @@ public class BulletPool : MonoBehaviour
         GameObject obj = (GameObject)Instantiate(pooledObject);
         obj.SetActive(false);
         pooledObjects.Add(obj);
+
+        return obj;
+    }
+
+    // プレイヤーの弾取得(スティック)
+    public GameObject GetSticksObject()
+    {
+        for (int i = 0; i < stickObjects.Count; i++)
+        {
+            if (!stickObjects[i].activeInHierarchy)
+            {
+                return stickObjects[i];
+            }
+        }
+
+        GameObject obj = (GameObject)Instantiate(stickPooledObject);
+        obj.SetActive(false);
+        stickObjects.Add(obj);
 
         return obj;
     }
