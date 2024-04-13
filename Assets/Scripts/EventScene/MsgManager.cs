@@ -81,6 +81,13 @@ public class MsgManager : MonoBehaviour
         }
 
         currentLine = (currentLine + 1) % messages.Length;
+        
+        if (currentLine == 0)
+        {
+            yield return new WaitForSeconds(1.0f);
+            eventManager.ToGameScene();
+        }
+
         isMsgFullText = true;
 
     }
