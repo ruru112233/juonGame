@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class EventManager : MonoBehaviour
 {
+
     [SerializeField] private List<Sprite> charImageList;
 
     [SerializeField] private GameObject charImageRight, charImageLeft;
@@ -80,6 +82,11 @@ public class EventManager : MonoBehaviour
             nowMsgPlayer = msgPlayer;
             msgLeftFlag = !msgLeftFlag;
         }
+    }
+
+    public void ToGameScene()
+    {
+        SceneManager.LoadScene("GameScene");
     }
 
 }

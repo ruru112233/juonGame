@@ -77,9 +77,10 @@ public class Item : MonoBehaviour
             // スコアの加算
             //uiManager.SetScore(itemPoint);
             // ItemPatternが未確定意外はアイテムをスコアのアイテムを出現させる
-            if ((itemPattern == ItemPattern.JIMI_GUITAR) && 
+            if ((itemPattern == ItemPattern.JIMI_GUITAR) || 
                 (itemPattern == ItemPattern.JOHN_GUITAR) )
             {
+                Debug.Log("スコアボール");
                 GameObject scoreBallObj = (GameObject)Instantiate(scoreBall, this.transform.position, Quaternion.identity);
                 // アイテムのイメージを更新
                 SpriteRenderer spriteRnd = scoreBallObj.GetComponent<SpriteRenderer>();
