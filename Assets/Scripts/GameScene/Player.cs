@@ -14,6 +14,10 @@ public class Player : MonoBehaviour
     const float LEFT_MOVE_LIMIT = -2.6f;
     const float SHOT_TIME = 0.3f;
     const float PARALYSIS_TIME = 2.0f;
+    const float SIDE_SHOT_ANGLE = 1.0f;
+
+    // レベルごとの攻撃パターン
+    private const int SIDE_FIRE_LV = 2;
 
     /// <summary>
     /// 変数
@@ -40,8 +44,6 @@ public class Player : MonoBehaviour
     private float pickSpeed = 10f;
     private float stickSpeed = 5f;
 
-    // 攻撃パターンフラグ
-    private bool sideFireFlag = false;
 
     // 発射時間
     private float shotTime = 0.0f;
@@ -50,7 +52,6 @@ public class Player : MonoBehaviour
     private float paralysisTime = 0.0f;
     private bool stopFlag = false;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -58,7 +59,6 @@ public class Player : MonoBehaviour
         playerGeneretor = playerGeneretorObj.GetComponent<PlayerGeneretor>();
      
         shotTime = SHOT_TIME;
-        sideFireFlag = true;
 
         reviveFlag = true;
         colorChengeFlag = false;
@@ -163,37 +163,35 @@ public class Player : MonoBehaviour
 
     private void RightFire()
     {
-        if (!sideFireFlag) return;
+        if (GameManager.instance.PlayerLv < SIDE_FIRE_LV) return;
 
         GameObject rightBullet = BulletPool.Instance.GetSticksObject();
 
         if (rightBullet != null)
         {
-            Debug.Log("右側");
             rightBullet.transform.position = bulletRightPoint.position;
             rightBullet.transform.rotation = Quaternion.identity;
             rightBullet.SetActive(true);
 
             Rigidbody2D rb = rightBullet.GetComponent<Rigidbody2D>();
-            rb.velocity = new Vector2(2, stickSpeed);
+            rb.velocity = new Vector2(SIDE_SHOT_ANGLE, stickSpeed);
         }
 
     }
     private void LeftFire()
     {
-        if (!sideFireFlag) return;
+        if (GameManager.instance.PlayerLv < SIDE_FIRE_LV) return;
 
         GameObject LeftBullet = BulletPool.Instance.GetSticksObject();
 
         if (LeftBullet != null)
         {
-            Debug.Log("左側");
             LeftBullet.transform.position = bulletLeftPoint.position;
             LeftBullet.transform.rotation = Quaternion.identity;
             LeftBullet.SetActive(true);
 
             Rigidbody2D rb = LeftBullet.GetComponent<Rigidbody2D>();
-            rb.velocity = new Vector2(-2, stickSpeed);
+            rb.velocity = new Vector2(-SIDE_SHOT_ANGLE, stickSpeed);
         }
     }
 

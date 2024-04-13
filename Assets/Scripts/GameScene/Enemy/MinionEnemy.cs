@@ -120,7 +120,7 @@ public class MinionEnemy : EnemyShotPattern
     {
         for (int i = 0; i < dropItemCount; i++)
         {
-            GameObject obj = SetItemObj();
+            GameObject obj = GameManager.instance.itemStock.SetItemObj();
 
             Debug.Log(obj);
 
@@ -144,32 +144,4 @@ public class MinionEnemy : EnemyShotPattern
 
         return pos;
     }
-
-    private GameObject SetItemObj()
-    {
-        GameObject obj = null;
-
-        int rand = Random.Range(0, 5);
-
-        switch (rand)
-        {
-            case 0:
-                obj = GameManager.instance.itemStock.jimiGuiterObj;
-                break;
-            case 1:
-            case 2:
-                obj = GameManager.instance.itemStock.johnGuiterObj;
-                break;
-            case 3:
-            case 4:
-                obj = GameManager.instance.itemStock.thunder;
-                break;
-            default:
-                //Debug.Log("SetItemObj error");
-                break;
-        }
-
-        return obj;
-    }
-
 }

@@ -39,6 +39,7 @@ public class Item : MonoBehaviour
         JIMI_GUITAR,    // ジミヘンギター
         JOHN_GUITAR,    // ジョンギター
         THUNDER,        // 稲妻
+        POWER_UP,       // パワーアップアイテム
         UNSETTILED,     // 未確定 
     }
 
@@ -76,7 +77,8 @@ public class Item : MonoBehaviour
             // スコアの加算
             //uiManager.SetScore(itemPoint);
             // ItemPatternが未確定意外はアイテムをスコアのアイテムを出現させる
-            if ((itemPattern != ItemPattern.UNSETTILED) && (itemPattern != ItemPattern.THUNDER))
+            if ((itemPattern == ItemPattern.JIMI_GUITAR) && 
+                (itemPattern == ItemPattern.JOHN_GUITAR) )
             {
                 GameObject scoreBallObj = (GameObject)Instantiate(scoreBall, this.transform.position, Quaternion.identity);
                 // アイテムのイメージを更新
@@ -89,6 +91,12 @@ public class Item : MonoBehaviour
                 // スコアを更新
                 ScoreBall scoreBallScript = scoreBallObj.GetComponent<ScoreBall>();
                 scoreBallScript.SetScorePoint(ItemCheckValue());
+            }
+
+            // パワーアップアイテム
+            if (itemPattern == ItemPattern.POWER_UP)
+            {
+                GameManager.instance.PlayerLv++;
             }
 
             // Itemオブジェクトを削除する
