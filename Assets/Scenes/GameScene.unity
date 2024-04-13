@@ -1286,6 +1286,7 @@ MonoBehaviour:
   jimiGuiterObj: {fileID: 324293563536497579, guid: 697f28b5d3034694598cd814c41cf096, type: 3}
   johnGuiterObj: {fileID: 8125456960933849566, guid: 5f73f21e19193574b809f18c13fe6ff0, type: 3}
   thunder: {fileID: 2055522432152348701, guid: 0a51055bfb1d3fc4b810ea1add85a917, type: 3}
+  powerUpItem: {fileID: 806838505496643798, guid: 0d1751e99596acd4791088099b86d641, type: 3}
   eighth: {fileID: 21300000, guid: 790ade2f6062ded4eb23e7e253825e0e, type: 3}
   duplet_quarters: {fileID: 21300000, guid: 8890ddd10a148f544a712ef1d9bdbf8a, type: 3}
   duplet_eighth: {fileID: 21300000, guid: fbdda057496ebce44842b05ab55780fc, type: 3}
