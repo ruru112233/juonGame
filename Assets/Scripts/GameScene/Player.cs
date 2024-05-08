@@ -52,6 +52,11 @@ public class Player : MonoBehaviour
     private float paralysisTime = 0.0f;
     private bool stopFlag = false;
 
+    // ボム関係
+    [SerializeField] private GameObject bom;
+    private float bomShotTime = 5.0f;
+    private float bomTimer = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,11 +102,22 @@ public class Player : MonoBehaviour
                 }
             }
         }
+
+        // ボムの発射
+        bomTimer += Time.deltaTime;
+
+        if (bomTimer >= bomShotTime)
+        {
+            bomTimer = 0;
+            Instantiate(bom, transform.position, Quaternion.identity);
+        }
     }
 
 
     void PlayerAction()
     {
+        if (ParalysisTimer()) return;
+
         PlayerMove();
 
         if (ShotTimer())
@@ -198,7 +214,6 @@ public class Player : MonoBehaviour
     // プレイヤーの移動
     void PlayerMove()
     {
-        if (ParalysisTimer()) return;
 
         float joyconX = joystick.Horizontal;
         float joyconY = joystick.Vertical;

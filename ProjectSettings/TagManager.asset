@@ -13,6 +13,7 @@ TagManager:
   - ScorePos
   - Thunder
   - JoyStick
+  - Bom
   layers:
   - Default
   - TransparentFX
