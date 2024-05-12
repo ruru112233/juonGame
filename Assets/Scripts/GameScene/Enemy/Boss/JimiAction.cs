@@ -185,7 +185,6 @@ public class JimiAction : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-
             enemyHp--;
 
             //hpSlider.value = enemyHp_;
