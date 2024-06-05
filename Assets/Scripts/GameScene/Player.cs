@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 
     // レベルごとの攻撃パターン
     private const int SIDE_FIRE_LV = 2;
+    private const int BOM_LV = 3;
 
     /// <summary>
     /// 変数
