@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
     private const float ANGLE_MIN = -35.0f;
     private const float OMP_SPEED = 1000.0f;
     private const int OMP_MAX_COUNT = 8;
+    private const int CREAR_SCORE_POINT = 10;
 
     private int scorePoint = 0;
     private int ompCount = 0;
@@ -69,5 +70,15 @@ public class ScoreManager : MonoBehaviour
         scorePoint += point;
         ompObj.transform.rotation = Quaternion.Euler(defaultOmpPos);
         ompCount = 0;
+    }
+
+    public bool CrearCheck()
+    {
+        if (CREAR_SCORE_POINT <= scorePoint)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

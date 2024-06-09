@@ -122,8 +122,6 @@ public class MinionEnemy : EnemyShotPattern
         {
             GameObject obj = GameManager.instance.itemStock.SetItemObj();
 
-            Debug.Log(obj);
-
             if (obj)
             {
                 Vector3 randomItemPos = RandomPosition(transform.position);

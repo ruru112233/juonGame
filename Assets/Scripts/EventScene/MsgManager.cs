@@ -3,25 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class MsgManager : MonoBehaviour
+public class MsgManager : Msg
 {
 
-    public enum Speaker
-    {
-        JUON,
-        SATOKO,
-        PLAYER3,
-    }
+    public Msg messageEvent1;
+    public Msg crearEvent;
 
-    [System.Serializable]
-    public struct MessageData
-    {
-        public Speaker speaker;
-        public string message;
-    }
+    private MessageData[] messageList;
 
     private float delay = 0.1f;
-    public MessageData[] messages;
+
     public TextMeshProUGUI msgText;
 
     private int currentLine = 0;
@@ -34,7 +25,17 @@ public class MsgManager : MonoBehaviour
     void Start()
     {
         msgText.text = "";
-        StartCoroutine(ShowText());
+
+        if (GameManager.crearFlag)
+        {
+            messageList = crearEvent.messages;
+        }
+        else
+        {
+            messageList = messageEvent1.messages;
+        }
+
+        StartCoroutine(ShowText(messageList));
     }
 
     // Update is called once per frame
@@ -49,12 +50,12 @@ public class MsgManager : MonoBehaviour
             else
             {
                 StopAllCoroutines();
-                StartCoroutine(ShowText());
+                StartCoroutine(ShowText(messageList));
             }
         }
     }
 
-    IEnumerator ShowText()
+    IEnumerator ShowText(MessageData[] messages)
     {
         // 1フレーム止める
         yield return null;
@@ -82,10 +83,14 @@ public class MsgManager : MonoBehaviour
 
         currentLine = (currentLine + 1) % messages.Length;
         
-        if (currentLine == 0)
+        if ((currentLine == 0) && !GameManager.crearFlag)
         {
             yield return new WaitForSeconds(1.0f);
             eventManager.ToGameScene();
+        }
+        else
+        {
+            // クリア後で会話も終了した時の処理をここに書く
         }
 
         isMsgFullText = true;
