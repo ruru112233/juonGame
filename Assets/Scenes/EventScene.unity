@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 426911824}
   - component: {fileID: 426911823}
   m_Layer: 5
-  m_Name: mura
+  m_Name: SpaceInner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -291,10 +291,10 @@ RectTransform:
   m_Father: {fileID: 1112262898}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -214, y: -327}
-  m_SizeDelta: {x: 2579.9658, y: 2198.1309}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &426911823
 MonoBehaviour:
@@ -316,7 +316,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 653b86edef76f5c4bb443db5aa9908d1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e4ec59bc108d747499e77f244304a0f9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -386,7 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.49411765}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -563,7 +563,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &700036935
 RectTransform:
   m_ObjectHideFlags: 0
@@ -723,7 +723,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &956780145
 RectTransform:
   m_ObjectHideFlags: 0
@@ -800,7 +800,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &971952966
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1199,17 +1199,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9611bb879f70d3243a447ae912afa638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messageEvent1: {fileID: 0}
-  crearEvent: {fileID: 0}
-  msgText: {fileID: 0}
-  eventManager: {fileID: 0}
   messages:
   - speaker: 0
-    message: "\u3053\u308C\u306F\u30C6\u30B9\u30C8\u3067\u3059\u3002"
-  - speaker: 1
-    message: "\u30C6\u30B9\u30C6\u30B9\u3068"
+    message: "\u5049\u5927\u306A\u308B\u97F3\u697D\u306E\u5148\u4EBA\u305F\u3061\u3088@\u50D5\u3089\u306F\u77E5\u308A\u305F\u3044"
   - speaker: 0
-    message: "\u30B2\u30FC\u30E0\u30B9\u30BF\u30FC\u30C8"
+    message: "\u3042\u306E\u9803\u306E\u3042\u306A\u305F\u305F\u3061\u306F@\u4E00\u4F53\u4F55\u3092\u60F3\u3063\u3066@\u97F3\u697D\u3092\u594F\u3067\u3066\u3044\u305F\u306E\uFF1F"
+  - speaker: 0
+    message: "\u3042\u306E\u540D\u66F2\u306F\u3069\u3046\u3084\u3063\u3066\u4F5C\u3089\u308C\u305F\u306E\u304B"
+  - speaker: 0
+    message: "\u3042\u306E\u30D0\u30F3\u30C9\u306F\u3069\u3046\u3057\u3066\u89E3\u6563\u3057\u305F\u306E\u304B"
+  - speaker: 0
+    message: "\u3042\u306E\u30BD\u30ED\u306F\u3042\u308C\u3067\u6B63\u89E3\u306A\u306E\u304B"
+  - speaker: 0
+    message: "\u8074\u304D\u305F\u3044\u3053\u3068\u306F\u5C71\u307B\u3069\u3042\u308B\u306E\u306B@\u30BF\u30A4\u30E0\u30DE\u30B7\u30F3\u304C\u307E\u3060\u306A\u3044\u4ECA@\u6614\u306B\u623B\u3063\u3066\u805E\u304F\u3053\u3068\u3082\u53F6\u308F\u306A\u3044"
+  - speaker: 0
+    message: "\u611B\u3059\u308B\u3042\u306A\u305F\u3068\u3082@\u9022\u3048\u306A\u304F\u306A\u3063\u3066\u304B\u3089\u65E9\u6570\u5E74..."
+  - speaker: 0
+    message: "\u4ECA\u306F\u3069\u3053\u306B\u3044\u308B\u306E\uFF1F"
+  - speaker: 0
+    message: "\u4F55\u3092\u3057\u3066\u3044\u308B\u306E\uFF1F"
+  - speaker: 0
+    message: "\u3042\u306A\u305F\u306E\u3044\u306A\u3044\u4E16\u754C\u3067@\u50D5\u3089\u306F\u306A\u3093\u3068\u304B\u66AE\u3089\u3057\u3066\u3044\u308B"
+  - speaker: 0
+    message: "\u305D\u308C\u306B\u3057\u3066\u3082@\u8089\u4F53\u3092\u96E2\u308C\u305F\u5F7C\u3089\u306F\u4ECA@\u3069\u3053\u3067\u4F55\u3092\u3057\u3066\u3044\u308B\u306E\u3060\u308D\u3046\u304B"
+  - speaker: 0
+    message: "\u5642\u306B\u3088\u308B\u3068@\u5F7C\u3089\u306F\u4ECA\u3082\u3069\u3053\u304B\u3067\u96C6\u307E\u3063\u3066@\u97F3\u697D\u3092\u3084\u3063\u3066\u3044\u308B\u3089\u3057\u3044"
+  - speaker: 0
+    message: "\u305D\u3053\u306F\u5B87\u5B99?@\u5929\u56FD?"
+  - speaker: 0
+    message: "\u307C\u304F\u3089\u306F\u5927\u304D\u306A\u8239\u306B\u4E57\u3063\u3066@\u5F7C\u3089\u306E\u3068\u3053\u308D\u3078\u5411\u304B\u3046..."
+  - speaker: 0
+    message: "\u3042\u306A\u305F\u306E\u3044\u306A\u3044\u4E16\u754C\u3067@\u50D5\u3089\u306F\u306A\u3093\u3068\u304B\u66AE\u3089\u3057\u3066\u3044\u308B"
+  - speaker: 0
+    message: "\u3042\u306A\u305F\u306E\u3044\u306A\u3044\u4E16\u754C\u3067@\u50D5\u3089\u306F\u306A\u3093\u3068\u304B\u66AE\u3089\u3057\u3066\u3044\u308B"
+  - speaker: 0
+    message: "\u3042\u306A\u305F\u306E\u3044\u306A\u3044\u4E16\u754C\u3067@\u50D5\u3089\u306F\u306A\u3093\u3068\u304B\u66AE\u3089\u3057\u3066\u3044\u308B"
+  - speaker: 0
+    message: "\u3042\u306A\u305F\u306E\u3044\u306A\u3044\u4E16\u754C\u3067@\u50D5\u3089\u306F\u306A\u3093\u3068\u304B\u66AE\u3089\u3057\u3066\u3044\u308B"
+  - speaker: 0
+    message: "\u3042\u306A\u305F\u306E\u3044\u306A\u3044\u4E16\u754C\u3067@\u50D5\u3089\u306F\u306A\u3093\u3068\u304B\u66AE\u3089\u3057\u3066\u3044\u308B"
+  - speaker: 0
+    message: "\u3042\u306A\u305F\u306E\u3044\u306A\u3044\u4E16\u754C\u3067@\u50D5\u3089\u306F\u306A\u3093\u3068\u304B\u66AE\u3089\u3057\u3066\u3044\u308B"
 --- !u!4 &1180639455
 Transform:
   m_ObjectHideFlags: 0
@@ -1224,61 +1254,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1250168752
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1250168754}
-  - component: {fileID: 1250168753}
-  m_Layer: 0
-  m_Name: CrearMsg
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1250168753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1250168752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9611bb879f70d3243a447ae912afa638, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messageEvent1: {fileID: 0}
-  crearEvent: {fileID: 0}
-  msgText: {fileID: 0}
-  eventManager: {fileID: 0}
-  messages:
-  - speaker: 0
-    message: "\u30B2\u30FC\u30E0\u30AF\u30EA\u30A2\u304A\u3081\u3067\u3068\u3046"
-  - speaker: 1
-    message: "\u304A\u3081\u3067\u3068\u3046"
-  - speaker: 2
-    message: "\u304A\u3081\u3067\u3068\u3046"
---- !u!4 &1250168754
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1250168752}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 618.7177, y: 422.43683, z: -8.658856}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1650054539
 GameObject:
@@ -1297,7 +1272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1650054540
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1374,7 +1349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2012217416
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1477,8 +1452,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b74a8f0180fa946b822ee2fd67278d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  messages: []
   messageEvent1: {fileID: 1180639454}
-  crearEvent: {fileID: 1250168753}
+  crearEvent: {fileID: 0}
   msgText: {fileID: 689168811}
   eventManager: {fileID: 2072825514}
 --- !u!1 &2072825512

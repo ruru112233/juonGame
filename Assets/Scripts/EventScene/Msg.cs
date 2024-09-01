@@ -6,6 +6,7 @@ public class Msg : MonoBehaviour
 {
     public enum Speaker
     {
+        NONE,
         JUON,
         SATOKO,
         PLAYER3,
