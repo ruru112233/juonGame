@@ -72,12 +72,23 @@ public class MsgManager : Msg
         {
             if (isClicked)
             {
-                msgText.text = fullText;
+                // 改行コードの置換
+                string newfullText = fullText.Replace("@", "\r\n");
+
+                msgText.text = newfullText;
                 isClicked = false;
                 break;
             }
 
-            msgText.text += fullText[i];
+            if ('@' == fullText[i])
+            {
+                msgText.text += "\r\n";
+            }
+            else
+            {
+                msgText.text += fullText[i];
+            }
+
             yield return new WaitForSeconds(delay);
         }
 
