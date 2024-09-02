@@ -24,6 +24,12 @@ public class MsgManager : Msg
     // Start is called before the first frame update
     void Start()
     {
+        SaveData data = SaveAndLoader.Load();
+
+        delay = (float)data.msgSpeed / 15;
+
+        Debug.Log("delay:" + delay);
+
         msgText.text = "";
 
         if (GameManager.crearFlag)
