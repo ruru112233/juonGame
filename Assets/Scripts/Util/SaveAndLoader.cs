@@ -6,7 +6,7 @@ using System.IO;
 [System.Serializable]
 public class SaveData
 {
-    public int msgSpeed = 3;
+    public int msgSpeed = 2;
 }
 
 public static class SaveAndLoader

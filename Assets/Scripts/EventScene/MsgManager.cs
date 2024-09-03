@@ -28,8 +28,6 @@ public class MsgManager : Msg
 
         delay = (float)data.msgSpeed / 15;
 
-        Debug.Log("delay:" + delay);
-
         msgText.text = "";
 
         if (GameManager.crearFlag)
