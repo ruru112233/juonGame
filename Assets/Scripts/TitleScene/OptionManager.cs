@@ -5,7 +5,7 @@ using TMPro;
 
 public class OptionManager : MonoBehaviour
 {
-    private const int MAX_MSG_SPEED = 6;
+    private const int MAX_MSG_SPEED = 3;
     private const int MIN_MSG_SPEED = 1;
 
     [SerializeField] TextMeshProUGUI msgSpd1, msgSpd2, msgSpd3, msgSpd4, msgSpd5, msgSpd6;
@@ -45,7 +45,6 @@ public class OptionManager : MonoBehaviour
 
     public void RightSelectButton()
     {
-        Debug.Log(msgSpeedSelectNum);
         if (MIN_MSG_SPEED >= msgSpeedSelectNum) return;
 
         msgSpeedSelectNum--;
