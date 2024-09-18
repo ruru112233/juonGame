@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     private PlayerGeneretor playerGeneretor;
 
     // ジョイスティック
-    [SerializeField] FloatingJoystick joystick;
+    [SerializeField] protected FloatingJoystick joystick;
 
     private float speed = 2.0f;
     
@@ -213,13 +213,23 @@ public class Player : MonoBehaviour
     }
 
     // プレイヤーの移動
-    void PlayerMove()
+    protected virtual void PlayerMove()
     {
-
         float joyconX = joystick.Horizontal;
         float joyconY = joystick.Vertical;
         Vector3 newPosition = this.transform.position;
 
+        HorizontalPosSetting(joyconX, ref newPosition);
+
+        VerticalPosSetting(joyconY, ref newPosition);
+
+        // 新しい位置を設定
+        this.transform.position = newPosition;
+
+    }
+
+    protected virtual void HorizontalPosSetting(float joyconX, ref Vector3 newPosition)
+    {
         // X軸の移動範囲をチェック
         if (joyconX > 0 && newPosition.x < RIGHT_MOVE_LIMIT) // 右に移動
         {
@@ -230,6 +240,10 @@ public class Player : MonoBehaviour
             newPosition.x += joyconX * speed * Time.deltaTime;
         }
 
+    }
+
+    protected virtual void VerticalPosSetting(float joyconY, ref Vector3 newPosition)
+    {
         // Y軸の移動範囲をチェック
         if (joyconY > 0 && newPosition.y < UP_MOVE_LIMIT) // 上に移動
         {
@@ -239,10 +253,6 @@ public class Player : MonoBehaviour
         {
             newPosition.y += joyconY * speed * Time.deltaTime;
         }
-
-        // 新しい位置を設定
-        this.transform.position = newPosition;
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
