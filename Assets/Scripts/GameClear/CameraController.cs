@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    // comment test
     private Vector3 playerPos = new Vector3();
     // Start is called before the first frame update
     void Start()
