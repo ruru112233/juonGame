@@ -6,11 +6,18 @@ public class CameraController : MonoBehaviour
 {
     // comment test
     private Vector3 playerPos = new Vector3();
+
+    private GameObject playerObj = null;
     // Start is called before the first frame update
     void Start()
     {
-        playerPos = GameObject.FindGameObjectWithTag("EndingPlayer").transform.position;
-        
+        playerObj = GameObject.FindGameObjectWithTag("EndingPlayer");
+
+        if (playerObj)
+        {
+            playerPos = playerObj.transform.position;
+        }
+
         if (null != playerPos) 
         {
             playerPos.z = -10;
@@ -20,7 +27,10 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
-        playerPos = GameObject.FindGameObjectWithTag("EndingPlayer").transform.position;
+        if (playerObj)
+        {
+            playerPos = playerObj.transform.position;
+        }
 
         if (null != playerPos)
         {
