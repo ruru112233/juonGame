@@ -13,10 +13,34 @@ public class ChengeVectol : MobChar
     // Update is called once per frame
     void Update()
     {
-        if (IsStateChenge())
+        // ‘S•ûŒü‚Éƒ‰ƒ“ƒ_ƒ€‚ÅŒü‚©‚¹‚é
+        if (randomVectolFlag)
         {
-            RandomState();
+            if (IsStateChenge())
+            {
+                RandomState();
+            }
         }
+        else if (upMoveFlag)
+        {
+            MovePatternChenge(MoveState.BACK);
+        }
+        else if (downMoveFlag)
+        {
+            MovePatternChenge(MoveState.FRONT);
+        }
+        else if (rightMoveFlag)
+        {
+            MovePatternChenge(MoveState.RIGHT);
+        }
+        else if (leftMoveFlag)
+        {
+            MovePatternChenge(MoveState.LEFT);
+        }
+
+
+
+
     }
    
 

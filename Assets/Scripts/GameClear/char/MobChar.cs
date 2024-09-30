@@ -7,6 +7,12 @@ public class MobChar : MonoBehaviour
     private const float CHENGE_TIME = 3.0f;
     private float stateTime;
 
+    [SerializeField] protected bool randomVectolFlag, // ‘S•ûŒü‚ÖŒü‚©‚¹‚é
+                                    upMoveFlag,
+                                    downMoveFlag,
+                                    rightMoveFlag,
+                                    leftMoveFlag;
+
     protected enum MoveState
     {
         FRONT,
@@ -56,4 +62,5 @@ public class MobChar : MonoBehaviour
 
         anime.SetInteger("work_state", (int)state);
     }
+
 }
