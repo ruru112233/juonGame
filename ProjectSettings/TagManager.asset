@@ -15,6 +15,7 @@ TagManager:
   - JoyStick
   - Bom
   - EndingPlayer
+  - EndingEvent
   layers:
   - Default
   - TransparentFX

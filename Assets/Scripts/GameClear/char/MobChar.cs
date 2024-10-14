@@ -58,8 +58,6 @@ public class MobChar : MonoBehaviour
 
     protected void MovePatternChenge(MoveState state)
     {
-        Debug.Log(state);
-
         anime.SetInteger("work_state", (int)state);
     }
 
