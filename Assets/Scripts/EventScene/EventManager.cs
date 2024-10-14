@@ -31,6 +31,15 @@ public class EventManager : MonoBehaviour
         CharImageOff();
     }
 
+    public void NoneImage()
+    {
+        charRight.color = alfaColor;
+        charLeft.color = alfaColor;
+
+        charNameRight.SetActive(false);
+        charNameLeft.SetActive(false);
+    }
+
     public void ChengeImage(int num, string charNmae)
     {
         rightText = charNameRight.GetComponentInChildren<TextMeshProUGUI>();

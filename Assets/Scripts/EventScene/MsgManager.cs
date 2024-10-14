@@ -21,6 +21,19 @@ public class MsgManager : Msg
 
     public EventManager eventManager;
 
+    [SerializeField] private GameObject textField;
+
+    public GameObject TextFieldObj
+    {
+        get { return textField; }
+    }
+
+    public MessageData[] MessageList
+    {
+        get { return messageList; }
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,34 +45,47 @@ public class MsgManager : Msg
 
         if (GameManager.crearFlag)
         {
+            textField.SetActive(false);
             messageList = crearEvent.messages;
         }
         else
         {
             messageList = messageEvent1.messages;
+            StartCoroutine(ShowText(messageList));
         }
 
-        StartCoroutine(ShowText(messageList));
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        MessageStart();
+    }
+
+    public void MessageStart()
+    {
         if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log("aaa");
             if (!isMsgFullText)
             {
+                Debug.Log("bbnb");
+
                 isClicked = true;
             }
             else
             {
+
+                Debug.Log("ccc");
+
                 StopAllCoroutines();
                 StartCoroutine(ShowText(messageList));
             }
         }
     }
 
-    IEnumerator ShowText(MessageData[] messages)
+    public IEnumerator ShowText(MessageData[] messages)
     {
         // 1ÉtÉåÅ[ÉÄé~ÇﬂÇÈ
         yield return null;
@@ -124,6 +150,9 @@ public class MsgManager : Msg
                 break;
             case Speaker.PLAYER3:
                 eventManager.ChengeImage(2, "Player");
+                break;
+            case Speaker.NONE:
+                eventManager.NoneImage();
                 break;
             default:
                 break;
