@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class MsgManager : Msg
 {
+    [SerializeField] private GameObject scoreHandImage;
+    [SerializeField] private GameObject textField;
 
-    public Msg messageEvent1;
-    public Msg crearEvent;
-
-    private MessageData[] messageList;
+    private List<MessageData> messageList = new List<MessageData>();
 
     private float delay = 0.1f;
 
@@ -21,40 +21,36 @@ public class MsgManager : Msg
 
     public EventManager eventManager;
 
-    [SerializeField] private GameObject textField;
-
     public GameObject TextFieldObj
     {
         get { return textField; }
     }
 
-    public MessageData[] MessageList
+    public List<MessageData> MessageList
     {
         get { return messageList; }
+        set { messageList = value; }
     }
-
 
     // Start is called before the first frame update
     void Start()
     {
+        if (textField) textField.SetActive(false);
+        if (scoreHandImage) scoreHandImage.SetActive(false);
+
         SaveData data = SaveAndLoader.Load();
 
         delay = (float)data.msgSpeed / 15;
 
         msgText.text = "";
 
-        if (GameManager.crearFlag)
-        {
-            textField.SetActive(false);
-            messageList = crearEvent.messages;
-        }
-        else
-        {
-            messageList = messageEvent1.messages;
-            StartCoroutine(ShowText(messageList));
-        }
+        //if (messageList.Count > 0) StartCoroutine(ShowText(messageList));
 
-        
+    }
+
+    public void StartMessage(List<MessageData> messageListData)
+    {
+        if (messageListData.Count > 0) StartCoroutine(ShowText(messageListData));
     }
 
     // Update is called once per frame
@@ -67,28 +63,34 @@ public class MsgManager : Msg
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("aaa");
             if (!isMsgFullText)
             {
-                Debug.Log("bbnb");
-
                 isClicked = true;
             }
             else
             {
-
-                Debug.Log("ccc");
-
                 StopAllCoroutines();
-                StartCoroutine(ShowText(messageList));
+                if(messageList.Count > 0)
+                {
+                    StartCoroutine(ShowText(messageList));
+                }
+                else
+                {
+                    GameManager.instance.isStopped = false;
+                    textField.SetActive(false);
+                    scoreHandImage.SetActive(false);
+                }
+
             }
         }
     }
 
-    public IEnumerator ShowText(MessageData[] messages)
+    public IEnumerator ShowText(List<MessageData> messages)
     {
         // 1フレーム止める
         yield return null;
+
+        textField.SetActive(true);
 
         isClicked = false;
         isMsgFullText = false;
@@ -122,16 +124,17 @@ public class MsgManager : Msg
             yield return new WaitForSeconds(delay);
         }
 
-        currentLine = (currentLine + 1) % messages.Length;
-        
-        if ((currentLine == 0) && !GameManager.crearFlag)
+        currentLine = (currentLine + 1) % messages.Count;
+
+        if (currentLine == 0)
+        {
+            messageList.Clear();
+        }
+
+        if ((SceneManager.GetActiveScene().name == "EventScene") && (currentLine == 0) && !GameManager.crearFlag)
         {
             yield return new WaitForSeconds(1.0f);
             eventManager.ToGameScene();
-        }
-        else
-        {
-            // クリア後で会話も終了した時の処理をここに書く
         }
 
         isMsgFullText = true;
