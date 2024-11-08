@@ -34,8 +34,6 @@ public class BossEnemy : EnemyShotPattern
         base.Start();
         rightMoveFlag = true;
 
-        
-
         bossHp_ = 100;
 
         // UiManager�̎擾
@@ -57,6 +55,8 @@ public class BossEnemy : EnemyShotPattern
     // Update is called once per frame
     public override void Update()
     {
+        if (GameManager.instance.isStopped) return;
+
         base.Update();
 
         if (bossMoveFlag)

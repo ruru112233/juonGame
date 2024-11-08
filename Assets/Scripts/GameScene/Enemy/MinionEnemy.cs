@@ -50,6 +50,8 @@ public class MinionEnemy : EnemyShotPattern
     // Update is called once per frame
     public override void Update()
     {
+        if (GameManager.instance.isStopped) return;
+
         base.Update();
         // エネミーの移動
         MoveEnemy(enemyGenInfo_);

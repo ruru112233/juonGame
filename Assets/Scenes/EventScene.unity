@@ -1007,7 +1007,7 @@ GameObject:
   - component: {fileID: 1112262896}
   - component: {fileID: 1112262895}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: MessageCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1457,6 +1457,7 @@ MonoBehaviour:
   crearEvent: {fileID: 0}
   msgText: {fileID: 689168811}
   eventManager: {fileID: 2072825514}
+  textField: {fileID: 0}
 --- !u!1 &2072825512
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,13 +7,14 @@ public class StageManager : EnemyMove
     const float CENTER = 0.0f;
 
     [SerializeField] private GameObject bossObj, minionEnemyObj;
-
+    [SerializeField] private MsgManager msgManager;
     private List<GameObject> enemys = new List<GameObject>();
 
     private void AddEnemyListTutorial()
     {
         enemys.Clear();
         enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(CENTER, 6, 0)));
+
         enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
     }
 
@@ -30,11 +31,34 @@ public class StageManager : EnemyMove
 
         yield return new WaitForSeconds(0.1f);
 
+        yield return new WaitForSeconds(5.0f);
+
+        GameManager.instance.isStopped = false;
+
+        SetMessage(Msg.Speaker.JUON, "‚ ‚¢‚¤‚¦‚¨");
+        SetMessage(Msg.Speaker.JUON, "‚©‚«‚­‚¯‚±");
+        SetMessage(Msg.Speaker.JUON, "‚—‚—‚—‚—‚—‚—‚—‚—‚—‚—‚—‚—‚—‚—‚—‚—‚—‚—‚—");
+
+        msgManager.StartMessage(msgManager.MessageList);
+
         SetEnemyInfo(enemys[0], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+
+        GameManager.instance.isStopped = true;
+
+        yield return new WaitWhile(() => GameManager.instance.isStopped);
+
 
         yield return Wait_Y_PositionCheck(enemys[0], 1.8f);
 
         SetEnemyInfo(enemys[0], SetEnemyGenInfo(MoveDirectionType.NO_MOVE, 0));
+    }
+
+    private void SetMessage(Msg.Speaker speaker, string message)
+    {
+        Msg.MessageData msg;
+        msg.speaker = speaker;
+        msg.message = message;
+        msgManager.MessageList.Add(msg);
     }
 
     public IEnumerator EnemyPattern1Stage()

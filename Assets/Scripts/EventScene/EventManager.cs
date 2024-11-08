@@ -57,7 +57,6 @@ public class EventManager : MonoBehaviour
             charRight.color = alfaColor;
 
             charImageLeft.SetActive(true);
-
             charNameLeft.SetActive(true);
 
         }
@@ -71,7 +70,6 @@ public class EventManager : MonoBehaviour
             charLeft.color = alfaColor;
 
             charImageRight.SetActive(true);
-
             charNameRight.SetActive(true);
         }
     }

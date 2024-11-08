@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
     public static bool crearFlag = false;
+
+    public bool isStopped = false;
 
     public ScoreManager scoreManager;
 
