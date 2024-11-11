@@ -21,7 +21,22 @@ public class StageManager : EnemyMove
     private void AddEnemyList1Stage()
     {
         enemys.Clear();
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(0, 6, 0)));
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(CENTER, 6, 0)));
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(2, 6, 0)));
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
         enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
     }
 
@@ -31,10 +46,14 @@ public class StageManager : EnemyMove
 
         yield return new WaitForSeconds(0.1f);
 
-        yield return new WaitForSeconds(5.0f);
+        // ç≈èâÇÃÉRÉÅÉìÉg
+        GameManager.instance.isStopped = true;
 
-        GameManager.instance.isStopped = false;
+        msgManager.StartMessage(msgManager.MessageList);
 
+        yield return new WaitWhile(() => GameManager.instance.isStopped);
+
+        // 1ëŒèoåÇ
         SetMessage(Msg.Speaker.JUON, "Ç†Ç¢Ç§Ç¶Ç®");
         SetMessage(Msg.Speaker.JUON, "Ç©Ç´Ç≠ÇØÇ±");
         SetMessage(Msg.Speaker.JUON, "ÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇó");
@@ -45,12 +64,45 @@ public class StageManager : EnemyMove
 
         GameManager.instance.isStopped = true;
 
+        msgManager.ActiveHandArrow(new Vector3(0,0,0));
+
         yield return new WaitWhile(() => GameManager.instance.isStopped);
 
 
         yield return Wait_Y_PositionCheck(enemys[0], 1.8f);
 
         SetEnemyInfo(enemys[0], SetEnemyGenInfo(MoveDirectionType.NO_MOVE, 0));
+    }
+
+
+    public IEnumerator EnemyPattern1Stage()
+    {
+        AddEnemyList1Stage();
+
+        yield return new WaitForSeconds(0.1f);
+
+        // 1êw
+        SetEnemyInfo(enemys[0], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+
+        yield return StartCoroutine(Wait_Y_PositionCheck(enemys[0], 1.7f));
+
+        SetEnemyInfo(enemys[0], SetEnemyGenInfo(MoveDirectionType.NO_MOVE, 0));
+
+        yield return new WaitForSeconds(3.0f);
+
+        SetEnemyInfo(enemys[0], SetEnemyGenInfo(MoveDirectionType.TOP_RIGHT, 0.2f, 0));
+
+        // 2êw
+        SetEnemyInfo(enemys[1], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+        SetEnemyInfo(enemys[2], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+
+        yield return StartCoroutine(Wait_Y_PositionCheck(enemys[1], 0.5f));
+        yield return StartCoroutine(Wait_Y_PositionCheck(enemys[2], 0.5f));
+
+        SetEnemyInfo(enemys[1], SetEnemyGenInfo(MoveDirectionType.RIGHT, 3.0f, 0));
+        SetEnemyInfo(enemys[2], SetEnemyGenInfo(MoveDirectionType.LEFT, 3.0f, 0));
+
+
     }
 
     private void SetMessage(Msg.Speaker speaker, string message)
@@ -61,48 +113,6 @@ public class StageManager : EnemyMove
         msgManager.MessageList.Add(msg);
     }
 
-    public IEnumerator EnemyPattern1Stage()
-    {
-        AddEnemyList1Stage();
-
-        yield return new WaitForSeconds(0.1f);
-
-        SetEnemyInfo(enemys[0], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-
-        yield return StartCoroutine(Wait_Y_PositionCheck(enemys[0], 1.7f));
-
-        SetEnemyInfo(enemys[0], SetEnemyGenInfo(MoveDirectionType.TOP_RIGHT, 0.2f, 0));
-
-        //GameObject enemyC = SpawnEnemy(minionEnemyObj, new Vector3(1, 6, 0));
-        //GameObject enemyD = SpawnEnemy(minionEnemyObj, new Vector3(-1, 6, 0));
-
-        //yield return new WaitForSeconds(1);
-
-        //SetEnemyInfo(enemyC, SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-        //SetEnemyInfo(enemyD, SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-
-        //yield return new WaitForSeconds(6);
-
-        //SetEnemyInfo(enemyC, SetEnemyGenInfo(MoveDirectionType.TOP, 0));
-        //SetEnemyInfo(enemyD, SetEnemyGenInfo(MoveDirectionType.TOP, 0));
-
-        //yield return new WaitForSeconds(5);
-
-        //SetEnemyInfo(enemyC, SetEnemyGenInfo(MoveDirectionType.BOTTOM_LEFT, 0));
-        //SetEnemyInfo(enemyD, SetEnemyGenInfo(MoveDirectionType.BOTTOM_RIGHT, 0));
-
-        //yield return new WaitForSeconds(3);
-
-        //GameObject boss = SpawnEnemy(bossObj, new Vector3(0, 6, 0));
-        //yield return new WaitForSeconds(1);
-
-        //SetEnemyInfo(boss, SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-
-
-
-        //boss.GetComponent<BossEnemy>().BossMoveFlag = true;
-
-    }
 
     private IEnumerator Wait_Y_PositionCheck(GameObject obj, float targetPositionY, float tolerance = 0.1f)
     {

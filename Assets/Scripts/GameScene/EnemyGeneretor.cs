@@ -8,7 +8,7 @@ public class EnemyGeneretor : StageManager
     // Start is called before the first frame update
     public void Start()
     {
-        StartCoroutine(EnemyPatternTutorial());
+        StartCoroutine(EnemyPattern1Stage());
     }
 
 
