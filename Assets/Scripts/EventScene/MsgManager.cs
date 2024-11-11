@@ -59,6 +59,12 @@ public class MsgManager : Msg
         MessageStart();
     }
 
+    public void ActiveHandArrow(Vector3 pos)
+    {
+        scoreHandImage.transform.position = pos;
+        scoreHandImage.SetActive(true);
+    }
+
     public void MessageStart()
     {
         if (Input.GetMouseButtonDown(0))
