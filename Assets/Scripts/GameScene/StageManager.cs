@@ -21,23 +21,27 @@ public class StageManager : EnemyMove
     private void AddEnemyList1Stage()
     {
         enemys.Clear();
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(CENTER, 6, 0)));
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(2, 6, 0)));
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(CENTER, 6, 0))); // 0
+
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0))); // 1
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(2, 6, 0))); // 2
+
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0))); // 3
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-1, 6, 0))); // 4
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(CENTER, 6, 0))); // 5
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(1, 6, 0))); // 6
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(2, 6, 0))); // 7
+        
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(2, 6, 0))); // 8
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(1, 6, 0))); // 9
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(CENTER, 6, 0))); // 10
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-1, 6, 0))); // 11
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0))); // 12
+
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0))); // 13
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0))); // 14
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0))); // 15
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0))); // 16
     }
 
     public IEnumerator EnemyPatternTutorial()
@@ -102,7 +106,65 @@ public class StageManager : EnemyMove
         SetEnemyInfo(enemys[1], SetEnemyGenInfo(MoveDirectionType.RIGHT, 3.0f, 0));
         SetEnemyInfo(enemys[2], SetEnemyGenInfo(MoveDirectionType.LEFT, 3.0f, 0));
 
+        yield return new WaitForSeconds(1.0f);
 
+        // 3êw
+        SetEnemyInfo(enemys[3], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+        StartCoroutine(ChangeEnemyPattan(enemys[3], -1, MoveDirectionType.TOP_RIGHT, 2.0f));
+
+        yield return new WaitForSeconds(0.7f);
+
+        SetEnemyInfo(enemys[4], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+        StartCoroutine(ChangeEnemyPattan(enemys[4], -1, MoveDirectionType.TOP_RIGHT, 2.0f));
+
+        yield return new WaitForSeconds(0.7f);
+
+        SetEnemyInfo(enemys[5], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+        StartCoroutine(ChangeEnemyPattan(enemys[5], -1, MoveDirectionType.TOP_RIGHT, 2.0f));
+
+        yield return new WaitForSeconds(0.7f);
+
+        SetEnemyInfo(enemys[6], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+        StartCoroutine(ChangeEnemyPattan(enemys[6], -1, MoveDirectionType.TOP_RIGHT, 2.0f));
+
+        yield return new WaitForSeconds(0.7f);
+
+        SetEnemyInfo(enemys[7], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+        StartCoroutine(ChangeEnemyPattan(enemys[7], -1, MoveDirectionType.TOP_RIGHT, 2.0f));
+
+        yield return new WaitForSeconds(1.0f);
+
+        // 4êw
+        SetEnemyInfo(enemys[8], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+        StartCoroutine(ChangeEnemyPattan(enemys[8], -1, MoveDirectionType.TOP_LEFT, 2.0f));
+
+        yield return new WaitForSeconds(0.7f);
+
+        SetEnemyInfo(enemys[9], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+        StartCoroutine(ChangeEnemyPattan(enemys[9], -1, MoveDirectionType.TOP_LEFT, 2.0f));
+
+        yield return new WaitForSeconds(0.7f);
+
+        SetEnemyInfo(enemys[10], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+        StartCoroutine(ChangeEnemyPattan(enemys[10], -1, MoveDirectionType.TOP_LEFT, 2.0f));
+
+        yield return new WaitForSeconds(0.7f);
+
+        SetEnemyInfo(enemys[11], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+        StartCoroutine(ChangeEnemyPattan(enemys[11], -1, MoveDirectionType.TOP_LEFT, 2.0f));
+
+        yield return new WaitForSeconds(0.7f);
+
+        SetEnemyInfo(enemys[12], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+        StartCoroutine(ChangeEnemyPattan(enemys[12], -1, MoveDirectionType.TOP_LEFT, 2.0f));
+
+    }
+
+    public IEnumerator ChangeEnemyPattan(GameObject enemyObj, float changePosition, MoveDirectionType moveDirectionType, float speed)
+    {
+        yield return StartCoroutine(Wait_Y_PositionCheck(enemyObj, changePosition));
+
+        SetEnemyInfo(enemyObj, SetEnemyGenInfo(moveDirectionType, speed, 0));
     }
 
     private void SetMessage(Msg.Speaker speaker, string message)
