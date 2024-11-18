@@ -14,7 +14,6 @@ public class MinionEnemy : EnemyShotPattern
 
     //private Slider hpSlider;
 
-    
     // Itemオブジェクトのドロップする数
     private int dropItemCount = 5;
 
@@ -29,6 +28,7 @@ public class MinionEnemy : EnemyShotPattern
         enemyHp_ = enemyMaxHp_;
 
         anime = this.GetComponent<Animator>();
+
 
         // 子要素のスライダーを取得
         //hpSlider = GetComponentInChildren<Slider>();
@@ -50,9 +50,11 @@ public class MinionEnemy : EnemyShotPattern
     // Update is called once per frame
     public override void Update()
     {
+        base.Update();
+        DestroyEnemy();
+
         if (GameManager.instance.isStopped) return;
 
-        base.Update();
         // エネミーの移動
         MoveEnemy(enemyGenInfo_);
 
@@ -76,6 +78,26 @@ public class MinionEnemy : EnemyShotPattern
             default:
                 //Debug.Log("定義値以外");
                 break;
+        }
+    }
+
+    private void DestroyEnemy()
+    {
+        if (this.transform.position.x > DESTROY_RIGHT_LINE ||
+            this.transform.position.x < DESTROY_REFT_LINE ||
+            this.transform.position.y > DESTROY_TOP_LINE ||
+            this.transform.position.y < DESTROY_BOTTOM_LINE)
+        {
+
+            EnemyGenInfo info = new EnemyGenInfo();
+
+            info.enemyDirectionType = MoveDirectionType.NO_MOVE;
+            info.shotPattern = 0;
+
+            SetEnemyGenInfo(info);
+
+            this.transform.position = startPos;
+            //Destroy(this.gameObject);
         }
     }
 

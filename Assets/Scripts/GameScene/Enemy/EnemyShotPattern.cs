@@ -11,9 +11,10 @@ public class EnemyShotPattern : EnemyMove
     }
 
     // Start is called before the first frame update
-    public virtual void Start()
+    public override void Start()
     {
         //InitializeScriptList();
+        base.Start();
     }
 
     // スクリプトリストの初期化
@@ -48,7 +49,7 @@ public class EnemyShotPattern : EnemyMove
     // Update is called once per frame
     public override void Update()
     {
-
+        base.Update();
     }
 
 }
