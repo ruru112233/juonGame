@@ -3,8 +3,8 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour
 {
     protected const float DESTROY_TOP_LINE = 6.0f;
-    protected const float DESTROY_RIGHT_LINE = 4.0f;
-    protected const float DESTROY_REFT_LINE = -4.0f;
+    protected const float DESTROY_RIGHT_LINE = 4.5f;
+    protected const float DESTROY_REFT_LINE = -4.5f;
     protected const float DESTROY_BOTTOM_LINE = -6.0f;
 
     // スタート時点の自分の位置

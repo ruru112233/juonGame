@@ -38,10 +38,10 @@ public class StageManager : EnemyMove
         enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-1, 6, 0))); // 11
         enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0))); // 12
 
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0))); // 13
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0))); // 14
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0))); // 15
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0))); // 16
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-3.5f, 1, 0))); // 13
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-3.5f, 0, 0))); // 14
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(3.5f, 1, 0))); // 15
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(3.5f, 0, 0))); // 16
     }
 
     public IEnumerator EnemyPatternTutorial()
@@ -85,78 +85,82 @@ public class StageManager : EnemyMove
 
         yield return new WaitForSeconds(0.1f);
 
-        // 1êw
-        SetEnemyInfo(enemys[0], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+        while (true)
+        {
+            // 1êw
+            SetEnemyInfo(enemys[0], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
 
-        yield return StartCoroutine(Wait_Y_PositionCheck(enemys[0], 1.7f));
+            yield return StartCoroutine(Wait_Y_PositionCheck(enemys[0], 1.7f));
 
-        SetEnemyInfo(enemys[0], SetEnemyGenInfo(MoveDirectionType.NO_MOVE, 0));
+            SetEnemyInfo(enemys[0], SetEnemyGenInfo(MoveDirectionType.NO_MOVE, 0));
 
-        yield return new WaitForSeconds(3.0f);
+            yield return new WaitForSeconds(3.0f);
 
-        SetEnemyInfo(enemys[0], SetEnemyGenInfo(MoveDirectionType.TOP_RIGHT, 0.2f, 0));
+            SetEnemyInfo(enemys[0], SetEnemyGenInfo(MoveDirectionType.TOP_RIGHT, 0.4f, 0));
 
-        // 2êw
-        SetEnemyInfo(enemys[1], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-        SetEnemyInfo(enemys[2], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+            // 2êw
+            SetEnemyInfo(enemys[1], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+            SetEnemyInfo(enemys[2], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
 
-        yield return StartCoroutine(Wait_Y_PositionCheck(enemys[1], 0.5f));
-        yield return StartCoroutine(Wait_Y_PositionCheck(enemys[2], 0.5f));
+            yield return StartCoroutine(Wait_Y_PositionCheck(enemys[1], 0.5f));
+            yield return StartCoroutine(Wait_Y_PositionCheck(enemys[2], 0.5f));
 
-        SetEnemyInfo(enemys[1], SetEnemyGenInfo(MoveDirectionType.RIGHT, 3.0f, 0));
-        SetEnemyInfo(enemys[2], SetEnemyGenInfo(MoveDirectionType.LEFT, 3.0f, 0));
+            SetEnemyInfo(enemys[1], SetEnemyGenInfo(MoveDirectionType.RIGHT, 3.0f, 0));
+            SetEnemyInfo(enemys[2], SetEnemyGenInfo(MoveDirectionType.LEFT, 3.0f, 0));
 
-        yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(1.0f);
 
-        // 3êw
-        SetEnemyInfo(enemys[3], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-        StartCoroutine(ChangeEnemyPattan(enemys[3], -1, MoveDirectionType.TOP_RIGHT, 2.0f));
+            // 3êw
+            SetEnemyInfo(enemys[3], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+            StartCoroutine(ChangeEnemyPattan(enemys[3], -1, MoveDirectionType.TOP_RIGHT, 2.0f));
 
-        yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(0.7f);
 
-        SetEnemyInfo(enemys[4], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-        StartCoroutine(ChangeEnemyPattan(enemys[4], -1, MoveDirectionType.TOP_RIGHT, 2.0f));
+            SetEnemyInfo(enemys[4], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+            StartCoroutine(ChangeEnemyPattan(enemys[4], -1, MoveDirectionType.TOP_RIGHT, 2.0f));
 
-        yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(0.7f);
 
-        SetEnemyInfo(enemys[5], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-        StartCoroutine(ChangeEnemyPattan(enemys[5], -1, MoveDirectionType.TOP_RIGHT, 2.0f));
+            SetEnemyInfo(enemys[5], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+            StartCoroutine(ChangeEnemyPattan(enemys[5], -1, MoveDirectionType.TOP_RIGHT, 2.0f));
 
-        yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(0.7f);
 
-        SetEnemyInfo(enemys[6], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-        StartCoroutine(ChangeEnemyPattan(enemys[6], -1, MoveDirectionType.TOP_RIGHT, 2.0f));
+            SetEnemyInfo(enemys[6], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+            StartCoroutine(ChangeEnemyPattan(enemys[6], -1, MoveDirectionType.TOP_RIGHT, 2.0f));
 
-        yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(0.7f);
 
-        SetEnemyInfo(enemys[7], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-        StartCoroutine(ChangeEnemyPattan(enemys[7], -1, MoveDirectionType.TOP_RIGHT, 2.0f));
+            SetEnemyInfo(enemys[7], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+            StartCoroutine(ChangeEnemyPattan(enemys[7], -1, MoveDirectionType.TOP_RIGHT, 2.0f));
 
-        yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(1.0f);
 
-        // 4êw
-        SetEnemyInfo(enemys[8], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-        StartCoroutine(ChangeEnemyPattan(enemys[8], -1, MoveDirectionType.TOP_LEFT, 2.0f));
+            // 4êw
+            SetEnemyInfo(enemys[8], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+            StartCoroutine(ChangeEnemyPattan(enemys[8], -1, MoveDirectionType.TOP_LEFT, 2.0f));
 
-        yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(0.7f);
 
-        SetEnemyInfo(enemys[9], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-        StartCoroutine(ChangeEnemyPattan(enemys[9], -1, MoveDirectionType.TOP_LEFT, 2.0f));
+            SetEnemyInfo(enemys[9], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+            StartCoroutine(ChangeEnemyPattan(enemys[9], -1, MoveDirectionType.TOP_LEFT, 2.0f));
 
-        yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(0.7f);
 
-        SetEnemyInfo(enemys[10], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-        StartCoroutine(ChangeEnemyPattan(enemys[10], -1, MoveDirectionType.TOP_LEFT, 2.0f));
+            SetEnemyInfo(enemys[10], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+            StartCoroutine(ChangeEnemyPattan(enemys[10], -1, MoveDirectionType.TOP_LEFT, 2.0f));
 
-        yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(0.7f);
 
-        SetEnemyInfo(enemys[11], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-        StartCoroutine(ChangeEnemyPattan(enemys[11], -1, MoveDirectionType.TOP_LEFT, 2.0f));
+            SetEnemyInfo(enemys[11], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+            StartCoroutine(ChangeEnemyPattan(enemys[11], -1, MoveDirectionType.TOP_LEFT, 2.0f));
 
-        yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(0.7f);
 
-        SetEnemyInfo(enemys[12], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-        StartCoroutine(ChangeEnemyPattan(enemys[12], -1, MoveDirectionType.TOP_LEFT, 2.0f));
+            SetEnemyInfo(enemys[12], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+            StartCoroutine(ChangeEnemyPattan(enemys[12], -1, MoveDirectionType.TOP_LEFT, 2.0f));
+            yield return new WaitForSeconds(5.0f);
+        }
 
     }
 
