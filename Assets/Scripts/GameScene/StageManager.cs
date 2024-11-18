@@ -202,7 +202,6 @@ public class StageManager : EnemyMove
         {
             enemy.GetComponent<MinionEnemy>().SetEnemyGenInfo(info);
         }
-
     }
 
     EnemyGenInfo SetEnemyGenInfo(MoveDirectionType enemyDirectionType, int shotPattern)

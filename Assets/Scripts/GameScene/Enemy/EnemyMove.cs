@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
-    const float DESTROY_TOP_LINE = 10.0f;
-    const float DESTROY_RIGHT_LINE = 8.0f;
-    const float DESTROY_REFT_LINE = -8.0f;
-    const float DESTROY_BOTTOM_LINE = -10.0f;
+    protected const float DESTROY_TOP_LINE = 6.0f;
+    protected const float DESTROY_RIGHT_LINE = 4.0f;
+    protected const float DESTROY_REFT_LINE = -4.0f;
+    protected const float DESTROY_BOTTOM_LINE = -6.0f;
+
+    // スタート時点の自分の位置
+    protected Vector3 startPos;
 
     // Enemyに情報を渡す構造体
     public struct EnemyGenInfo
@@ -144,20 +147,28 @@ public class EnemyMove : MonoBehaviour
         transform.position += new Vector3(Time.deltaTime * xSpeed, Time.deltaTime * ySpeed, 0);
     }
 
-    public virtual void Update()
+    public virtual void Start()
     {
-        DestroyEnemy();
+        startPos = this.transform.position;
     }
 
-    private void DestroyEnemy()
+    public virtual void Update()
     {
-        if (this.transform.position.x > DESTROY_RIGHT_LINE ||
-            this.transform.position.x < DESTROY_REFT_LINE ||
-            this.transform.position.y > DESTROY_TOP_LINE ||
-            this.transform.position.y < DESTROY_BOTTOM_LINE)
-        {
-            Destroy(this.gameObject);
-        }
+        //DestroyEnemy();
     }
+
+    //private void DestroyEnemy()
+    //{
+    //    if (this.transform.position.x > DESTROY_RIGHT_LINE ||
+    //        this.transform.position.x < DESTROY_REFT_LINE ||
+    //        this.transform.position.y > DESTROY_TOP_LINE ||
+    //        this.transform.position.y < DESTROY_BOTTOM_LINE)
+    //    {
+
+    //        this.transform.position = startPos;
+    //        MoveDirection(MoveDirectionType.NO_MOVE);
+    //        //Destroy(this.gameObject);
+    //    }
+    //}
 
 }

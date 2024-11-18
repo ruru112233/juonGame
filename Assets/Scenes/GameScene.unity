@@ -2198,7 +2198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8197c76dc3a9a734a9e39046c5a79a1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledObject: {fileID: 5831117494709813674, guid: 6f1564a57a8565f46876486374254839, type: 3}
+  pooledObject: {fileID: 7696379499610523601, guid: a5cfbc52548571e4daa4b848c38d08bf, type: 3}
   stickPooledObject: {fileID: 1011222428060229827, guid: 281781b017a7302499c75bc38edd35b9, type: 3}
   enemyPooledObject: {fileID: 5840099444055205246, guid: 3b9eeee50d6a2bf4ab669c309fad65ee, type: 3}
 --- !u!1 &1748128970
