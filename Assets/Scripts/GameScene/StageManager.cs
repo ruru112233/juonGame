@@ -38,10 +38,14 @@ public class StageManager : EnemyMove
         enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-1, 6, 0))); // 11
         enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0))); // 12
 
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-3.5f, 1, 0))); // 13
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-3.5f, 0, 0))); // 14
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(3.5f, 1, 0))); // 15
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(3.5f, 0, 0))); // 16
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-3.5f, -2, 0))); // 13
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-3.5f, -2, 0))); // 14
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-3.5f, -2, 0))); // 15
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(3.5f, -2, 0))); // 16
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(3.5f, -2, 0))); // 17
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(3.5f, -2, 0))); // 18
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(3.5f, 1, 0))); // 19
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(3.5f, 0, 0))); // 20
     }
 
     public IEnumerator EnemyPatternTutorial()
@@ -85,7 +89,7 @@ public class StageManager : EnemyMove
 
         yield return new WaitForSeconds(0.1f);
 
-        while (true)
+        while (GameManager.instance.unlockCounter == 1)
         {
             // 1êw
             SetEnemyInfo(enemys[0], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
@@ -159,9 +163,114 @@ public class StageManager : EnemyMove
 
             SetEnemyInfo(enemys[12], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
             StartCoroutine(ChangeEnemyPattan(enemys[12], -1, MoveDirectionType.TOP_LEFT, 2.0f));
+            
+            // 5êw
+            SetEnemyInfo(enemys[13], SetEnemyGenInfo(MoveDirectionType.TOP_RIGHT, 0));
+            StartCoroutine(ChangeEnemyPattanList(enemys[13], Pattern1()));
+
+            SetEnemyInfo(enemys[16], SetEnemyGenInfo(MoveDirectionType.TOP_LEFT, 0));
+            StartCoroutine(ChangeEnemyPattanList(enemys[16], Pattern2()));
+
+            yield return new WaitForSeconds(1.5f);
+
+            SetEnemyInfo(enemys[14], SetEnemyGenInfo(MoveDirectionType.TOP_RIGHT, 0));
+            StartCoroutine(ChangeEnemyPattanList(enemys[14], Pattern1(0.5f)));
+
+            SetEnemyInfo(enemys[17], SetEnemyGenInfo(MoveDirectionType.TOP_LEFT, 0));
+            StartCoroutine(ChangeEnemyPattanList(enemys[17], Pattern2(0.5f)));
+
+            yield return new WaitForSeconds(1.5f);
+
+            SetEnemyInfo(enemys[15], SetEnemyGenInfo(MoveDirectionType.TOP_RIGHT, 0));
+            StartCoroutine(ChangeEnemyPattanList(enemys[15], Pattern1(1.0f)));
+
+            SetEnemyInfo(enemys[18], SetEnemyGenInfo(MoveDirectionType.TOP_LEFT, 0));
+            StartCoroutine(ChangeEnemyPattanList(enemys[18], Pattern2(1.0f)));
+
             yield return new WaitForSeconds(5.0f);
         }
 
+    }
+
+    // pattern1
+    private ChangePosition[] Pattern1(float hosei = 0f)
+    {
+
+        ChangePosition[] changePositionList = new ChangePosition[4];
+
+        changePositionList[0] = new ChangePosition()
+        {
+            stopDirection = StopDirectionType.Y,
+            changePos = 0.5f + hosei,
+            moveDirectionType = MoveDirectionType.BOTTOM,
+            speed = 1.0f
+        };
+
+        changePositionList[1] = new ChangePosition()
+        {
+            stopDirection = StopDirectionType.Y,
+            changePos = -1.0f,
+            moveDirectionType = MoveDirectionType.RIGHT,
+            speed = 1.0f
+        };
+
+        changePositionList[2] = new ChangePosition()
+        {
+            stopDirection = StopDirectionType.X,
+            changePos = 2.0f,
+            moveDirectionType = MoveDirectionType.TOP,
+            speed = 1.0f
+        };
+
+        changePositionList[3] = new ChangePosition()
+        {
+            stopDirection = StopDirectionType.Y,
+            changePos = 2.0f + hosei,
+            moveDirectionType = MoveDirectionType.LEFT,
+            speed = 1.0f
+        };
+
+        return changePositionList;
+    }
+
+    // pattern1
+    private ChangePosition[] Pattern2(float hosei = 0f)
+    {
+        ChangePosition[] changePositionList = new ChangePosition[4];
+
+        changePositionList[0] = new ChangePosition()
+        {
+            stopDirection = StopDirectionType.Y,
+            changePos = 0.5f + hosei,
+            moveDirectionType = MoveDirectionType.BOTTOM,
+            speed = 1.0f
+        };
+
+        changePositionList[1] = new ChangePosition()
+        {
+            stopDirection = StopDirectionType.Y,
+            changePos = -1.0f,
+            moveDirectionType = MoveDirectionType.LEFT,
+            speed = 1.0f
+        };
+
+        changePositionList[2] = new ChangePosition()
+        {
+            stopDirection = StopDirectionType.X,
+            changePos = -2.0f,
+            moveDirectionType = MoveDirectionType.TOP,
+            speed = 1.0f
+        };
+
+        changePositionList[3] = new ChangePosition()
+        {
+            stopDirection = StopDirectionType.Y,
+            changePos = 2.0f + hosei,
+            moveDirectionType = MoveDirectionType.RIGHT,
+            speed = 1.0f
+        };
+
+        return changePositionList;
     }
 
     public IEnumerator ChangeEnemyPattan(GameObject enemyObj, float changePosition, MoveDirectionType moveDirectionType, float speed)
@@ -169,6 +278,39 @@ public class StageManager : EnemyMove
         yield return StartCoroutine(Wait_Y_PositionCheck(enemyObj, changePosition));
 
         SetEnemyInfo(enemyObj, SetEnemyGenInfo(moveDirectionType, speed, 0));
+    }
+
+
+
+    public struct ChangePosition
+    {
+        public StopDirectionType stopDirection;
+        public float changePos;
+        public MoveDirectionType moveDirectionType;
+        public float speed;
+    }
+
+    public IEnumerator ChangeEnemyPattanList(GameObject enemyObj, ChangePosition[] changePositionList)
+    {
+
+        for (int i = 0; i < changePositionList.Length; i++)
+        {
+            switch (changePositionList[i].stopDirection)
+            {
+                case StopDirectionType.X:
+                    yield return StartCoroutine(Wait_X_PositionCheck(enemyObj, changePositionList[i].changePos)); 
+                    break;
+                case StopDirectionType.Y:
+                    yield return StartCoroutine(Wait_Y_PositionCheck(enemyObj, changePositionList[i].changePos));
+                    break;
+                default:
+                    break;
+            }
+
+            SetEnemyInfo(enemyObj, SetEnemyGenInfo(changePositionList[i].moveDirectionType, changePositionList[i].speed, 0));
+        }
+
+
     }
 
     private void SetMessage(Msg.Speaker speaker, string message)
@@ -183,6 +325,14 @@ public class StageManager : EnemyMove
     private IEnumerator Wait_Y_PositionCheck(GameObject obj, float targetPositionY, float tolerance = 0.1f)
     {
         while (Mathf.Abs(obj.transform.position.y - targetPositionY) > tolerance)
+        {
+            yield return null;
+        }
+    }
+
+    private IEnumerator Wait_X_PositionCheck(GameObject obj, float targetPositionX, float tolerance = 0.1f)
+    {
+        while (Mathf.Abs(obj.transform.position.x - targetPositionX) > tolerance)
         {
             yield return null;
         }

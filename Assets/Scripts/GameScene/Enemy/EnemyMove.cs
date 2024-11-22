@@ -19,6 +19,11 @@ public class EnemyMove : MonoBehaviour
         public int shotPattern; // 攻撃パターン ： 配列に設定する番号を格納する
     }
 
+    public enum StopDirectionType
+    {
+        X, // x軸でストップ
+        Y, // y軸でストップ
+    }
 
     public enum MoveDirectionType
     {

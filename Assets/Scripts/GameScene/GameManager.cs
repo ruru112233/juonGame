@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     public bool isStopped = false;
 
+    public int unlockCounter = 1;
+
     public ScoreManager scoreManager;
 
     public ItemStock itemStock;
