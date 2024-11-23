@@ -20,7 +20,7 @@ public class ItemStock : MonoBehaviour
     {
         GameObject obj = null;
 
-        int rand = Random.Range(0, 6);
+        int rand = RandomItemObj();
 
         switch (rand)
         {
@@ -46,4 +46,20 @@ public class ItemStock : MonoBehaviour
         return obj;
     }
 
+    private int RandomItemObj()
+    {
+        switch (GameManager.instance.unlockCounter)
+        {
+            case 1:
+                return Random.Range(0, 3);
+            case 2:
+                return Random.Range(0, 4);
+            case 3:
+                return Random.Range(0, 5);
+            case 4:
+                return Random.Range(0, 6);
+            default:
+                return 7;
+        }
+    }
 }

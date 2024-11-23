@@ -12,8 +12,6 @@ public class MinionEnemy : EnemyShotPattern
 
     private Animator anime;
 
-    //private Slider hpSlider;
-
     // Itemオブジェクトのドロップする数
     private int dropItemCount = 5;
 
@@ -28,13 +26,6 @@ public class MinionEnemy : EnemyShotPattern
         enemyHp_ = enemyMaxHp_;
 
         anime = this.GetComponent<Animator>();
-
-
-        // 子要素のスライダーを取得
-        //hpSlider = GetComponentInChildren<Slider>();
-        // スライダーの最大値と現在値に最大HPを代入する
-        //hpSlider.maxValue = enemyHp_;
-        //hpSlider.value = enemyHp_;
 
     }
 
@@ -97,7 +88,6 @@ public class MinionEnemy : EnemyShotPattern
             SetEnemyGenInfo(info);
 
             this.transform.position = startPos;
-            //Destroy(this.gameObject);
         }
     }
 
@@ -122,15 +112,16 @@ public class MinionEnemy : EnemyShotPattern
 
             enemyHp_--;
 
+            // ダメージアニメーション
+            if (anime)
+            {
+                anime.SetTrigger("damage");
+            }
+
             //hpSlider.value = enemyHp_;
             if (enemyHp_ <= 0)
             {
-                // ダメージアニメーション
-                if (anime)
-                {
-                    anime.SetTrigger("damage");
-                }
-
+            
                 // MaxHpの更新
                 enemyHp_ = enemyMaxHp_;
                 ScatterItem();
@@ -151,8 +142,6 @@ public class MinionEnemy : EnemyShotPattern
                 Vector3 randomItemPos = RandomPosition(transform.position);
                 Instantiate(obj, randomItemPos, Quaternion.Euler(0, 0, 45));
             }
-
-            
         }
     }
 
