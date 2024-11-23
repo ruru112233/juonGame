@@ -2560,6 +2560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStopped: 1
+  unlockCounter: 1
   scoreManager: {fileID: 1290865372}
   itemStock: {fileID: 1114853190}
 --- !u!4 &1909403157

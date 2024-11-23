@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1935988003489828807}
   - component: {fileID: -9184187170494292055}
   - component: {fileID: 3029246330994604298}
+  - component: {fileID: -5506069087494663390}
   m_Layer: 0
   m_Name: JimiMinion
   m_TagString: Enemy
@@ -103,7 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807c7026e9928df4c9eaadb83c54b987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemObj: {fileID: 6231166231172959162, guid: 3727fd75a309df9428b14d23119d3764, type: 3}
 --- !u!114 &1935988003489828825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +168,26 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.09}
   serializedVersion: 2
   m_Radius: 0.12041524
+--- !u!95 &-5506069087494663390
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935988003489828806}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9e30fe16252424e41881f2a37a776cd2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &2807358317567581834
 GameObject:
   m_ObjectHideFlags: 0
