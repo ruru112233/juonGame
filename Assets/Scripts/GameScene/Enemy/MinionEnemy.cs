@@ -12,6 +12,11 @@ public class MinionEnemy : EnemyShotPattern
 
     private Animator anime;
 
+    public EnemyGenInfo GetEnemyGenInfo
+    {
+        get { return enemyGenInfo_; }
+    }
+
     // Itemオブジェクトのドロップする数
     private int dropItemCount = 5;
 

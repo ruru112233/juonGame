@@ -125,7 +125,7 @@ public class Player : MonoBehaviour
 
         if (ShotTimer())
         {
-            Fire();
+            Fire(bulletSpawnPoint);
             RightFire();
             LeftFire();
         }
@@ -164,13 +164,13 @@ public class Player : MonoBehaviour
     }
 
     // ’e‚Ì”­ŽË
-    void Fire()
+    void Fire(Transform SpawnPoint)
     {
         GameObject bullet = BulletPool.Instance.GetPooledObject();
 
         if (bullet != null)
         {
-            bullet.transform.position = bulletSpawnPoint.position;
+            bullet.transform.position = SpawnPoint.position;
             bullet.transform.rotation = Quaternion.identity;
             bullet.SetActive(true);
 

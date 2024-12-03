@@ -6,7 +6,7 @@ public class EnemyGeneretor : StageManager
 {
 
     // Start is called before the first frame update
-    public void Start()
+    public override void Start()
     {
 
         StartCoroutine(EnemyPattern1Stage());
