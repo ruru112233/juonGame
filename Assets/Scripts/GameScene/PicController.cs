@@ -16,7 +16,6 @@ public class PicController : MonoBehaviour
 
     public POS_TYPE posType;
 
-    private Player playerScript = null;
     private Transform playerTransform;
 
     private GameObject[] enemys;
@@ -33,7 +32,6 @@ public class PicController : MonoBehaviour
     void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        playerScript = playerTransform.gameObject.GetComponent<Player>();
 
         transform.position = playerTransform.position + RIGHT_OFSET_POS;
     }

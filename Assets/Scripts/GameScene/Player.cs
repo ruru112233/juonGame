@@ -18,7 +18,9 @@ public class Player : MonoBehaviour
 
     // レベルごとの攻撃パターン
     private const int SIDE_FIRE_LV = 2;
-    private const int BOM_LV = 3;
+    private const int PIC_RIGHT_LV = 3;
+    private const int PIC_LEFT_LV = 4;
+    private const int BOM_LV = 5;
 
     /// <summary>
     /// 変数
@@ -26,6 +28,8 @@ public class Player : MonoBehaviour
 
     private GameObject playerGeneretorObj;
     private PlayerGeneretor playerGeneretor;
+
+    public GameObject picRight, picLeft;
 
     // ジョイスティック
     [SerializeField] protected FloatingJoystick joystick;
@@ -105,6 +109,13 @@ public class Player : MonoBehaviour
                 }
             }
         }
+
+        BomShot();
+    }
+
+    private void BomShot()
+    {
+        if (GameManager.instance.PlayerLv < BOM_LV) return;
 
         // ボムの発射
         bomTimer += Time.deltaTime;
