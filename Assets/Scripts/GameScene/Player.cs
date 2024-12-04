@@ -36,6 +36,19 @@ public class Player : MonoBehaviour
     [SerializeField] protected FloatingJoystick joystick;
 
     private float speed = 2.0f;
+    private float attackPt = 1.0f;
+
+    public float Speed
+    {
+        get { return speed; }
+        set { speed = value; }
+    }
+
+    public float AttackPt
+    {
+        get { return attackPt; }
+        set { attackPt = value; }
+    }
     
     private bool reviveFlag;
     float reviveTime = 2.0f;
