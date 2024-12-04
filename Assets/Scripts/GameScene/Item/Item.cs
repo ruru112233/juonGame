@@ -19,6 +19,8 @@ public class Item : MonoBehaviour
     private const int JOHN_SCORE = 50;
     private const int THUNDER_SCORE = -30;
 
+    private Player playerScript;
+
     // item情報の格納用構造体
     struct ItemInfo
     {
@@ -39,7 +41,8 @@ public class Item : MonoBehaviour
         JIMI_GUITAR,    // ジミヘンギター
         JOHN_GUITAR,    // ジョンギター
         THUNDER,        // 稲妻
-        POWER_UP,       // パワーアップアイテム
+        AT_POWER_UP,    // 攻撃力アップ
+        SP_POWER_UP,    // スピードアップ
         UNSETTILED,     // 未確定 
     }
 
@@ -48,6 +51,8 @@ public class Item : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        
         RandomForce();
     }
 
@@ -80,7 +85,6 @@ public class Item : MonoBehaviour
             if ((itemPattern == ItemPattern.JIMI_GUITAR) || 
                 (itemPattern == ItemPattern.JOHN_GUITAR) )
             {
-                Debug.Log("スコアボール");
                 GameObject scoreBallObj = (GameObject)Instantiate(scoreBall, this.transform.position, Quaternion.identity);
                 // アイテムのイメージを更新
                 SpriteRenderer spriteRnd = scoreBallObj.GetComponent<SpriteRenderer>();
@@ -94,10 +98,17 @@ public class Item : MonoBehaviour
                 scoreBallScript.SetScorePoint(ItemCheckValue());
             }
 
-            // パワーアップアイテム
-            if (itemPattern == ItemPattern.POWER_UP)
+            // 攻撃力アップ
+            if (itemPattern == ItemPattern.AT_POWER_UP && playerScript && playerScript.AttackPt < 3.0f)
             {
-                GameManager.instance.PlayerLv++;
+                Debug.Log("攻撃アップ");
+                playerScript.AttackPt += 0.1f;
+            }
+
+            // スピードアップ
+            if (itemPattern == ItemPattern.SP_POWER_UP && playerScript && playerScript.Speed < 6.0f)
+            {
+                playerScript.Speed += 0.2f;
             }
 
             // Itemオブジェクトを削除する

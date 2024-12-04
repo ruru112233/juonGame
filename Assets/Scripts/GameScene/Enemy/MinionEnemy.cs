@@ -7,8 +7,10 @@ public class MinionEnemy : EnemyShotPattern
 {
     private EnemyGenInfo enemyGenInfo_;
 
-    private int enemyMaxHp_ = 0;
-    private int enemyHp_ = 0;
+    private float enemyMaxHp_ = 0;
+    private float enemyHp_ = 0;
+
+    private Player playerScript;
 
     private Animator anime;
 
@@ -27,7 +29,9 @@ public class MinionEnemy : EnemyShotPattern
         // EnemyGenInfoの初期化
         EnemyGenInfoInit();
 
-        enemyMaxHp_ = 10;
+        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
+        enemyMaxHp_ = 10.0f;
         enemyHp_ = enemyMaxHp_;
 
         anime = this.GetComponent<Animator>();
@@ -112,10 +116,9 @@ public class MinionEnemy : EnemyShotPattern
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (collision.gameObject.CompareTag("Bullet") && playerScript)
         {
-
-            enemyHp_--;
+            enemyHp_ -= playerScript.AttackPt;
 
             // ダメージアニメーション
             if (anime)

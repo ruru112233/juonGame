@@ -8,7 +8,8 @@ public class ItemStock : MonoBehaviour
     public GameObject jimiGuiterObj,
                        johnGuiterObj,
                        thunder,
-                        powerUpItem;
+                        atUpItem,
+                        spUpItem;
 
     public Sprite   eighth, 
                     duplet_quarters,
@@ -32,11 +33,13 @@ public class ItemStock : MonoBehaviour
                 obj = johnGuiterObj;
                 break;
             case 3:
+                obj = spUpItem;
+                break;
             case 4:
                 obj = thunder;
                 break;
             case 5:
-                obj = powerUpItem;
+                obj = atUpItem;
                 break;
             default:
                 Debug.Log("SetItemObj error");
