@@ -104,6 +104,8 @@ public class PicController : MonoBehaviour
 
     private void PickShot(Transform transform)
     {
+        if (GameManager.instance.isStopped) return;
+
         if (ShotTimer())
         {
             Fire(transform);

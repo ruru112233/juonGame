@@ -89,7 +89,8 @@ public class StageManager : EnemyMove
 
         yield return new WaitForSeconds(0.1f);
 
-        while (GameManager.instance.unlockCounter == 1)
+        //while (GameManager.instance.unlockCounter == 1)
+        while (true)
         {
             // 1êw
             SetEnemyInfo(enemys[0], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));

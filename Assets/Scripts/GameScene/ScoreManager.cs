@@ -8,6 +8,10 @@ public class ScoreManager : MonoBehaviour
     private const float ANGLE_MIN = -35.0f;
     private const float OMP_SPEED = 1000.0f;
     private const int OMP_MAX_COUNT = 8;
+    private const int LV_2_POINT = 1000;
+    private const int LV_3_POINT = 2000;
+    private const int LV_4_POINT = 3000;
+    private const int LV_5_POINT = 4000;
     private const int CREAR_SCORE_POINT = 10000;
 
     private int scorePoint = 0;
@@ -25,6 +29,29 @@ public class ScoreManager : MonoBehaviour
         get { return scorePoint; }
     }
 
+    private void Unlock()
+    {
+        if (LV_5_POINT < scorePoint)
+        {
+            GameManager.instance.PlayerLv = 5;
+        }
+        else if (LV_4_POINT < scorePoint)
+        {
+            GameManager.instance.PlayerLv = 4;
+            GameManager.instance.unlockCounter = 4;
+        }
+        else if (LV_3_POINT < scorePoint)
+        {
+            GameManager.instance.PlayerLv = 3;
+            GameManager.instance.unlockCounter = 3;
+        }
+        else if (LV_2_POINT < scorePoint)
+        {
+            GameManager.instance.PlayerLv = 2;
+            GameManager.instance.unlockCounter = 2;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +62,8 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Unlock();
+
         TrembleOmp();
     }
 

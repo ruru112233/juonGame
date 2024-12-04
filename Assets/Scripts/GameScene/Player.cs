@@ -18,9 +18,10 @@ public class Player : MonoBehaviour
 
     // レベルごとの攻撃パターン
     private const int SIDE_FIRE_LV = 2;
-    private const int PIC_RIGHT_LV = 3;
-    private const int PIC_LEFT_LV = 4;
-    private const int BOM_LV = 5;
+    private const int BOM_LV = 3;
+    private const int PIC_RIGHT_LV = 4;
+    private const int PIC_LEFT_LV = 5;
+    
 
     /// <summary>
     /// 変数
@@ -65,6 +66,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        picRight.SetActive(false);
+        picLeft.SetActive(false);
+
         playerGeneretorObj = GameObject.FindGameObjectWithTag("PlayerGeneretor");
         playerGeneretor = playerGeneretorObj.GetComponent<PlayerGeneretor>();
      
@@ -111,6 +115,16 @@ public class Player : MonoBehaviour
         }
 
         BomShot();
+
+        if (GameManager.instance.PlayerLv >= PIC_RIGHT_LV)
+        {
+            picRight.SetActive(true);
+        }
+
+        if (GameManager.instance.PlayerLv >= PIC_LEFT_LV)
+        {
+            picLeft.SetActive(true);
+        }
     }
 
     private void BomShot()
