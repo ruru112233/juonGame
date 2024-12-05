@@ -34,6 +34,7 @@ public class PicController : MonoBehaviour
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
         transform.position = playerTransform.position + RIGHT_OFSET_POS;
+
     }
 
     private GameObject DistanceEnemyCheck()
@@ -82,8 +83,6 @@ public class PicController : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, targetPoition, smoothSpeed * Time.deltaTime);
 
         PickShot(transform);
-
-        
     }
 
     // ”­ŽËŽžŠÔ

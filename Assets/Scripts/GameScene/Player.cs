@@ -76,6 +76,11 @@ public class Player : MonoBehaviour
     private float bomShotTime = 5.0f;
     private float bomTimer = 0;
 
+
+    [SerializeField] private GameObject breakdownPanel;
+
+    private Coroutine blinkingPanelCoroutine;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -91,13 +96,33 @@ public class Player : MonoBehaviour
         colorChengeFlag = false;
         stopFlag = false;
         sprite = GetComponent<SpriteRenderer>();
-        
+
+        breakdownPanel.SetActive(false);
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.isStopped) return;
+        // åÃè·íÜÇÃÉpÉlÉãÇï\é¶Ç≥ÇπÇÈ 
+        if (ParalysisTimer())
+        {
+            if (blinkingPanelCoroutine == null)
+            {
+                blinkingPanelCoroutine = StartCoroutine(BlinkingPanel());
+            }
+            return;
+        }
+        else
+        {
+            if (blinkingPanelCoroutine != null)
+            {
+                StopCoroutine(blinkingPanelCoroutine);
+                blinkingPanelCoroutine = null;
+            }
+            breakdownPanel.SetActive(false);
+        }
 
         PlayerAction();
 
@@ -138,6 +163,20 @@ public class Player : MonoBehaviour
         {
             picLeft.SetActive(true);
         }
+    }
+
+    private IEnumerator BlinkingPanel()
+    {
+        breakdownPanel.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        breakdownPanel.SetActive(false);
+        yield return new WaitForSeconds(0.1f);
+        breakdownPanel.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        breakdownPanel.SetActive(false);
+        yield return new WaitForSeconds(0.1f);
+        breakdownPanel.SetActive(true);
+
     }
 
     private void BomShot()
@@ -308,6 +347,11 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Thunder"))
         {
+            if (blinkingPanelCoroutine != null)
+            {
+                StopCoroutine(blinkingPanelCoroutine);
+                blinkingPanelCoroutine = null;
+            }
             stopFlag = true;
         }
     }

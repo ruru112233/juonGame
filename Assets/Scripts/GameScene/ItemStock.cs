@@ -54,7 +54,8 @@ public class ItemStock : MonoBehaviour
         switch (GameManager.instance.unlockCounter)
         {
             case 1:
-                return Random.Range(0, 3);
+                return Random.Range(0, 6);
+                //return Random.Range(0, 3);
             case 2:
                 return Random.Range(0, 4);
             case 3:

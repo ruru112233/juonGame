@@ -101,7 +101,6 @@ public class Item : MonoBehaviour
             // 攻撃力アップ
             if (itemPattern == ItemPattern.AT_POWER_UP && playerScript && playerScript.AttackPt < 3.0f)
             {
-                Debug.Log("攻撃アップ");
                 playerScript.AttackPt += 0.1f;
             }
 
