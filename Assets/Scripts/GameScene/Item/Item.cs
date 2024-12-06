@@ -9,6 +9,8 @@ public class Item : MonoBehaviour
     private Color COLOR_WHITE = new Color(1f, 1f, 1f, 1f); // 白
     private Color COLOR_YELLOW = new Color(1f, 0.9f, 0.1f, 1f); // 黄色
     private Color COLOR_PINK = new Color(0.8113208f, 0.0956746f, 0.5544159f, 1f); // ピンク
+    private Color COLOR_RED = new Color(255, 0, 40, 255);
+    private Color COLOR_GREEN = new Color(23, 255, 0, 255);
 
     // スケール
     private Vector3 OMP_SCALE = new Vector3(0.4f, 0.4f, 0.5f);
@@ -18,6 +20,10 @@ public class Item : MonoBehaviour
     private const int JIMI_SCORE = 100;
     private const int JOHN_SCORE = 50;
     private const int THUNDER_SCORE = -30;
+
+    // パワーアップのテキスト
+    private const string AT_UP = "↑Attack";
+    private const string SP_UP = "↑Speed";
 
     private Player playerScript;
 
@@ -102,12 +108,14 @@ public class Item : MonoBehaviour
             if (itemPattern == ItemPattern.AT_POWER_UP && playerScript && playerScript.AttackPt < 3.0f)
             {
                 playerScript.AttackPt += 0.1f;
+                playerScript.ShowPowerUpText(AT_UP, COLOR_RED);
             }
 
             // スピードアップ
             if (itemPattern == ItemPattern.SP_POWER_UP && playerScript && playerScript.Speed < 6.0f)
             {
                 playerScript.Speed += 0.2f;
+                playerScript.ShowPowerUpText(SP_UP, COLOR_GREEN);
             }
 
             // Itemオブジェクトを削除する

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -21,7 +22,6 @@ public class Player : MonoBehaviour
     private const int BOM_LV = 3;
     private const int PIC_RIGHT_LV = 4;
     private const int PIC_LEFT_LV = 5;
-    
 
     /// <summary>
     /// 変数
@@ -63,7 +63,6 @@ public class Player : MonoBehaviour
     private float pickSpeed = 10f;
     private float stickSpeed = 5f;
 
-
     // 発射時間
     private float shotTime = 0.0f;
 
@@ -80,6 +79,9 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject breakdownPanel;
 
     private Coroutine blinkingPanelCoroutine;
+
+    [SerializeField] private GameObject powerUpTextObj;
+    private Coroutine powerUpTextCoroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -99,7 +101,7 @@ public class Player : MonoBehaviour
 
         breakdownPanel.SetActive(false);
 
-
+        powerUpTextObj.SetActive(false);
     }
 
     // Update is called once per frame
@@ -163,6 +165,40 @@ public class Player : MonoBehaviour
         {
             picLeft.SetActive(true);
         }
+    }
+
+    // パワーアップテキストの表示
+    public void ShowPowerUpText(string text, Color color)
+    {
+        if (powerUpTextCoroutine != null)
+        {
+            StopCoroutine(powerUpTextCoroutine);
+            powerUpTextCoroutine = null;
+        }
+
+        TextMeshProUGUI powerUpText = powerUpTextObj.GetComponent<TextMeshProUGUI>();
+        powerUpText.text = text;
+        powerUpText.color = color;
+
+        powerUpTextObj.transform.position = transform.position + new Vector3(0.3f, 0.2f, 0);
+        powerUpTextObj.SetActive(true);
+
+        if (powerUpTextCoroutine == null)
+        {
+            powerUpTextCoroutine = StartCoroutine(ItemMove());
+        }
+    }
+
+    private IEnumerator ItemMove()
+    {
+        for (int i = 0; i < 15; i++)
+        {
+            powerUpTextObj.transform.position += new Vector3(0, 10.0f * Time.deltaTime, 0);
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        yield return new WaitForSeconds(0.05f);
+        powerUpTextObj.SetActive(false);
     }
 
     private IEnumerator BlinkingPanel()
