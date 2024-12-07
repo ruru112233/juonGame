@@ -13,11 +13,16 @@ public class ScoreManager : MonoBehaviour
     private const int LV_4_POINT = 3000;
     private const int LV_5_POINT = 4000;
     private const int CREAR_SCORE_POINT = 10000;
+    private Color COLOR_YELLOW = new Color(1f, 0.9f, 0.1f, 1f); // 黄色
 
     private int scorePoint = 0;
     private int ompCount = 0;
 
+    private const string LV_UP = "Level UP";
+
     [SerializeField] private RectTransform ompObj;
+
+    private Player playerScript;
 
     private Vector3 defaultOmpPos = new Vector3(0,0,0);
 
@@ -31,30 +36,49 @@ public class ScoreManager : MonoBehaviour
 
     private void Unlock()
     {
-        if (LV_5_POINT < scorePoint)
+        if (LV_5_POINT <= scorePoint)
         {
-            GameManager.instance.PlayerLv = 5;
+            LvUp(5);
         }
-        else if (LV_4_POINT < scorePoint)
+        else if (LV_4_POINT <= scorePoint)
         {
-            GameManager.instance.PlayerLv = 4;
+            LvUp(4);
             GameManager.instance.unlockCounter = 4;
         }
-        else if (LV_3_POINT < scorePoint)
+        else if (LV_3_POINT <= scorePoint)
         {
-            GameManager.instance.PlayerLv = 3;
+            LvUp(3);
             GameManager.instance.unlockCounter = 3;
         }
-        else if (LV_2_POINT < scorePoint)
+        else if (LV_2_POINT <= scorePoint)
         {
-            GameManager.instance.PlayerLv = 2;
+            LvUp(2);
             GameManager.instance.unlockCounter = 2;
         }
+    }
+
+    private void LvUp(int lv)
+    {
+        int currentLv = GameManager.instance.PlayerLv;
+
+        if (currentLv != lv)
+        {
+            // レベルアップ
+            GameManager.instance.PlayerLv = lv;
+
+            if (playerScript)
+            {
+                playerScript.ShowText(LV_UP, COLOR_YELLOW);
+            }
+        }
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
         ompCount = OMP_MAX_COUNT;
         scorePoint = 0;
     }

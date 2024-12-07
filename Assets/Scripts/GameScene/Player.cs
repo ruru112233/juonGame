@@ -145,11 +145,11 @@ public class Player : MonoBehaviour
                 colorChengeFlag = !colorChengeFlag;
                 if (colorChengeFlag)
                 {
-                    sprite.color = new Color(255, 255, 255, 255);
+                    sprite.color = new Color(1, 1, 1, 1);
                 }
                 else
                 {
-                    sprite.color = new Color(255, 255, 255, 0);
+                    sprite.color = new Color(1, 1, 1, 0);
                 }
             }
         }
@@ -168,7 +168,7 @@ public class Player : MonoBehaviour
     }
 
     // パワーアップテキストの表示
-    public void ShowPowerUpText(string text, Color color)
+    public void ShowText(string text, Color color)
     {
         if (powerUpTextCoroutine != null)
         {

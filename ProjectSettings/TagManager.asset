@@ -16,6 +16,7 @@ TagManager:
   - Bom
   - EndingPlayer
   - EndingEvent
+  - ScoreManager
   layers:
   - Default
   - TransparentFX

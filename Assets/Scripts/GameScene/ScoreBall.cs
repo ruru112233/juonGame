@@ -5,6 +5,8 @@ using TMPro;
 
 public class ScoreBall : MonoBehaviour
 {
+    private const string LV_UP = "Level UP";
+
     private float magnification = 1.0f;
     private float magCut = 0.01f;
 
@@ -40,7 +42,6 @@ public class ScoreBall : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("ScorePoint"))
         {
-            //string scoreMsg = "Score: ";
             string scoreMsg = "       ";
 
             TextMeshProUGUI text = GameObject.FindGameObjectWithTag("ScorePoint").GetComponent<TextMeshProUGUI>();
@@ -50,7 +51,6 @@ public class ScoreBall : MonoBehaviour
                 GameManager.instance.scoreManager.SetScore(scorePoint);
                 text.text = scoreMsg + GameManager.instance.scoreManager.ScorePoint;
             }
-
 
             Destroy(gameObject);
         }
