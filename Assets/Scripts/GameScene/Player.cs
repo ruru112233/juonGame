@@ -180,9 +180,6 @@ public class Player : MonoBehaviour
         powerUpText.text = text;
         powerUpText.color = color;
 
-        powerUpTextObj.transform.position = transform.position + new Vector3(0.35f, 0.2f, 0);
-        powerUpTextObj.SetActive(true);
-
         if (powerUpTextCoroutine == null)
         {
             powerUpTextCoroutine = StartCoroutine(ItemMove());
@@ -191,6 +188,9 @@ public class Player : MonoBehaviour
 
     private IEnumerator ItemMove()
     {
+        powerUpTextObj.transform.position = transform.position + new Vector3(0.35f, 0.2f, 0);
+        powerUpTextObj.SetActive(true);
+
         for (int i = 0; i < 15; i++)
         {
             powerUpTextObj.transform.position += new Vector3(0, 10.0f * Time.deltaTime, 0);
