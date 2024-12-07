@@ -21,9 +21,14 @@ public class Item : MonoBehaviour
     private const int JOHN_SCORE = 50;
     private const int THUNDER_SCORE = -30;
 
-    // パワーアップのテキスト
+    // パワーアップ関係
     private const string AT_UP = "↑Attack";
+    private const string AT_MAX = "Max Attack";
+    private const float AT_MAX_PT = 3.0f;
+
     private const string SP_UP = "↑Speed";
+    private const string SP_MAX = "Max Speed";
+    private const float SP_MAX_PT = 6.0f;
 
     private Player playerScript;
 
@@ -105,17 +110,32 @@ public class Item : MonoBehaviour
             }
 
             // 攻撃力アップ
-            if (itemPattern == ItemPattern.AT_POWER_UP && playerScript && playerScript.AttackPt < 3.0f)
+            if (itemPattern == ItemPattern.AT_POWER_UP && playerScript && playerScript.AttackPt < AT_MAX_PT)
             {
                 playerScript.AttackPt += 0.1f;
-                playerScript.ShowPowerUpText(AT_UP, COLOR_RED);
+                if (playerScript.AttackPt >= AT_MAX_PT)
+                {
+                    playerScript.ShowText(AT_MAX, COLOR_RED);
+                }
+                else
+                {
+                    playerScript.ShowText(AT_UP, COLOR_RED);
+                }
+
             }
 
             // スピードアップ
-            if (itemPattern == ItemPattern.SP_POWER_UP && playerScript && playerScript.Speed < 6.0f)
+            if (itemPattern == ItemPattern.SP_POWER_UP && playerScript && playerScript.Speed < SP_MAX_PT)
             {
                 playerScript.Speed += 0.2f;
-                playerScript.ShowPowerUpText(SP_UP, COLOR_GREEN);
+                if (playerScript.Speed >= SP_MAX_PT)
+                {
+                    playerScript.ShowText(SP_MAX, COLOR_GREEN);
+                }
+                else
+                {
+                    playerScript.ShowText(SP_UP, COLOR_GREEN);
+                }
             }
 
             // Itemオブジェクトを削除する
