@@ -9,8 +9,8 @@ public class Item : MonoBehaviour
     private Color COLOR_WHITE = new Color(1f, 1f, 1f, 1f); // 白
     private Color COLOR_YELLOW = new Color(1f, 0.9f, 0.1f, 1f); // 黄色
     private Color COLOR_PINK = new Color(0.8113208f, 0.0956746f, 0.5544159f, 1f); // ピンク
-    private Color COLOR_RED = new Color(255, 0, 40, 255);
-    private Color COLOR_GREEN = new Color(23, 255, 0, 255);
+    private Color COLOR_RED = new Color(1, 0, 0.1568494f, 1);
+    private Color COLOR_GREEN = new Color(0.212765f, 1, 0, 1);
 
     // スケール
     private Vector3 OMP_SCALE = new Vector3(0.4f, 0.4f, 0.5f);
