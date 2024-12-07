@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
@@ -13,10 +14,16 @@ public class ScoreManager : MonoBehaviour
     private const int LV_4_POINT = 3000;
     private const int LV_5_POINT = 4000;
     private const int CREAR_SCORE_POINT = 10000;
+    private const float FADE_DURATION = 1.2f;
     private Color COLOR_YELLOW = new Color(1f, 0.9f, 0.1f, 1f); // 黄色
+    private Color COLOR_SHOU_CLEAR_JOUKEN_TEXT = new Color(1, 0.390566f, 0.6449661f, 1);
+    private float FADE_OUT_ALFAR1 = 0.5f;
+    private float HOLD_TIME = 0.5f;
 
     private int scorePoint = 0;
     private int ompCount = 0;
+
+    [SerializeField] private GameObject clearJoukenText;
 
     private const string LV_UP = "Level UP";
 
@@ -57,6 +64,80 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    private IEnumerator ShowClearJoukenText()
+    {
+        TextMeshProUGUI text = clearJoukenText.GetComponent<TextMeshProUGUI>();
+        text.text = "ギターを取って「" + CREAR_SCORE_POINT + "」点集めよう";
+        text.color = COLOR_SHOU_CLEAR_JOUKEN_TEXT;
+        Color tempColor = text.color;
+        tempColor.a = 0f;
+        text.color = tempColor;
+
+        while (text.color.a < 1.0f)
+        {
+            tempColor.a += Time.deltaTime / FADE_DURATION;
+            text.color = tempColor;
+            yield return null;
+        }
+
+        tempColor.a = 1.0f;
+        text.color = tempColor;
+
+        yield return new WaitForSeconds(HOLD_TIME);
+
+        while (text.color.a > FADE_OUT_ALFAR1)
+        {
+            tempColor.a -= Time.deltaTime / FADE_DURATION;
+            text.color = tempColor;
+            yield return null;
+        }
+
+        tempColor.a = FADE_OUT_ALFAR1;
+        text.color = tempColor;
+
+        while (text.color.a < 1.0f)
+        {
+            tempColor.a += Time.deltaTime / FADE_DURATION;
+            text.color = tempColor;
+            yield return null;
+        }
+
+        tempColor.a = 1.0f;
+        text.color = tempColor;
+
+        yield return new WaitForSeconds(HOLD_TIME);
+
+
+        while (text.color.a > FADE_OUT_ALFAR1)
+        {
+            tempColor.a -= Time.deltaTime / FADE_DURATION;
+            text.color = tempColor;
+            yield return null;
+        }
+
+        tempColor.a = FADE_OUT_ALFAR1;
+        text.color = tempColor;
+
+        while (text.color.a < 1.0f)
+        {
+            tempColor.a += Time.deltaTime / FADE_DURATION;
+            text.color = tempColor;
+            yield return null;
+        }
+
+        tempColor.a = 1.0f;
+        text.color = tempColor;
+
+        while (text.color.a > 0.0f)
+        {
+            tempColor.a -= Time.deltaTime / FADE_DURATION;
+            text.color = tempColor;
+            yield return null;
+        }
+
+        clearJoukenText.SetActive(false);
+    }
+
     private void LvUp(int lv)
     {
         int currentLv = GameManager.instance.PlayerLv;
@@ -78,6 +159,8 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
+        StartCoroutine(ShowClearJoukenText());
 
         ompCount = OMP_MAX_COUNT;
         scorePoint = 0;
