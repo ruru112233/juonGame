@@ -180,7 +180,7 @@ public class Player : MonoBehaviour
         powerUpText.text = text;
         powerUpText.color = color;
 
-        powerUpTextObj.transform.position = transform.position + new Vector3(0.3f, 0.2f, 0);
+        powerUpTextObj.transform.position = transform.position + new Vector3(0.35f, 0.2f, 0);
         powerUpTextObj.SetActive(true);
 
         if (powerUpTextCoroutine == null)
