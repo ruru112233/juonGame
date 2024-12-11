@@ -32,9 +32,60 @@ public class MsgManager : Msg
         set { messageList = value; }
     }
 
+    private void SetMessage(Speaker speaker, string message)
+    {
+        Msg.MessageData msg;
+        msg.speaker = speaker;
+        msg.message = message;
+        messageList.Add(msg);
+    }
+
+    private void SetOpningMessageList()
+    {
+        SetMessage(Speaker.NONE, "偉大なる音楽の先人たちよ@僕らは知りたい");
+        SetMessage(Speaker.NONE, "あの頃のあなたたちは@一体何を想って@音楽を奏でていたの？");
+        SetMessage(Speaker.NONE, "あの名曲はどうやって作られたのか");
+        SetMessage(Speaker.NONE, "あのバンドはどうして解散したのか");
+        SetMessage(Speaker.NONE, "あのソロはあれで正解なのか");
+        SetMessage(Speaker.NONE, "聴きたいことは山ほどあるのに@タイムマシンがまだない今@昔に戻って聞くことも叶わない");
+        SetMessage(Speaker.NONE, "愛するあなたとも@逢えなくなってから早数年...");
+        SetMessage(Speaker.NONE, "今はどこにいるの？");
+        SetMessage(Speaker.NONE, "何をしているの？");
+        SetMessage(Speaker.NONE, "あなたのいない世界で@僕らはなんとか暮らしている");
+        SetMessage(Speaker.NONE, "それにしても@肉体を離れた彼らは今@どこで何をしているのだろうか");
+        SetMessage(Speaker.NONE, "噂によると@彼らは今もどこかで集まって@音楽をやっているらしい");
+        SetMessage(Speaker.NONE, "そこは宇宙?@天国?");
+        SetMessage(Speaker.NONE, "ぼくらは大きな船に乗って@彼らのところへ向かう...");
+        SetMessage(Speaker.NONE, "あなたのいない世界で@僕らはなんとか暮らしている");
+    }
+
+    private void SetEndingMessageList()
+    {
+        SetMessage(Speaker.JUON, "やっとここまできたぞ");
+        SetMessage(Speaker.SATOKO, "ぼくらのお父さんとお母さんはどこ？");
+        SetMessage(Speaker.JUON, "あっ！ジミ？@あそこにいるのはブライアンジョーンズ？");
+        SetMessage(Speaker.SATOKO, "あそこに座ってるのはジャニスじゃない？@あれは…うそ！ジムモリソン？");
+        SetMessage(Speaker.JUON, "カートもいるぞ？");
+        SetMessage(Speaker.SATOKO, "あっ！");
+        SetMessage(Speaker.NONE, "君たちにはまだ早いよ…。");
+        SetMessage(Speaker.JUON, "わあーーーー！！！！！");
+        SetMessage(Speaker.NONE, "やっとその場所を見つけたと思ったのに@僕らはまたふりだしに戻されてしまった！@@つづく…");
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        if (GameManager.instance.eventSceneType == GameManager.EventSceneType.OPNING)
+        {
+            Debug.Log("Opning");
+            SetOpningMessageList();
+            if (messageList.Count > 0) StartCoroutine(ShowText(messageList));
+        }
+        else if (GameManager.instance.eventSceneType == GameManager.EventSceneType.ENDING)
+        {
+            SetEndingMessageList();
+        }
+
         if (textField) textField.SetActive(false);
         if (scoreHandImage) scoreHandImage.SetActive(false);
 
@@ -82,9 +133,9 @@ public class MsgManager : Msg
                 }
                 else
                 {
-                    GameManager.instance.isStopped = false;
-                    textField.SetActive(false);
-                    scoreHandImage.SetActive(false);
+                    if(GameManager.instance) GameManager.instance.isStopped = false;
+                    if(textField) textField.SetActive(false);
+                    if(scoreHandImage) scoreHandImage.SetActive(false);
                 }
 
             }

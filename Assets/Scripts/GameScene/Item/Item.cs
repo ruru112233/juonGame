@@ -30,8 +30,6 @@ public class Item : MonoBehaviour
     private const string SP_MAX = "Max Speed";
     private const float SP_MAX_PT = 6.0f;
 
-    private Player playerScript;
-
     // item情報の格納用構造体
     struct ItemInfo
     {
@@ -62,8 +60,6 @@ public class Item : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        
         RandomForce();
     }
 
@@ -110,31 +106,31 @@ public class Item : MonoBehaviour
             }
 
             // 攻撃力アップ
-            if (itemPattern == ItemPattern.AT_POWER_UP && playerScript && playerScript.AttackPt < AT_MAX_PT)
+            if (itemPattern == ItemPattern.AT_POWER_UP && GameManager.instance.player.AttackPt < AT_MAX_PT)
             {
-                playerScript.AttackPt += 0.1f;
-                if (playerScript.AttackPt >= AT_MAX_PT)
+                GameManager.instance.player.AttackPt += 0.1f;
+                if (GameManager.instance.player.AttackPt >= AT_MAX_PT)
                 {
-                    playerScript.ShowText(AT_MAX, COLOR_RED);
+                    GameManager.instance.player.ShowText(AT_MAX, COLOR_RED);
                 }
                 else
                 {
-                    playerScript.ShowText(AT_UP, COLOR_RED);
+                    GameManager.instance.player.ShowText(AT_UP, COLOR_RED);
                 }
 
             }
 
             // スピードアップ
-            if (itemPattern == ItemPattern.SP_POWER_UP && playerScript && playerScript.Speed < SP_MAX_PT)
+            if (itemPattern == ItemPattern.SP_POWER_UP && GameManager.instance.player.Speed < SP_MAX_PT)
             {
-                playerScript.Speed += 0.2f;
-                if (playerScript.Speed >= SP_MAX_PT)
+                GameManager.instance.player.Speed += 0.2f;
+                if (GameManager.instance.player.Speed >= SP_MAX_PT)
                 {
-                    playerScript.ShowText(SP_MAX, COLOR_GREEN);
+                    GameManager.instance.player.ShowText(SP_MAX, COLOR_GREEN);
                 }
                 else
                 {
-                    playerScript.ShowText(SP_UP, COLOR_GREEN);
+                    GameManager.instance.player.ShowText(SP_UP, COLOR_GREEN);
                 }
             }
 

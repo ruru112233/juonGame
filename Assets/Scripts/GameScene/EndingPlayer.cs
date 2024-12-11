@@ -47,7 +47,7 @@ public class EndingPlayer : Player
 
                 if (fastFlag)
                 {
-                    StartCoroutine(msgManager.ShowText(msgManager.MessageList));
+                    if(msgManager.MessageList.Count > 0) StartCoroutine(msgManager.ShowText(msgManager.MessageList));
                     fastFlag = false;
                 }
 

@@ -103,7 +103,7 @@ public class PicController : MonoBehaviour
 
     private void PickShot(Transform transform)
     {
-        if (GameManager.instance.isStopped) return;
+        if (GameManager.instance.player.IsStop) return;
 
         if (ShotTimer())
         {
