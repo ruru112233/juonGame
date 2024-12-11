@@ -13,6 +13,7 @@ public class ScoreManager : MonoBehaviour
     private const int LV_3_POINT = 2000;
     private const int LV_4_POINT = 3000;
     private const int LV_5_POINT = 4000;
+    private const int SHOW_BOSS_POINT = 6000;
     private const int CREAR_SCORE_POINT = 10000;
     private const float FADE_DURATION = 1.2f;
     private Color COLOR_YELLOW = new Color(1f, 0.9f, 0.1f, 1f); // 黄色
@@ -29,8 +30,6 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] private RectTransform ompObj;
 
-    private Player playerScript;
-
     private Vector3 defaultOmpPos = new Vector3(0,0,0);
 
     private float currentAngle = 0;
@@ -39,6 +38,11 @@ public class ScoreManager : MonoBehaviour
     public int ScorePoint
     {
         get { return scorePoint; }
+    }
+
+    public bool IsShowBoss()
+    {
+        return scorePoint >= SHOW_BOSS_POINT;
     }
 
     private void Unlock()
@@ -147,10 +151,7 @@ public class ScoreManager : MonoBehaviour
             // レベルアップ
             GameManager.instance.PlayerLv = lv;
 
-            if (playerScript)
-            {
-                playerScript.ShowText(LV_UP, COLOR_YELLOW);
-            }
+            GameManager.instance.player.ShowText(LV_UP, COLOR_YELLOW);
         }
 
     }
@@ -158,8 +159,6 @@ public class ScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-
         StartCoroutine(ShowClearJoukenText());
 
         ompCount = OMP_MAX_COUNT;

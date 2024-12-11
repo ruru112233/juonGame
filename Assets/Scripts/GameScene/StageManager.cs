@@ -46,6 +46,9 @@ public class StageManager : EnemyMove
         enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(3.5f, -2, 0))); // 18
         enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(3.5f, 1, 0))); // 19
         enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(3.5f, 0, 0))); // 20
+
+        bossObj.SetActive(false);
+        enemys.Add(SpawnEnemy(bossObj, new Vector3(0, 10, 0))); // 21
     }
 
     public IEnumerator EnemyPatternTutorial()
@@ -86,6 +89,7 @@ public class StageManager : EnemyMove
     public IEnumerator EnemyPattern1Stage()
     {
         AddEnemyList1Stage();
+        StartCoroutine(ShowBoss());
 
         yield return new WaitForSeconds(0.1f);
 
@@ -191,6 +195,13 @@ public class StageManager : EnemyMove
             yield return new WaitForSeconds(5.0f);
         }
 
+    }
+
+    private IEnumerator ShowBoss()
+    {
+        yield return new WaitUntil(() => GameManager.instance.scoreManager.IsShowBoss());
+
+        enemys[enemys.Count - 1].SetActive(true);
     }
 
     // pattern1

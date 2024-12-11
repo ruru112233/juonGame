@@ -16,7 +16,17 @@ public class GameManager : MonoBehaviour
 
     public ItemStock itemStock;
 
+    public Player player;
+
     public int PlayerLv { get; set; }
+
+    public enum EventSceneType
+    {
+        OPNING,
+        ENDING,
+    }
+
+    public EventSceneType eventSceneType;
 
     private void Awake()
     {
@@ -39,7 +49,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // ƒQ[ƒ€ƒNƒŠƒA‚©”»’è
-        if (scoreManager.CrearCheck())
+        if (scoreManager && scoreManager.CrearCheck())
         {
             StartCoroutine(MoveGameCrear());
         }

@@ -70,6 +70,11 @@ public class Player : MonoBehaviour
     private float paralysisTime = 0.0f;
     private bool stopFlag = false;
 
+    public bool IsStop
+    {
+        get { return stopFlag; }
+    }
+
     // ƒ{ƒ€ŠÖŒW
     [SerializeField] private GameObject bom;
     private float bomShotTime = 5.0f;
