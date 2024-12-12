@@ -57,6 +57,7 @@ public class MsgManager : Msg
         SetMessage(Speaker.NONE, "‚»‚±‚Í‰F’ˆ?@“V‘?");
         SetMessage(Speaker.NONE, "‚Ú‚­‚ç‚Í‘å‚«‚È‘D‚Éæ‚Á‚Ä@”Ş‚ç‚Ì‚Æ‚±‚ë‚ÖŒü‚©‚¤...");
         SetMessage(Speaker.NONE, "‚ ‚È‚½‚Ì‚¢‚È‚¢¢ŠE‚Å@–l‚ç‚Í‚È‚ñ‚Æ‚©•é‚ç‚µ‚Ä‚¢‚é");
+
     }
 
     private void SetEndingMessageList()
@@ -84,10 +85,11 @@ public class MsgManager : Msg
         else if (GameManager.instance.eventSceneType == GameManager.EventSceneType.ENDING)
         {
             SetEndingMessageList();
+            if (textField) textField.SetActive(false);
+            if (scoreHandImage) scoreHandImage.SetActive(false);
         }
 
-        if (textField) textField.SetActive(false);
-        if (scoreHandImage) scoreHandImage.SetActive(false);
+
 
         SaveData data = SaveAndLoader.Load();
 
