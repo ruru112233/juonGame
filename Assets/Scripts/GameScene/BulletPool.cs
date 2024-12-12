@@ -10,12 +10,12 @@ public class BulletPool : MonoBehaviour
     public GameObject stickPooledObject;
     public GameObject enemyPooledObject;
 
-    private int pooledAmount = 20;
-    private int enemyPooledAmount = 20;
+    //private int pooledAmount = 20;
+    //private int enemyPooledAmount = 20;
 
-    List<GameObject> pooledObjects;
-    List<GameObject> stickObjects;
-    List<GameObject> enemyPooledObjects;
+    public List<GameObject> pooledObjects;
+    public List<GameObject> stickObjects;
+    public List<GameObject> enemyPooledObjects;
 
     private void Awake()
     {
@@ -29,11 +29,11 @@ public class BulletPool : MonoBehaviour
     void Start()
     {
         // プレイヤーの弾の生成
-        CreateObjectPoole(pooledObject, pooledAmount, ref pooledObjects);
-        CreateObjectPoole(stickPooledObject, pooledAmount, ref stickObjects); // スティックの生成
+        //CreateObjectPoole(pooledObject, pooledAmount, ref pooledObjects);
+        //CreateObjectPoole(stickPooledObject, pooledAmount, ref stickObjects); // スティックの生成
 
         // エネミーの弾の生成
-        CreateObjectPoole(enemyPooledObject, enemyPooledAmount, ref enemyPooledObjects);
+        //CreateObjectPoole(enemyPooledObject, enemyPooledAmount, ref enemyPooledObjects);
     }
 
     // オブジェクトプールの初期作成
