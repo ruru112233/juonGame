@@ -8,13 +8,7 @@ public class PicController : MonoBehaviour
     private Vector3 RIGHT_OFSET_POS = new Vector3(1, 0, 0);
     private Vector3 LEFT_OFSET_POS = new Vector3(-1, 0, 0);
 
-    public enum POS_TYPE
-    {
-        RIGHT,
-        LEFT,
-    }
-
-    public POS_TYPE posType;
+    public EnumData.POS_TYPE posType;
 
     private Transform playerTransform;
 
@@ -34,7 +28,6 @@ public class PicController : MonoBehaviour
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
         transform.position = playerTransform.position + RIGHT_OFSET_POS;
-
     }
 
     private GameObject DistanceEnemyCheck()
@@ -46,7 +39,7 @@ public class PicController : MonoBehaviour
             for (int i = 0; i < enemys.Length; i++)
             {
                 MinionEnemy minion = enemys[i].GetComponent<MinionEnemy>();
-                if (minion.GetEnemyGenInfo.enemyDirectionType == EnemyMove.MoveDirectionType.NO_MOVE) continue;
+                if (minion.GetEnemyGenInfo.enemyDirectionType == EnumData.MoveDirectionType.NO_MOVE) continue;
                 
                 float distance = Vector3.Distance(transform.position, enemys[i].transform.position);
 
@@ -70,7 +63,7 @@ public class PicController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (posType == POS_TYPE.RIGHT)
+        if (posType == EnumData.POS_TYPE.RIGHT)
         {
             targetPoition = playerTransform.position + RIGHT_OFSET_POS;
         }
@@ -112,7 +105,7 @@ public class PicController : MonoBehaviour
     }
     void Fire(Transform SpawnPoint)
     {
-        GameObject bullet = BulletPool.Instance.GetPooledObject(GameManager.InstanceObjType.PICK_BULLET);
+        GameObject bullet = BulletPool.Instance.GetPooledObject(EnumData.InstanceObjType.PICK_BULLET);
 
         GameObject enemyObj = DistanceEnemyCheck();
 

@@ -49,7 +49,7 @@ public class BulletPool : MonoBehaviour
     }
 
     // プレイヤーの弾取得
-    public GameObject GetPooledObject(GameManager.InstanceObjType instanceObjType)
+    public GameObject GetPooledObject(EnumData.InstanceObjType instanceObjType)
     {
         List<GameObject> poolObjList = CreateObjList(instanceObjType);
         for (int i = 0; i < poolObjList.Count; i++)
@@ -71,65 +71,29 @@ public class BulletPool : MonoBehaviour
         return obj;
     }
 
-    // プレイヤーの弾取得(スティック)
-    //public GameObject GetSticksObject()
-    //{
-    //    for (int i = 0; i < stickObjects.Count; i++)
-    //    {
-    //        if (!stickObjects[i].activeInHierarchy)
-    //        {
-    //            return stickObjects[i];
-    //        }
-    //    }
-
-    //    GameObject obj = (GameObject)Instantiate(stickPooledObject);
-    //    obj.SetActive(false);
-    //    stickObjects.Add(obj);
-
-    //    return obj;
-    //}
-
-    // エネミーの弾取得
-    //public GameObject GetEnemyPooledObject()
-    //{
-    //    for (int i = 0; i < enemyPooledObjects.Count; i++)
-    //    {
-    //        if (!enemyPooledObjects[i].activeInHierarchy)
-    //        {
-    //            return enemyPooledObjects[i];
-    //        }
-    //    }
-
-    //    GameObject obj = (GameObject)Instantiate(enemyPooledObject);
-    //    obj.SetActive(false);
-    //    enemyPooledObjects.Add(obj);
-
-    //    return obj;
-    //}
-
-    private GameObject CreateObj(GameManager.InstanceObjType instanceObjType)
+    private GameObject CreateObj(EnumData.InstanceObjType instanceObjType)
     {
         switch (instanceObjType)
         {
-            case GameManager.InstanceObjType.PICK_BULLET:
+            case EnumData.InstanceObjType.PICK_BULLET:
                 return pooledObject;
-            case GameManager.InstanceObjType.STICK_BULLET:
+            case EnumData.InstanceObjType.STICK_BULLET:
                 return stickPooledObject;
-            case GameManager.InstanceObjType.ENEMY_BULLET:
+            case EnumData.InstanceObjType.ENEMY_BULLET:
                 return enemyPooledObject;
-            case GameManager.InstanceObjType.JIMI_ITEM:
+            case EnumData.InstanceObjType.JIMI_ITEM:
 
                 break;
-            case GameManager.InstanceObjType.JOHN_ITEM:
+            case EnumData.InstanceObjType.JOHN_ITEM:
 
                 break;
-            case GameManager.InstanceObjType.THUNDER_ITEM:
+            case EnumData.InstanceObjType.THUNDER_ITEM:
 
                 break;
-            case GameManager.InstanceObjType.AT_UP_ITEM:
+            case EnumData.InstanceObjType.AT_UP_ITEM:
 
                 break;
-            case GameManager.InstanceObjType.SP_UP_ITEM:
+            case EnumData.InstanceObjType.SP_UP_ITEM:
 
                 break;
             default:
@@ -139,29 +103,29 @@ public class BulletPool : MonoBehaviour
         return null;
     }
 
-    private List<GameObject> CreateObjList(GameManager.InstanceObjType instanceObjType)
+    private List<GameObject> CreateObjList(EnumData.InstanceObjType instanceObjType)
     {
         switch (instanceObjType)
         {
-            case GameManager.InstanceObjType.PICK_BULLET:
+            case EnumData.InstanceObjType.PICK_BULLET:
                 return pooledObjects;
-            case GameManager.InstanceObjType.STICK_BULLET:
+            case EnumData.InstanceObjType.STICK_BULLET:
                 return stickObjects;
-            case GameManager.InstanceObjType.ENEMY_BULLET:
+            case EnumData.InstanceObjType.ENEMY_BULLET:
                 return enemyPooledObjects;
-            case GameManager.InstanceObjType.JIMI_ITEM:
+            case EnumData.InstanceObjType.JIMI_ITEM:
 
                 break;
-            case GameManager.InstanceObjType.JOHN_ITEM:
+            case EnumData.InstanceObjType.JOHN_ITEM:
 
                 break;
-            case GameManager.InstanceObjType.THUNDER_ITEM:
+            case EnumData.InstanceObjType.THUNDER_ITEM:
 
                 break;
-            case GameManager.InstanceObjType.AT_UP_ITEM:
+            case EnumData.InstanceObjType.AT_UP_ITEM:
 
                 break;
-            case GameManager.InstanceObjType.SP_UP_ITEM:
+            case EnumData.InstanceObjType.SP_UP_ITEM:
 
                 break;
             default:

@@ -40,7 +40,7 @@ public class MinionEnemy : EnemyShotPattern
 
     void EnemyGenInfoInit()
     {
-        enemyGenInfo_.enemyDirectionType = MoveDirectionType.NO_MOVE;
+        enemyGenInfo_.enemyDirectionType = EnumData.MoveDirectionType.NO_MOVE;
         enemyGenInfo_.firstSpeed = 0;
         enemyGenInfo_.secondSpeed = 0;
         enemyGenInfo_.shotPattern = ShotScriptList.Count;
@@ -91,7 +91,7 @@ public class MinionEnemy : EnemyShotPattern
 
             EnemyGenInfo info = new EnemyGenInfo();
 
-            info.enemyDirectionType = MoveDirectionType.NO_MOVE;
+            info.enemyDirectionType = EnumData.MoveDirectionType.NO_MOVE;
             info.shotPattern = 0;
 
             SetEnemyGenInfo(info);
