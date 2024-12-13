@@ -112,7 +112,7 @@ public class PicController : MonoBehaviour
     }
     void Fire(Transform SpawnPoint)
     {
-        GameObject bullet = BulletPool.Instance.GetPooledObject();
+        GameObject bullet = BulletPool.Instance.GetPooledObject(GameManager.InstanceObjType.PICK_BULLET);
 
         GameObject enemyObj = DistanceEnemyCheck();
 

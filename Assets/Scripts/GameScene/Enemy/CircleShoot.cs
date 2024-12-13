@@ -28,7 +28,7 @@ public class CircleShoot : MonoBehaviour
         {
             float angle = (360f / numberObBullets) * i;
             Vector3 direction = Quaternion.Euler(0, 0, angle) * transform.up;
-            GameObject bullet = BulletPool.Instance.GetEnemyPooledObject();
+            GameObject bullet = BulletPool.Instance.GetPooledObject(GameManager.InstanceObjType.ENEMY_BULLET);
             
             bullet.transform.position = transform.position;
             bullet.transform.rotation = Quaternion.Euler(0, 0, angle);

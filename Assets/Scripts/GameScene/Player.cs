@@ -284,7 +284,7 @@ public class Player : MonoBehaviour
     // ’e‚Ì”­ŽË
     void Fire(Transform SpawnPoint)
     {
-        GameObject bullet = BulletPool.Instance.GetPooledObject();
+        GameObject bullet = BulletPool.Instance.GetPooledObject(GameManager.InstanceObjType.PICK_BULLET);
 
         if (bullet != null)
         {
@@ -302,7 +302,7 @@ public class Player : MonoBehaviour
     {
         if (GameManager.instance.PlayerLv < SIDE_FIRE_LV) return;
 
-        GameObject rightBullet = BulletPool.Instance.GetSticksObject();
+        GameObject rightBullet = BulletPool.Instance.GetPooledObject(GameManager.InstanceObjType.STICK_BULLET); ;
 
         if (rightBullet != null)
         {
@@ -319,7 +319,7 @@ public class Player : MonoBehaviour
     {
         if (GameManager.instance.PlayerLv < SIDE_FIRE_LV) return;
 
-        GameObject LeftBullet = BulletPool.Instance.GetSticksObject();
+        GameObject LeftBullet = BulletPool.Instance.GetPooledObject(GameManager.InstanceObjType.STICK_BULLET);
 
         if (LeftBullet != null)
         {

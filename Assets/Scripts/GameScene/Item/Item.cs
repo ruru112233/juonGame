@@ -5,6 +5,12 @@ using UnityEditor;
 
 public class Item : MonoBehaviour
 {
+
+    const float UP_ITEM_LIMIT = 5.8f;
+    const float DOWN_ITEM_LIMIT = -5.8f;
+    const float RIGHT_ITEM_LIMIT = 3.6f;
+    const float LEFT_ITEM_LIMIT = -3.6f;
+
     // êF
     private Color COLOR_WHITE = new Color(1f, 1f, 1f, 1f); // îí
     private Color COLOR_YELLOW = new Color(1f, 0.9f, 0.1f, 1f); // â©êF
@@ -80,6 +86,11 @@ public class Item : MonoBehaviour
     void Update()
     {
         // PlayerItemMove();
+
+        if (this.transform.position.y <= DOWN_ITEM_LIMIT)
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
