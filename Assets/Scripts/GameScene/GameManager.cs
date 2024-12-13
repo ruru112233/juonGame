@@ -20,25 +20,7 @@ public class GameManager : MonoBehaviour
 
     public int PlayerLv { get; set; }
 
-    public enum EventSceneType
-    {
-        OPNING,
-        ENDING,
-    }
-
-    public enum InstanceObjType
-    {
-        PICK_BULLET,
-        STICK_BULLET,
-        ENEMY_BULLET,
-        JIMI_ITEM,
-        JOHN_ITEM,
-        THUNDER_ITEM,
-        AT_UP_ITEM,
-        SP_UP_ITEM,
-    }
-
-    public EventSceneType eventSceneType;
+    public EnumData.EventSceneType eventSceneType;
 
     private void Awake()
     {

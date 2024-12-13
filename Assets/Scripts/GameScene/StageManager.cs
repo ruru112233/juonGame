@@ -65,13 +65,13 @@ public class StageManager : EnemyMove
         yield return new WaitWhile(() => GameManager.instance.isStopped);
 
         // 1ëŒèoåÇ
-        SetMessage(Msg.Speaker.JUON, "Ç†Ç¢Ç§Ç¶Ç®");
-        SetMessage(Msg.Speaker.JUON, "Ç©Ç´Ç≠ÇØÇ±");
-        SetMessage(Msg.Speaker.JUON, "ÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇó");
+        SetMessage(EnumData.Speaker.JUON, "Ç†Ç¢Ç§Ç¶Ç®");
+        SetMessage(EnumData.Speaker.JUON, "Ç©Ç´Ç≠ÇØÇ±");
+        SetMessage(EnumData.Speaker.JUON, "ÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇóÇó");
 
         msgManager.StartMessage(msgManager.MessageList);
 
-        SetEnemyInfo(enemys[0], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+        SetEnemyInfo(enemys[0], SetEnemyGenInfo(EnumData.MoveDirectionType.BOTTOM, 0));
 
         GameManager.instance.isStopped = true;
 
@@ -82,7 +82,7 @@ public class StageManager : EnemyMove
 
         yield return Wait_Y_PositionCheck(enemys[0], 1.8f);
 
-        SetEnemyInfo(enemys[0], SetEnemyGenInfo(MoveDirectionType.NO_MOVE, 0));
+        SetEnemyInfo(enemys[0], SetEnemyGenInfo(EnumData.MoveDirectionType.NO_MOVE, 0));
     }
 
 
@@ -97,99 +97,99 @@ public class StageManager : EnemyMove
         while (true)
         {
             // 1êw
-            SetEnemyInfo(enemys[0], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+            SetEnemyInfo(enemys[0], SetEnemyGenInfo(EnumData.MoveDirectionType.BOTTOM, 0));
 
             yield return StartCoroutine(Wait_Y_PositionCheck(enemys[0], 1.7f));
 
-            SetEnemyInfo(enemys[0], SetEnemyGenInfo(MoveDirectionType.NO_MOVE, 0));
+            SetEnemyInfo(enemys[0], SetEnemyGenInfo(EnumData.MoveDirectionType.NO_MOVE, 0));
 
             yield return new WaitForSeconds(3.0f);
 
-            SetEnemyInfo(enemys[0], SetEnemyGenInfo(MoveDirectionType.TOP_RIGHT, 0.4f, 0));
+            SetEnemyInfo(enemys[0], SetEnemyGenInfo(EnumData.MoveDirectionType.TOP_RIGHT, 0.4f, 0));
 
             // 2êw
-            SetEnemyInfo(enemys[1], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-            SetEnemyInfo(enemys[2], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
+            SetEnemyInfo(enemys[1], SetEnemyGenInfo(EnumData.MoveDirectionType.BOTTOM, 0));
+            SetEnemyInfo(enemys[2], SetEnemyGenInfo(EnumData.MoveDirectionType.BOTTOM, 0));
 
             yield return StartCoroutine(Wait_Y_PositionCheck(enemys[1], 0.5f));
             yield return StartCoroutine(Wait_Y_PositionCheck(enemys[2], 0.5f));
 
-            SetEnemyInfo(enemys[1], SetEnemyGenInfo(MoveDirectionType.RIGHT, 3.0f, 0));
-            SetEnemyInfo(enemys[2], SetEnemyGenInfo(MoveDirectionType.LEFT, 3.0f, 0));
+            SetEnemyInfo(enemys[1], SetEnemyGenInfo(EnumData.MoveDirectionType.RIGHT, 3.0f, 0));
+            SetEnemyInfo(enemys[2], SetEnemyGenInfo(EnumData.MoveDirectionType.LEFT, 3.0f, 0));
 
             yield return new WaitForSeconds(1.0f);
 
             // 3êw
-            SetEnemyInfo(enemys[3], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-            StartCoroutine(ChangeEnemyPattan(enemys[3], -1, MoveDirectionType.TOP_RIGHT, 2.0f));
+            SetEnemyInfo(enemys[3], SetEnemyGenInfo(EnumData.MoveDirectionType.BOTTOM, 0));
+            StartCoroutine(ChangeEnemyPattan(enemys[3], -1, EnumData.MoveDirectionType.TOP_RIGHT, 2.0f));
 
             yield return new WaitForSeconds(0.7f);
 
-            SetEnemyInfo(enemys[4], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-            StartCoroutine(ChangeEnemyPattan(enemys[4], -1, MoveDirectionType.TOP_RIGHT, 2.0f));
+            SetEnemyInfo(enemys[4], SetEnemyGenInfo(EnumData.MoveDirectionType.BOTTOM, 0));
+            StartCoroutine(ChangeEnemyPattan(enemys[4], -1, EnumData.MoveDirectionType.TOP_RIGHT, 2.0f));
 
             yield return new WaitForSeconds(0.7f);
 
-            SetEnemyInfo(enemys[5], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-            StartCoroutine(ChangeEnemyPattan(enemys[5], -1, MoveDirectionType.TOP_RIGHT, 2.0f));
+            SetEnemyInfo(enemys[5], SetEnemyGenInfo(EnumData.MoveDirectionType.BOTTOM, 0));
+            StartCoroutine(ChangeEnemyPattan(enemys[5], -1, EnumData.MoveDirectionType.TOP_RIGHT, 2.0f));
 
             yield return new WaitForSeconds(0.7f);
 
-            SetEnemyInfo(enemys[6], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-            StartCoroutine(ChangeEnemyPattan(enemys[6], -1, MoveDirectionType.TOP_RIGHT, 2.0f));
+            SetEnemyInfo(enemys[6], SetEnemyGenInfo(EnumData.MoveDirectionType.BOTTOM, 0));
+            StartCoroutine(ChangeEnemyPattan(enemys[6], -1, EnumData.MoveDirectionType.TOP_RIGHT, 2.0f));
 
             yield return new WaitForSeconds(0.7f);
 
-            SetEnemyInfo(enemys[7], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-            StartCoroutine(ChangeEnemyPattan(enemys[7], -1, MoveDirectionType.TOP_RIGHT, 2.0f));
+            SetEnemyInfo(enemys[7], SetEnemyGenInfo(EnumData.MoveDirectionType.BOTTOM, 0));
+            StartCoroutine(ChangeEnemyPattan(enemys[7], -1, EnumData.MoveDirectionType.TOP_RIGHT, 2.0f));
 
             yield return new WaitForSeconds(1.0f);
 
             // 4êw
-            SetEnemyInfo(enemys[8], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-            StartCoroutine(ChangeEnemyPattan(enemys[8], -1, MoveDirectionType.TOP_LEFT, 2.0f));
+            SetEnemyInfo(enemys[8], SetEnemyGenInfo(EnumData.MoveDirectionType.BOTTOM, 0));
+            StartCoroutine(ChangeEnemyPattan(enemys[8], -1, EnumData.MoveDirectionType.TOP_LEFT, 2.0f));
 
             yield return new WaitForSeconds(0.7f);
 
-            SetEnemyInfo(enemys[9], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-            StartCoroutine(ChangeEnemyPattan(enemys[9], -1, MoveDirectionType.TOP_LEFT, 2.0f));
+            SetEnemyInfo(enemys[9], SetEnemyGenInfo(EnumData.MoveDirectionType.BOTTOM, 0));
+            StartCoroutine(ChangeEnemyPattan(enemys[9], -1, EnumData.MoveDirectionType.TOP_LEFT, 2.0f));
 
             yield return new WaitForSeconds(0.7f);
 
-            SetEnemyInfo(enemys[10], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-            StartCoroutine(ChangeEnemyPattan(enemys[10], -1, MoveDirectionType.TOP_LEFT, 2.0f));
+            SetEnemyInfo(enemys[10], SetEnemyGenInfo(EnumData.MoveDirectionType.BOTTOM, 0));
+            StartCoroutine(ChangeEnemyPattan(enemys[10], -1, EnumData.MoveDirectionType.TOP_LEFT, 2.0f));
 
             yield return new WaitForSeconds(0.7f);
 
-            SetEnemyInfo(enemys[11], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-            StartCoroutine(ChangeEnemyPattan(enemys[11], -1, MoveDirectionType.TOP_LEFT, 2.0f));
+            SetEnemyInfo(enemys[11], SetEnemyGenInfo(EnumData.MoveDirectionType.BOTTOM, 0));
+            StartCoroutine(ChangeEnemyPattan(enemys[11], -1, EnumData.MoveDirectionType.TOP_LEFT, 2.0f));
 
             yield return new WaitForSeconds(0.7f);
 
-            SetEnemyInfo(enemys[12], SetEnemyGenInfo(MoveDirectionType.BOTTOM, 0));
-            StartCoroutine(ChangeEnemyPattan(enemys[12], -1, MoveDirectionType.TOP_LEFT, 2.0f));
+            SetEnemyInfo(enemys[12], SetEnemyGenInfo(EnumData.MoveDirectionType.BOTTOM, 0));
+            StartCoroutine(ChangeEnemyPattan(enemys[12], -1, EnumData.MoveDirectionType.TOP_LEFT, 2.0f));
             
             // 5êw
-            SetEnemyInfo(enemys[13], SetEnemyGenInfo(MoveDirectionType.TOP_RIGHT, 0));
+            SetEnemyInfo(enemys[13], SetEnemyGenInfo(EnumData.MoveDirectionType.TOP_RIGHT, 0));
             StartCoroutine(ChangeEnemyPattanList(enemys[13], Pattern1()));
 
-            SetEnemyInfo(enemys[16], SetEnemyGenInfo(MoveDirectionType.TOP_LEFT, 0));
+            SetEnemyInfo(enemys[16], SetEnemyGenInfo(EnumData.MoveDirectionType.TOP_LEFT, 0));
             StartCoroutine(ChangeEnemyPattanList(enemys[16], Pattern2()));
 
             yield return new WaitForSeconds(1.5f);
 
-            SetEnemyInfo(enemys[14], SetEnemyGenInfo(MoveDirectionType.TOP_RIGHT, 0));
+            SetEnemyInfo(enemys[14], SetEnemyGenInfo(EnumData.MoveDirectionType.TOP_RIGHT, 0));
             StartCoroutine(ChangeEnemyPattanList(enemys[14], Pattern1(0.5f)));
 
-            SetEnemyInfo(enemys[17], SetEnemyGenInfo(MoveDirectionType.TOP_LEFT, 0));
+            SetEnemyInfo(enemys[17], SetEnemyGenInfo(EnumData.MoveDirectionType.TOP_LEFT, 0));
             StartCoroutine(ChangeEnemyPattanList(enemys[17], Pattern2(0.5f)));
 
             yield return new WaitForSeconds(1.5f);
 
-            SetEnemyInfo(enemys[15], SetEnemyGenInfo(MoveDirectionType.TOP_RIGHT, 0));
+            SetEnemyInfo(enemys[15], SetEnemyGenInfo(EnumData.MoveDirectionType.TOP_RIGHT, 0));
             StartCoroutine(ChangeEnemyPattanList(enemys[15], Pattern1(1.0f)));
 
-            SetEnemyInfo(enemys[18], SetEnemyGenInfo(MoveDirectionType.TOP_LEFT, 0));
+            SetEnemyInfo(enemys[18], SetEnemyGenInfo(EnumData.MoveDirectionType.TOP_LEFT, 0));
             StartCoroutine(ChangeEnemyPattanList(enemys[18], Pattern2(1.0f)));
 
             yield return new WaitForSeconds(5.0f);
@@ -212,33 +212,33 @@ public class StageManager : EnemyMove
 
         changePositionList[0] = new ChangePosition()
         {
-            stopDirection = StopDirectionType.Y,
+            stopDirection = EnumData.StopDirectionType.Y,
             changePos = 0.5f + hosei,
-            moveDirectionType = MoveDirectionType.BOTTOM,
+            moveDirectionType = EnumData.MoveDirectionType.BOTTOM,
             speed = 1.0f
         };
 
         changePositionList[1] = new ChangePosition()
         {
-            stopDirection = StopDirectionType.Y,
+            stopDirection = EnumData.StopDirectionType.Y,
             changePos = -1.0f,
-            moveDirectionType = MoveDirectionType.RIGHT,
+            moveDirectionType = EnumData.MoveDirectionType.RIGHT,
             speed = 1.0f
         };
 
         changePositionList[2] = new ChangePosition()
         {
-            stopDirection = StopDirectionType.X,
+            stopDirection = EnumData.StopDirectionType.X,
             changePos = 2.0f,
-            moveDirectionType = MoveDirectionType.TOP,
+            moveDirectionType = EnumData.MoveDirectionType.TOP,
             speed = 1.0f
         };
 
         changePositionList[3] = new ChangePosition()
         {
-            stopDirection = StopDirectionType.Y,
+            stopDirection = EnumData.StopDirectionType.Y,
             changePos = 2.0f + hosei,
-            moveDirectionType = MoveDirectionType.LEFT,
+            moveDirectionType = EnumData.MoveDirectionType.LEFT,
             speed = 1.0f
         };
 
@@ -252,40 +252,40 @@ public class StageManager : EnemyMove
 
         changePositionList[0] = new ChangePosition()
         {
-            stopDirection = StopDirectionType.Y,
+            stopDirection = EnumData.StopDirectionType.Y,
             changePos = 0.5f + hosei,
-            moveDirectionType = MoveDirectionType.BOTTOM,
+            moveDirectionType = EnumData.MoveDirectionType.BOTTOM,
             speed = 1.0f
         };
 
         changePositionList[1] = new ChangePosition()
         {
-            stopDirection = StopDirectionType.Y,
+            stopDirection = EnumData.StopDirectionType.Y,
             changePos = -1.0f,
-            moveDirectionType = MoveDirectionType.LEFT,
+            moveDirectionType = EnumData.MoveDirectionType.LEFT,
             speed = 1.0f
         };
 
         changePositionList[2] = new ChangePosition()
         {
-            stopDirection = StopDirectionType.X,
+            stopDirection = EnumData.StopDirectionType.X,
             changePos = -2.0f,
-            moveDirectionType = MoveDirectionType.TOP,
+            moveDirectionType = EnumData.MoveDirectionType.TOP,
             speed = 1.0f
         };
 
         changePositionList[3] = new ChangePosition()
         {
-            stopDirection = StopDirectionType.Y,
+            stopDirection = EnumData.StopDirectionType.Y,
             changePos = 2.0f + hosei,
-            moveDirectionType = MoveDirectionType.RIGHT,
+            moveDirectionType = EnumData.MoveDirectionType.RIGHT,
             speed = 1.0f
         };
 
         return changePositionList;
     }
 
-    public IEnumerator ChangeEnemyPattan(GameObject enemyObj, float changePosition, MoveDirectionType moveDirectionType, float speed)
+    public IEnumerator ChangeEnemyPattan(GameObject enemyObj, float changePosition, EnumData.MoveDirectionType moveDirectionType, float speed)
     {
         yield return StartCoroutine(Wait_Y_PositionCheck(enemyObj, changePosition));
 
@@ -296,9 +296,9 @@ public class StageManager : EnemyMove
 
     public struct ChangePosition
     {
-        public StopDirectionType stopDirection;
+        public EnumData.StopDirectionType stopDirection;
         public float changePos;
-        public MoveDirectionType moveDirectionType;
+        public EnumData.MoveDirectionType moveDirectionType;
         public float speed;
     }
 
@@ -309,10 +309,10 @@ public class StageManager : EnemyMove
         {
             switch (changePositionList[i].stopDirection)
             {
-                case StopDirectionType.X:
+                case EnumData.StopDirectionType.X:
                     yield return StartCoroutine(Wait_X_PositionCheck(enemyObj, changePositionList[i].changePos)); 
                     break;
-                case StopDirectionType.Y:
+                case EnumData.StopDirectionType.Y:
                     yield return StartCoroutine(Wait_Y_PositionCheck(enemyObj, changePositionList[i].changePos));
                     break;
                 default:
@@ -325,7 +325,7 @@ public class StageManager : EnemyMove
 
     }
 
-    private void SetMessage(Msg.Speaker speaker, string message)
+    private void SetMessage(EnumData.Speaker speaker, string message)
     {
         Msg.MessageData msg;
         msg.speaker = speaker;
@@ -370,7 +370,7 @@ public class StageManager : EnemyMove
         }
     }
 
-    EnemyGenInfo SetEnemyGenInfo(MoveDirectionType enemyDirectionType, int shotPattern)
+    EnemyGenInfo SetEnemyGenInfo(EnumData.MoveDirectionType enemyDirectionType, int shotPattern)
     {
         EnemyGenInfo info = new EnemyGenInfo();
 
@@ -380,7 +380,7 @@ public class StageManager : EnemyMove
         return info;
     }
 
-    EnemyGenInfo SetEnemyGenInfo(MoveDirectionType enemyDirectionType, float speed, int shotPattern)
+    EnemyGenInfo SetEnemyGenInfo(EnumData.MoveDirectionType enemyDirectionType, float speed, int shotPattern)
     {
         EnemyGenInfo info = new EnemyGenInfo();
 
@@ -391,7 +391,7 @@ public class StageManager : EnemyMove
         return info;
     }
 
-    EnemyGenInfo SetEnemyGenInfo(MoveDirectionType enemyDirectionType, float xSpeed, float ySpeed, int shotPattern)
+    EnemyGenInfo SetEnemyGenInfo(EnumData.MoveDirectionType enemyDirectionType, float xSpeed, float ySpeed, int shotPattern)
     {
         EnemyGenInfo info = new EnemyGenInfo();
 

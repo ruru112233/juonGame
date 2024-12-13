@@ -37,10 +37,8 @@ public class EndingPlayer : Player
 
         if (eventStartFlag)
         {
-            Debug.Log("Event");
             StartCoroutine(EventStart());
 
-            //msgManager.aaa();
             if (messageFlag)
             {
                 msgManager.TextFieldObj.SetActive(true);

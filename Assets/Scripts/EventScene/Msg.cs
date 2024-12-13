@@ -4,18 +4,11 @@ using UnityEngine;
 
 public class Msg : MonoBehaviour
 {
-    public enum Speaker
-    {
-        NONE,
-        JUON,
-        SATOKO,
-        PLAYER3,
-    }
 
     [System.Serializable]
     public struct MessageData
     {
-        public Speaker speaker;
+        public EnumData.Speaker speaker;
         public string message;
     }
 

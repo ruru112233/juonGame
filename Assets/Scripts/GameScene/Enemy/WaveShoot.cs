@@ -67,7 +67,7 @@ public class WaveShoot : MonoBehaviour
         foreach (Vector2 direction in directions)
         {
             // ’e‚ÌŽæ“¾
-            GameObject bullet = BulletPool.Instance.GetPooledObject(GameManager.InstanceObjType.ENEMY_BULLET);
+            GameObject bullet = BulletPool.Instance.GetPooledObject(EnumData.InstanceObjType.ENEMY_BULLET);
 
             bullet.transform.position = this.transform.position;
 

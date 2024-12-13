@@ -74,7 +74,7 @@ public class BossEnemy : EnemyShotPattern
         }
         else
         {
-            base.MoveDirection(MoveDirectionType.BOTTOM);
+            base.MoveDirection(EnumData.MoveDirectionType.BOTTOM);
         }
 
     }
@@ -98,11 +98,11 @@ public class BossEnemy : EnemyShotPattern
         // ç∂âEÇ…à⁄ìÆÇ≥ÇπÇÈÅB
         if (rightMoveFlag)
         {
-            base.MoveDirection(MoveDirectionType.RIGHT);
+            base.MoveDirection(EnumData.MoveDirectionType.RIGHT);
         }
         else
         {
-            base.MoveDirection(MoveDirectionType.LEFT);
+            base.MoveDirection(EnumData.MoveDirectionType.LEFT);
         }
     }
 

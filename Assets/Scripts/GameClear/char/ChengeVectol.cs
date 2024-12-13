@@ -23,19 +23,19 @@ public class ChengeVectol : MobChar
         }
         else if (upMoveFlag)
         {
-            MovePatternChenge(MoveState.BACK);
+            MovePatternChenge(EnumData.MoveState.BACK);
         }
         else if (downMoveFlag)
         {
-            MovePatternChenge(MoveState.FRONT);
+            MovePatternChenge(EnumData.MoveState.FRONT);
         }
         else if (rightMoveFlag)
         {
-            MovePatternChenge(MoveState.RIGHT);
+            MovePatternChenge(EnumData.MoveState.RIGHT);
         }
         else if (leftMoveFlag)
         {
-            MovePatternChenge(MoveState.LEFT);
+            MovePatternChenge(EnumData.MoveState.LEFT);
         }
 
 

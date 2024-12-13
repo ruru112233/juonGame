@@ -50,18 +50,9 @@ public class Item : MonoBehaviour
 
     [SerializeField] private GameObject scoreBall;
 
-    // アイテムの種類
-    public enum ItemPattern
-    {
-        JIMI_GUITAR,    // ジミヘンギター
-        JOHN_GUITAR,    // ジョンギター
-        THUNDER,        // 稲妻
-        AT_POWER_UP,    // 攻撃力アップ
-        SP_POWER_UP,    // スピードアップ
-        UNSETTILED,     // 未確定 
-    }
 
-    public ItemPattern itemPattern;
+
+    public EnumData.ItemPattern itemPattern;
 
     // Start is called before the first frame update
     void Start()
@@ -100,8 +91,8 @@ public class Item : MonoBehaviour
             // スコアの加算
             //uiManager.SetScore(itemPoint);
             // ItemPatternが未確定意外はアイテムをスコアのアイテムを出現させる
-            if ((itemPattern == ItemPattern.JIMI_GUITAR) || 
-                (itemPattern == ItemPattern.JOHN_GUITAR) )
+            if ((itemPattern == EnumData.ItemPattern.JIMI_GUITAR) || 
+                (itemPattern == EnumData.ItemPattern.JOHN_GUITAR) )
             {
                 GameObject scoreBallObj = (GameObject)Instantiate(scoreBall, this.transform.position, Quaternion.identity);
                 // アイテムのイメージを更新
@@ -117,7 +108,7 @@ public class Item : MonoBehaviour
             }
 
             // 攻撃力アップ
-            if (itemPattern == ItemPattern.AT_POWER_UP && GameManager.instance.player.AttackPt < AT_MAX_PT)
+            if (itemPattern == EnumData.ItemPattern.AT_POWER_UP && GameManager.instance.player.AttackPt < AT_MAX_PT)
             {
                 GameManager.instance.player.AttackPt += 0.1f;
                 if (GameManager.instance.player.AttackPt >= AT_MAX_PT)
@@ -132,7 +123,7 @@ public class Item : MonoBehaviour
             }
 
             // スピードアップ
-            if (itemPattern == ItemPattern.SP_POWER_UP && GameManager.instance.player.Speed < SP_MAX_PT)
+            if (itemPattern == EnumData.ItemPattern.SP_POWER_UP && GameManager.instance.player.Speed < SP_MAX_PT)
             {
                 GameManager.instance.player.Speed += 0.2f;
                 if (GameManager.instance.player.Speed >= SP_MAX_PT)
@@ -176,16 +167,16 @@ public class Item : MonoBehaviour
 
         switch (itemPattern)
         {
-            case ItemPattern.JIMI_GUITAR: // ジミヘンギター
+            case EnumData.ItemPattern.JIMI_GUITAR: // ジミヘンギター
                 value = JIMI_SCORE;
                 break;
-            case ItemPattern.JOHN_GUITAR: // ジョンギター
+            case EnumData.ItemPattern.JOHN_GUITAR: // ジョンギター
                 value = JOHN_SCORE;
                 break;
-            case ItemPattern.THUNDER: // 稲妻
+            case EnumData.ItemPattern.THUNDER: // 稲妻
                 value = THUNDER_SCORE;
                 break;
-            case ItemPattern.UNSETTILED: // 未確定
+            case EnumData.ItemPattern.UNSETTILED: // 未確定
             default:
                 break;
         }
@@ -202,22 +193,22 @@ public class Item : MonoBehaviour
 
         switch (itemPattern)
         {
-            case ItemPattern.JIMI_GUITAR:
+            case EnumData.ItemPattern.JIMI_GUITAR:
                 itemInfo.sprite = GameManager.instance.itemStock.eighth;
                 itemInfo.color = COLOR_PINK;
                 itemInfo.imageScale = OMP_SCALE;
                 break;
-            case ItemPattern.JOHN_GUITAR:
+            case EnumData.ItemPattern.JOHN_GUITAR:
                 itemInfo.sprite = GameManager.instance.itemStock.eighth;
                 itemInfo.color = COLOR_YELLOW;
                 itemInfo.imageScale = OMP_SCALE;
                 break;
-            case ItemPattern.THUNDER:
+            case EnumData.ItemPattern.THUNDER:
                 itemInfo.sprite = GameManager.instance.itemStock.thunderImage;
                 itemInfo.color = COLOR_WHITE;
                 itemInfo.imageScale = THUNDER_SCALE;
                 break;
-            case ItemPattern.UNSETTILED:
+            case EnumData.ItemPattern.UNSETTILED:
             default:
                 break;
         }

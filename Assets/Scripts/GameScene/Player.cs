@@ -49,8 +49,6 @@ public class Player : MonoBehaviour
         get { return attackPt; }
         set { attackPt = value; }
     }
-    
-    private bool reviveFlag;
     float reviveTime = 2.0f;
     float reviveCounter = 0;
 
@@ -94,12 +92,8 @@ public class Player : MonoBehaviour
         picRight.SetActive(false);
         picLeft.SetActive(false);
 
-        playerGeneretorObj = GameObject.FindGameObjectWithTag("PlayerGeneretor");
-        playerGeneretor = playerGeneretorObj.GetComponent<PlayerGeneretor>();
-     
         shotTime = SHOT_TIME;
 
-        reviveFlag = true;
         colorChengeFlag = false;
         stopFlag = false;
         sprite = GetComponent<SpriteRenderer>();
@@ -137,7 +131,6 @@ public class Player : MonoBehaviour
         if (reviveCounter >= reviveTime)
         {
             // àÍíËéûä‘åoÇ¡ÇΩÇÁÅAñ≥ìGéûä‘ÇèCóπÇ∑ÇÈ
-            reviveFlag = false;
             sprite.color = new Color(255, 255, 255, 255);
         }
         else
@@ -284,7 +277,7 @@ public class Player : MonoBehaviour
     // íeÇÃî≠éÀ
     void Fire(Transform SpawnPoint)
     {
-        GameObject bullet = BulletPool.Instance.GetPooledObject(GameManager.InstanceObjType.PICK_BULLET);
+        GameObject bullet = BulletPool.Instance.GetPooledObject(EnumData.InstanceObjType.PICK_BULLET);
 
         if (bullet != null)
         {
@@ -302,7 +295,7 @@ public class Player : MonoBehaviour
     {
         if (GameManager.instance.PlayerLv < SIDE_FIRE_LV) return;
 
-        GameObject rightBullet = BulletPool.Instance.GetPooledObject(GameManager.InstanceObjType.STICK_BULLET); ;
+        GameObject rightBullet = BulletPool.Instance.GetPooledObject(EnumData.InstanceObjType.STICK_BULLET); ;
 
         if (rightBullet != null)
         {
@@ -319,7 +312,7 @@ public class Player : MonoBehaviour
     {
         if (GameManager.instance.PlayerLv < SIDE_FIRE_LV) return;
 
-        GameObject LeftBullet = BulletPool.Instance.GetPooledObject(GameManager.InstanceObjType.STICK_BULLET);
+        GameObject LeftBullet = BulletPool.Instance.GetPooledObject(EnumData.InstanceObjType.STICK_BULLET);
 
         if (LeftBullet != null)
         {
@@ -377,15 +370,6 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("EnemyBullet"))
-        {
-            if (reviveFlag) return;
-
-            playerGeneretor.ReducePlayerLife(1);
-         
-            Destroy(gameObject);
-        }
-
         if (collision.gameObject.CompareTag("Thunder"))
         {
             if (blinkingPanelCoroutine != null)

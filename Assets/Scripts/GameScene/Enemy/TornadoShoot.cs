@@ -29,7 +29,7 @@ public class TornadoShoot : MonoBehaviour
     private void TornadoBulletShoot()
     {
         // ’e‚ğæ“¾
-        GameObject bullet = BulletPool.Instance.GetPooledObject(GameManager.InstanceObjType.ENEMY_BULLET);
+        GameObject bullet = BulletPool.Instance.GetPooledObject(EnumData.InstanceObjType.ENEMY_BULLET);
         
         // ’e‚ÌˆÊ’u‚ğ”­ËˆÊ’u‚Éİ’è
         bullet.transform.position = transform.position;

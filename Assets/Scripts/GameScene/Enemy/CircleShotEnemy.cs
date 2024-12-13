@@ -8,6 +8,6 @@ public class CircleShotEnemy : EnemyMove
     public override void Update()
     {
         base.Update();
-        base.MoveDirection(MoveDirectionType.BOTTOM_RIGHT, 2.0f); 
+        base.MoveDirection(EnumData.MoveDirectionType.BOTTOM_RIGHT, 2.0f); 
     }
 }

@@ -13,14 +13,6 @@ public class MobChar : MonoBehaviour
                                     rightMoveFlag,
                                     leftMoveFlag;
 
-    protected enum MoveState
-    {
-        FRONT,
-        RIGHT,
-        LEFT,
-        BACK,
-    }
-
     protected Animator anime;
 
     // Start is called before the first frame update
@@ -48,15 +40,15 @@ public class MobChar : MonoBehaviour
     }
     protected void RandomState()
     {
-        int moveStateCount = Enum.GetNames(typeof(MoveState)).Length;
+        int moveStateCount = Enum.GetNames(typeof(EnumData.MoveState)).Length;
         int rndState = UnityEngine.Random.Range(0, moveStateCount);
 
-        MoveState moveState = (MoveState)Enum.ToObject(typeof(MoveState), rndState);
+        EnumData.MoveState moveState = (EnumData.MoveState)Enum.ToObject(typeof(EnumData.MoveState), rndState);
 
         MovePatternChenge(moveState);
     }
 
-    protected void MovePatternChenge(MoveState state)
+    protected void MovePatternChenge(EnumData.MoveState state)
     {
         anime.SetInteger("work_state", (int)state);
     }

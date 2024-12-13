@@ -11,26 +11,10 @@ public class JimiAction : MonoBehaviour
 
     private float MOVE_LR_END_TIME = 3.0f;
     private float RASH_START = 2.0f;
-    private enum MoveAction
-    {
-        UP,
-        DOWN,
-        RIGHT,
-        LEFT,
-        STOP,
-    }
 
-    // 上下左右の移動
-    private enum ActionPattern
-    {
-        RUSH,
-        MOVE_L_AND_R,
-        UP_MOVE,
-        INITIAL,
-    }
 
-    private MoveAction moveAction;
-    private ActionPattern actionPattern;
+    private EnumData.MoveAction moveAction;
+    private EnumData.ActionPattern actionPattern;
 
     // エネミーのHP関係
     private int enemyMaxHp = 0;
@@ -57,8 +41,8 @@ public class JimiAction : MonoBehaviour
     {
         enemyMaxHp = 10;
         enemyHp = enemyMaxHp;
-        moveAction = MoveAction.DOWN;
-        actionPattern = ActionPattern.INITIAL;
+        moveAction = EnumData.MoveAction.DOWN;
+        actionPattern = EnumData.ActionPattern.INITIAL;
 
         rightMoveFlag = true;
 
@@ -82,10 +66,10 @@ public class JimiAction : MonoBehaviour
     {
         switch (moveAction)
         {
-            case MoveAction.DOWN:
+            case EnumData.MoveAction.DOWN:
                 transform.position += new Vector3(0, -speed * Time.deltaTime, 0);
                 break;
-            case MoveAction.STOP:
+            case EnumData.MoveAction.STOP:
             default:
                 break;
         }
@@ -95,7 +79,7 @@ public class JimiAction : MonoBehaviour
     {
         switch (actionPattern)
         {
-            case ActionPattern.RUSH:
+            case EnumData.ActionPattern.RUSH:
 
                 rushCounter += Time.deltaTime;
 
@@ -113,7 +97,7 @@ public class JimiAction : MonoBehaviour
 
                         if (transform.position.y >= BASE_POS_Y)
                         {
-                            ChangeState(ActionPattern.MOVE_L_AND_R);
+                            ChangeState(EnumData.ActionPattern.MOVE_L_AND_R);
                         }
                     }
                     else
@@ -124,7 +108,7 @@ public class JimiAction : MonoBehaviour
                 }
 
                 break;
-            case ActionPattern.MOVE_L_AND_R:
+            case EnumData.ActionPattern.MOVE_L_AND_R:
                 
                 if (rightMoveFlag)
                 {
@@ -148,7 +132,7 @@ public class JimiAction : MonoBehaviour
         }
     }
 
-    void ChangeState(ActionPattern actionPattern)
+    void ChangeState(EnumData.ActionPattern actionPattern)
     {
         this.actionPattern = actionPattern;
         this.patternTimer = 0;
@@ -161,19 +145,19 @@ public class JimiAction : MonoBehaviour
         this.patternTimer += Time.deltaTime;
         switch (this.actionPattern)
         {
-            case ActionPattern.RUSH:
+            case EnumData.ActionPattern.RUSH:
                 break;
-            case ActionPattern.MOVE_L_AND_R:
+            case EnumData.ActionPattern.MOVE_L_AND_R:
                 if (this.patternTimer > MOVE_LR_END_TIME)
                 {
-                    ChangeState(ActionPattern.RUSH);
+                    ChangeState(EnumData.ActionPattern.RUSH);
                 }
                 break;
-            case ActionPattern.INITIAL:
+            case EnumData.ActionPattern.INITIAL:
                 if (transform.position.y <= BASE_POS_Y)
                 {
-                    moveAction = MoveAction.STOP;
-                    actionPattern = ActionPattern.MOVE_L_AND_R;
+                    moveAction = EnumData.MoveAction.STOP;
+                    actionPattern = EnumData.ActionPattern.MOVE_L_AND_R;
                 }
                 break;
             default:
