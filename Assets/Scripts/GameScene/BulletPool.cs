@@ -49,56 +49,126 @@ public class BulletPool : MonoBehaviour
     }
 
     // プレイヤーの弾取得
-    public GameObject GetPooledObject()
+    public GameObject GetPooledObject(GameManager.InstanceObjType instanceObjType)
     {
-        for (int i = 0; i < pooledObjects.Count; i++)
+        List<GameObject> poolObjList = CreateObjList(instanceObjType);
+        for (int i = 0; i < poolObjList.Count; i++)
         {
-            if (!pooledObjects[i].activeInHierarchy)
+            if (!poolObjList[i].activeInHierarchy)
             {
-                return pooledObjects[i];
+                return poolObjList[i];
             }
         }
 
-        GameObject obj = (GameObject)Instantiate(pooledObject);
-        obj.SetActive(false);
-        pooledObjects.Add(obj);
+        GameObject obj = (GameObject)Instantiate(CreateObj(instanceObjType));
 
+        if (obj)
+        {
+            obj.SetActive(false);
+            poolObjList.Add(obj);
+        }
+        
         return obj;
     }
 
     // プレイヤーの弾取得(スティック)
-    public GameObject GetSticksObject()
-    {
-        for (int i = 0; i < stickObjects.Count; i++)
-        {
-            if (!stickObjects[i].activeInHierarchy)
-            {
-                return stickObjects[i];
-            }
-        }
+    //public GameObject GetSticksObject()
+    //{
+    //    for (int i = 0; i < stickObjects.Count; i++)
+    //    {
+    //        if (!stickObjects[i].activeInHierarchy)
+    //        {
+    //            return stickObjects[i];
+    //        }
+    //    }
 
-        GameObject obj = (GameObject)Instantiate(stickPooledObject);
-        obj.SetActive(false);
-        stickObjects.Add(obj);
+    //    GameObject obj = (GameObject)Instantiate(stickPooledObject);
+    //    obj.SetActive(false);
+    //    stickObjects.Add(obj);
 
-        return obj;
-    }
+    //    return obj;
+    //}
 
     // エネミーの弾取得
-    public GameObject GetEnemyPooledObject()
+    //public GameObject GetEnemyPooledObject()
+    //{
+    //    for (int i = 0; i < enemyPooledObjects.Count; i++)
+    //    {
+    //        if (!enemyPooledObjects[i].activeInHierarchy)
+    //        {
+    //            return enemyPooledObjects[i];
+    //        }
+    //    }
+
+    //    GameObject obj = (GameObject)Instantiate(enemyPooledObject);
+    //    obj.SetActive(false);
+    //    enemyPooledObjects.Add(obj);
+
+    //    return obj;
+    //}
+
+    private GameObject CreateObj(GameManager.InstanceObjType instanceObjType)
     {
-        for (int i = 0; i < enemyPooledObjects.Count; i++)
+        switch (instanceObjType)
         {
-            if (!enemyPooledObjects[i].activeInHierarchy)
-            {
-                return enemyPooledObjects[i];
-            }
+            case GameManager.InstanceObjType.PICK_BULLET:
+                return pooledObject;
+            case GameManager.InstanceObjType.STICK_BULLET:
+                return stickPooledObject;
+            case GameManager.InstanceObjType.ENEMY_BULLET:
+                return enemyPooledObject;
+            case GameManager.InstanceObjType.JIMI_ITEM:
+
+                break;
+            case GameManager.InstanceObjType.JOHN_ITEM:
+
+                break;
+            case GameManager.InstanceObjType.THUNDER_ITEM:
+
+                break;
+            case GameManager.InstanceObjType.AT_UP_ITEM:
+
+                break;
+            case GameManager.InstanceObjType.SP_UP_ITEM:
+
+                break;
+            default:
+                break;
         }
 
-        GameObject obj = (GameObject)Instantiate(enemyPooledObject);
-        obj.SetActive(false);
-        enemyPooledObjects.Add(obj);
-
-        return obj;
+        return null;
     }
+
+    private List<GameObject> CreateObjList(GameManager.InstanceObjType instanceObjType)
+    {
+        switch (instanceObjType)
+        {
+            case GameManager.InstanceObjType.PICK_BULLET:
+                return pooledObjects;
+            case GameManager.InstanceObjType.STICK_BULLET:
+                return stickObjects;
+            case GameManager.InstanceObjType.ENEMY_BULLET:
+                return enemyPooledObjects;
+            case GameManager.InstanceObjType.JIMI_ITEM:
+
+                break;
+            case GameManager.InstanceObjType.JOHN_ITEM:
+
+                break;
+            case GameManager.InstanceObjType.THUNDER_ITEM:
+
+                break;
+            case GameManager.InstanceObjType.AT_UP_ITEM:
+
+                break;
+            case GameManager.InstanceObjType.SP_UP_ITEM:
+
+                break;
+            default:
+                break;
+        }
+
+        return new List<GameObject>();
+    }
+
 }

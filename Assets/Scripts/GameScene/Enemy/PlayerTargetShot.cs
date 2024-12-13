@@ -37,7 +37,7 @@ public class PlayerTargetShot : MonoBehaviour
         Vector2 directionToPlayer = (playerTransform.position - transform.position).normalized;
 
         // ’e‚ğæ“¾
-        GameObject bullet = BulletPool.Instance.GetEnemyPooledObject();
+        GameObject bullet = BulletPool.Instance.GetPooledObject(GameManager.InstanceObjType.ENEMY_BULLET);
 
         // ’e‚ÌˆÊ’u‚ğ”­ËˆÊ’u‚Éİ’è
         bullet.transform.position = transform.position;
