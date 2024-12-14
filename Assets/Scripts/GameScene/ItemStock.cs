@@ -5,12 +5,6 @@ using UnityEngine;
 public class ItemStock : MonoBehaviour
 {
     // Itemオブジェクトの格納用
-    public GameObject jimiGuiterObj,
-                       johnGuiterObj,
-                       thunder,
-                        atUpItem,
-                        spUpItem;
-
     public Sprite   eighth, 
                     duplet_quarters,
                     duplet_eighth,
@@ -29,33 +23,33 @@ public class ItemStock : MonoBehaviour
         switch (rand)
         {
             case 0:
-                obj = jimiGuiterObj;
+                obj = BulletPool.Instance.GetPooledObject(EnumData.InstanceObjType.JIMI_ITEM);
                 break;
             case 1:
             case 2:
-                obj = johnGuiterObj;
+                obj = BulletPool.Instance.GetPooledObject(EnumData.InstanceObjType.JOHN_ITEM);
                 break;
             case 3:
                 if (GameManager.instance.player.Speed >= SP_MAX_PT)
                 {
-                    obj = jimiGuiterObj;
+                    obj = BulletPool.Instance.GetPooledObject(EnumData.InstanceObjType.JIMI_ITEM);
                 }
                 else
                 {
-                    obj = spUpItem;
+                    obj = BulletPool.Instance.GetPooledObject(EnumData.InstanceObjType.SP_UP_ITEM);
                 }
                 break;
             case 4:
-                obj = thunder;
+                obj = BulletPool.Instance.GetPooledObject(EnumData.InstanceObjType.THUNDER_ITEM);
                 break;
             case 5:
                 if (GameManager.instance.player.Speed >= AT_MAX_PT)
                 {
-                    obj = jimiGuiterObj;
+                    obj = BulletPool.Instance.GetPooledObject(EnumData.InstanceObjType.JIMI_ITEM);
                 }
                 else
                 {
-                    obj = atUpItem;
+                    obj = BulletPool.Instance.GetPooledObject(EnumData.InstanceObjType.AT_UP_ITEM);
                 }
                 break;
             default:

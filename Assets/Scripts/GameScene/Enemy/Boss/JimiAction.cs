@@ -22,9 +22,6 @@ public class JimiAction : MonoBehaviour
 
     private float speed = 2.0f;
 
-    // Itemオブジェクトのドロップする数
-    private int dropItemCount = 5;
-
     private Animator anime;
 
     // カウンター関係
@@ -57,8 +54,6 @@ public class JimiAction : MonoBehaviour
         BossMove();
 
         BossAction();
-
-
     }
 
 
@@ -171,7 +166,6 @@ public class JimiAction : MonoBehaviour
         {
             enemyHp--;
 
-            //hpSlider.value = enemyHp_;
             if (enemyHp <= 0)
             {
                 // ダメージアニメーション
@@ -182,39 +176,8 @@ public class JimiAction : MonoBehaviour
 
                 // MaxHpの更新
                 enemyHp = enemyMaxHp;
-                ScatterItem();
-                //Destroy(gameObject);
+                Common.ScatterItem(this.transform);
             }
         }
     }
-
-    // Itemを散らして配置する関数
-    private void ScatterItem()
-    {
-        for (int i = 0; i < dropItemCount; i++)
-        {
-            GameObject obj = GameManager.instance.itemStock.SetItemObj();
-
-            if (obj)
-            {
-                Vector3 randomItemPos = RandomPosition(transform.position);
-                Instantiate(obj, randomItemPos, Quaternion.Euler(0, 0, 45));
-            }
-
-        }
-    }
-
-    // Itemオブジェクトをランダムに配置するための関数
-    private Vector3 RandomPosition(Vector3 targetPos)
-    {
-        Vector3 pos = targetPos;
-
-        pos.x = Random.Range(targetPos.x - 0.5f, targetPos.x + 0.5f);
-        pos.y = Random.Range(targetPos.y - 0.5f, targetPos.y + 0.5f);
-
-        return pos;
-    }
-
-    
-
 }

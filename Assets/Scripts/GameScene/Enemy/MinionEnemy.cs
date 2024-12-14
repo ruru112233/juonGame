@@ -17,9 +17,6 @@ public class MinionEnemy : EnemyShotPattern
         get { return enemyGenInfo_; }
     }
 
-    // Itemオブジェクトのドロップする数
-    private int dropItemCount = 5;
-
     // Start is called before the first frame update
     public override void Start()
     {
@@ -122,41 +119,13 @@ public class MinionEnemy : EnemyShotPattern
                 anime.SetTrigger("damage");
             }
 
-            //hpSlider.value = enemyHp_;
             if (enemyHp_ <= 0)
             {
             
                 // MaxHpの更新
                 enemyHp_ = enemyMaxHp_;
-                ScatterItem();
-                //Destroy(gameObject);
+                Common.ScatterItem(this.transform);
             }
         }
-    }
-
-    // Itemを散らして配置する関数
-    private void ScatterItem()
-    {
-        for (int i = 0; i < dropItemCount; i++)
-        {
-            GameObject obj = GameManager.instance.itemStock.SetItemObj();
-
-            if (obj)
-            {
-                Vector3 randomItemPos = RandomPosition(transform.position);
-                Instantiate(obj, randomItemPos, Quaternion.Euler(0, 0, 45));
-            }
-        }
-    }
-
-    // Itemオブジェクトをランダムに配置するための関数
-    private Vector3 RandomPosition(Vector3 targetPos)
-    {
-        Vector3 pos = targetPos;
-
-        pos.x = Random.Range(targetPos.x - 0.5f, targetPos.x + 0.5f);
-        pos.y = Random.Range(targetPos.y - 0.5f, targetPos.y + 0.5f);
-
-        return pos;
     }
 }
