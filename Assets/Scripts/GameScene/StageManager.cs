@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class StageManager : EnemyMove
 {
-    const float CENTER = 0.0f;
-
     [SerializeField] private GameObject bossObj, minionEnemyObj;
     [SerializeField] private MsgManager msgManager;
     private List<GameObject> enemys = new List<GameObject>();
@@ -13,7 +11,7 @@ public class StageManager : EnemyMove
     private void AddEnemyListTutorial()
     {
         enemys.Clear();
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(CENTER, 6, 0)));
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(0, 6, 0)));
 
         enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0)));
     }
@@ -21,20 +19,20 @@ public class StageManager : EnemyMove
     private void AddEnemyList1Stage()
     {
         enemys.Clear();
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(CENTER, 6, 0))); // 0
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(0, 6, 0))); // 0
 
         enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0))); // 1
         enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(2, 6, 0))); // 2
 
         enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0))); // 3
         enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-1, 6, 0))); // 4
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(CENTER, 6, 0))); // 5
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(0, 6, 0))); // 5
         enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(1, 6, 0))); // 6
         enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(2, 6, 0))); // 7
         
         enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(2, 6, 0))); // 8
         enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(1, 6, 0))); // 9
-        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(CENTER, 6, 0))); // 10
+        enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(0, 6, 0))); // 10
         enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-1, 6, 0))); // 11
         enemys.Add(SpawnEnemy(minionEnemyObj, new Vector3(-2, 6, 0))); // 12
 
