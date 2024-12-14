@@ -8,14 +8,22 @@ public class BulletPool : MonoBehaviour
 
     public GameObject pooledObject;
     public GameObject stickPooledObject;
-    public GameObject enemyPooledObject;
+    public GameObject jimiItem;
+    public GameObject johnItem;
+    public GameObject thunderItem;
+    public GameObject atUpItem;
+    public GameObject spUpItem;
 
-    //private int pooledAmount = 20;
-    //private int enemyPooledAmount = 20;
+    private int pooledAmount = 10;
+    private int itemAmount = 20;
 
-    public List<GameObject> pooledObjects;
-    public List<GameObject> stickObjects;
-    public List<GameObject> enemyPooledObjects;
+    private List<GameObject> pooledObjects;
+    private List<GameObject> stickObjects;
+    private List<GameObject> jimiObjects;
+    private List<GameObject> johnObjects;
+    private List<GameObject> thunderObjects;
+    private List<GameObject> atUpObjects;
+    private List<GameObject> spUpObjects;
 
     private void Awake()
     {
@@ -29,11 +37,13 @@ public class BulletPool : MonoBehaviour
     void Start()
     {
         // プレイヤーの弾の生成
-        //CreateObjectPoole(pooledObject, pooledAmount, ref pooledObjects);
-        //CreateObjectPoole(stickPooledObject, pooledAmount, ref stickObjects); // スティックの生成
-
-        // エネミーの弾の生成
-        //CreateObjectPoole(enemyPooledObject, enemyPooledAmount, ref enemyPooledObjects);
+        CreateObjectPoole(pooledObject, pooledAmount, ref pooledObjects);
+        CreateObjectPoole(stickPooledObject, pooledAmount, ref stickObjects); // スティックの生成
+        CreateObjectPoole(jimiItem, itemAmount, ref jimiObjects); 
+        CreateObjectPoole(johnItem, itemAmount, ref johnObjects); 
+        CreateObjectPoole(thunderItem, itemAmount, ref thunderObjects); 
+        CreateObjectPoole(atUpItem, itemAmount, ref atUpObjects); 
+        CreateObjectPoole(spUpItem, itemAmount, ref spUpObjects);
     }
 
     // オブジェクトプールの初期作成
@@ -42,7 +52,7 @@ public class BulletPool : MonoBehaviour
         pooledObjs = new List<GameObject>();
         for (int i = 0; i < amount; i++)
         {
-            GameObject obj = (GameObject)Instantiate(prefab);
+            GameObject obj = Instantiate(prefab);
             obj.SetActive(false);
             pooledObjs.Add(obj);
         }
@@ -54,13 +64,15 @@ public class BulletPool : MonoBehaviour
         List<GameObject> poolObjList = CreateObjList(instanceObjType);
         for (int i = 0; i < poolObjList.Count; i++)
         {
-            if (!poolObjList[i].activeInHierarchy)
+            Debug.Log("要素番号:" + i);
+            Debug.Log("オブジェクト:" + poolObjList[i]);
+            if (poolObjList[i] && !poolObjList[i].activeInHierarchy)
             {
                 return poolObjList[i];
             }
         }
 
-        GameObject obj = (GameObject)Instantiate(CreateObj(instanceObjType));
+        GameObject obj = Instantiate(CreateObj(instanceObjType));
 
         if (obj)
         {
@@ -79,23 +91,16 @@ public class BulletPool : MonoBehaviour
                 return pooledObject;
             case EnumData.InstanceObjType.STICK_BULLET:
                 return stickPooledObject;
-            case EnumData.InstanceObjType.ENEMY_BULLET:
-                return enemyPooledObject;
             case EnumData.InstanceObjType.JIMI_ITEM:
-
-                break;
+                return jimiItem;
             case EnumData.InstanceObjType.JOHN_ITEM:
-
-                break;
+                return johnItem;
             case EnumData.InstanceObjType.THUNDER_ITEM:
-
-                break;
+                return thunderItem;
             case EnumData.InstanceObjType.AT_UP_ITEM:
-
-                break;
+                return atUpItem;
             case EnumData.InstanceObjType.SP_UP_ITEM:
-
-                break;
+                return spUpItem;
             default:
                 break;
         }
@@ -111,28 +116,20 @@ public class BulletPool : MonoBehaviour
                 return pooledObjects;
             case EnumData.InstanceObjType.STICK_BULLET:
                 return stickObjects;
-            case EnumData.InstanceObjType.ENEMY_BULLET:
-                return enemyPooledObjects;
             case EnumData.InstanceObjType.JIMI_ITEM:
-
-                break;
+                return jimiObjects;
             case EnumData.InstanceObjType.JOHN_ITEM:
-
-                break;
+                return johnObjects;
             case EnumData.InstanceObjType.THUNDER_ITEM:
-
-                break;
+                return thunderObjects;
             case EnumData.InstanceObjType.AT_UP_ITEM:
-
-                break;
+                return atUpObjects;
             case EnumData.InstanceObjType.SP_UP_ITEM:
-
-                break;
+                return spUpObjects;
             default:
                 break;
         }
 
         return new List<GameObject>();
     }
-
 }
