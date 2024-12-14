@@ -10,7 +10,6 @@ public class EndingPlayer : Player
     private Camera mainCamera = null;
 
     private Animator anime;
-    private Vector3 defaultScale;
 
     private float x;
     private float y;
@@ -27,7 +26,6 @@ public class EndingPlayer : Player
         
         GameManager.crearFlag = true;
         anime = this.GetComponent<Animator>();
-        defaultScale = this.transform.localScale;
     }
 
     // Update is called once per frame
