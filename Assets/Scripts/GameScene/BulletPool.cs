@@ -15,7 +15,6 @@ public class BulletPool : MonoBehaviour
     public GameObject spUpItem;
 
     private int pooledAmount = 10;
-    private int itemAmount = 20;
 
     private List<GameObject> pooledObjects;
     private List<GameObject> stickObjects;
@@ -39,11 +38,11 @@ public class BulletPool : MonoBehaviour
         // プレイヤーの弾の生成
         CreateObjectPoole(pooledObject, pooledAmount, ref pooledObjects);
         CreateObjectPoole(stickPooledObject, pooledAmount, ref stickObjects); // スティックの生成
-        CreateObjectPoole(jimiItem, itemAmount, ref jimiObjects); 
-        CreateObjectPoole(johnItem, itemAmount, ref johnObjects); 
-        CreateObjectPoole(thunderItem, itemAmount, ref thunderObjects); 
-        CreateObjectPoole(atUpItem, itemAmount, ref atUpObjects); 
-        CreateObjectPoole(spUpItem, itemAmount, ref spUpObjects);
+        CreateObjectPoole(jimiItem, pooledAmount, ref jimiObjects); 
+        CreateObjectPoole(johnItem, pooledAmount, ref johnObjects); 
+        CreateObjectPoole(thunderItem, pooledAmount, ref thunderObjects); 
+        CreateObjectPoole(atUpItem, pooledAmount, ref atUpObjects); 
+        CreateObjectPoole(spUpItem, pooledAmount, ref spUpObjects);
     }
 
     // オブジェクトプールの初期作成
