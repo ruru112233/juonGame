@@ -8,14 +8,12 @@ public class BulletPool : MonoBehaviour
 
     public GameObject pooledObject;
     public GameObject stickPooledObject;
-    public GameObject enemyPooledObject;
 
-    //private int pooledAmount = 20;
-    //private int enemyPooledAmount = 20;
+    private int pooledAmount = 10;
 
-    public List<GameObject> pooledObjects;
-    public List<GameObject> stickObjects;
-    public List<GameObject> enemyPooledObjects;
+    private List<GameObject> pooledObjects;
+    private List<GameObject> stickObjects;
+
 
     private void Awake()
     {
@@ -29,11 +27,8 @@ public class BulletPool : MonoBehaviour
     void Start()
     {
         // プレイヤーの弾の生成
-        //CreateObjectPoole(pooledObject, pooledAmount, ref pooledObjects);
-        //CreateObjectPoole(stickPooledObject, pooledAmount, ref stickObjects); // スティックの生成
-
-        // エネミーの弾の生成
-        //CreateObjectPoole(enemyPooledObject, enemyPooledAmount, ref enemyPooledObjects);
+        CreateObjectPoole(pooledObject, pooledAmount, ref pooledObjects);
+        CreateObjectPoole(stickPooledObject, pooledAmount, ref stickObjects); // スティックの生成
     }
 
     // オブジェクトプールの初期作成
@@ -79,8 +74,6 @@ public class BulletPool : MonoBehaviour
                 return pooledObject;
             case EnumData.InstanceObjType.STICK_BULLET:
                 return stickPooledObject;
-            case EnumData.InstanceObjType.ENEMY_BULLET:
-                return enemyPooledObject;
             case EnumData.InstanceObjType.JIMI_ITEM:
 
                 break;
@@ -111,8 +104,6 @@ public class BulletPool : MonoBehaviour
                 return pooledObjects;
             case EnumData.InstanceObjType.STICK_BULLET:
                 return stickObjects;
-            case EnumData.InstanceObjType.ENEMY_BULLET:
-                return enemyPooledObjects;
             case EnumData.InstanceObjType.JIMI_ITEM:
 
                 break;
