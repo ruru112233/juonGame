@@ -20,13 +20,6 @@ public class ItemStock : MonoBehaviour
     private const float AT_MAX_PT = 3.0f;
     private const float SP_MAX_PT = 6.0f;
 
-    private Player playerScript;
-
-    private void Start()
-    {
-        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-    }
-
     public GameObject SetItemObj()
     {
         GameObject obj = null;
@@ -43,7 +36,7 @@ public class ItemStock : MonoBehaviour
                 obj = johnGuiterObj;
                 break;
             case 3:
-                if (playerScript.Speed >= SP_MAX_PT)
+                if (GameManager.instance.player.Speed >= SP_MAX_PT)
                 {
                     obj = jimiGuiterObj;
                 }
@@ -56,7 +49,7 @@ public class ItemStock : MonoBehaviour
                 obj = thunder;
                 break;
             case 5:
-                if (playerScript.Speed >= AT_MAX_PT)
+                if (GameManager.instance.player.Speed >= AT_MAX_PT)
                 {
                     obj = jimiGuiterObj;
                 }
