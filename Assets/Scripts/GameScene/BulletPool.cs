@@ -64,8 +64,6 @@ public class BulletPool : MonoBehaviour
         List<GameObject> poolObjList = CreateObjList(instanceObjType);
         for (int i = 0; i < poolObjList.Count; i++)
         {
-            Debug.Log("要素番号:" + i);
-            Debug.Log("オブジェクト:" + poolObjList[i]);
             if (poolObjList[i] && !poolObjList[i].activeInHierarchy)
             {
                 return poolObjList[i];

@@ -5,11 +5,7 @@ using UnityEditor;
 
 public class Item : MonoBehaviour
 {
-
-    const float UP_ITEM_LIMIT = 5.8f;
     const float DOWN_ITEM_LIMIT = -5.8f;
-    const float RIGHT_ITEM_LIMIT = 3.6f;
-    const float LEFT_ITEM_LIMIT = -3.6f;
 
     // êF
     private Color COLOR_WHITE = new Color(1f, 1f, 1f, 1f); // îí
@@ -54,23 +50,20 @@ public class Item : MonoBehaviour
 
     public EnumData.ItemPattern itemPattern;
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         RandomForce();
     }
 
-    private void RandomForce()
+    void RandomForce()
     {
         // Rigidbody2dÇéÊìæ
         rb = GetComponent<Rigidbody2D>();
         
         float randX = Random.Range(-100.0f, 100.0f);
-        
         Vector2 force = new Vector2(randX, 200.0f);
 
         rb.AddForce(force);
-
     }
 
     // Update is called once per frame
