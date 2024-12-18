@@ -6,17 +6,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public static bool crearFlag = false;
-
     public bool isStopped = false;
-
     public int unlockCounter = 1;
-
     public ScoreManager scoreManager;
-
     public ItemStock itemStock;
-
     public Player player;
+    public GameObject joystick;
 
     public int PlayerLv { get; set; }
 
@@ -35,24 +30,24 @@ public class GameManager : MonoBehaviour
     {
         isStopped = false;
 
-        crearFlag = false;
         PlayerLv = 1;
+
+        //if (joystick) joystick.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
         // ÉQÅ[ÉÄÉNÉäÉAÇ©îªíË
-        if (scoreManager && scoreManager.CrearCheck())
+        if (scoreManager && scoreManager.IsClear())
         {
-            StartCoroutine(MoveGameCrear());
+            if(joystick) joystick.SetActive(false);
+            // StartCoroutine(MoveGameCrear());
         }
     }
 
     IEnumerator MoveGameCrear()
     {
-        crearFlag = true;
-
         yield return new WaitForSeconds(1.0f);
 
         SceneManager.LoadScene("GameCrearScene");

@@ -190,7 +190,7 @@ public class MsgManager : Msg
             messageList.Clear();
         }
 
-        if ((SceneManager.GetActiveScene().name == "EventScene") && (currentLine == 0) && !GameManager.crearFlag)
+        if ((SceneManager.GetActiveScene().name == "EventScene") && (currentLine == 0))
         {
             yield return new WaitForSeconds(1.0f);
             eventManager.ToGameScene();
