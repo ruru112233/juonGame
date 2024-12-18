@@ -14,7 +14,7 @@ public class ScoreManager : MonoBehaviour
     private const int LV_4_POINT = 3000;
     private const int LV_5_POINT = 4000;
     private const int SHOW_BOSS_POINT = 6000;
-    private const int CREAR_SCORE_POINT = 10000;
+    private const int CREAR_SCORE_POINT = 100;
     private const float FADE_DURATION = 1.2f;
     private Color COLOR_YELLOW = new Color(1f, 0.9f, 0.1f, 1f); // ‰©F
     private Color COLOR_SHOU_CLEAR_JOUKEN_TEXT = new Color(1, 0.390566f, 0.6449661f, 1);
@@ -43,6 +43,11 @@ public class ScoreManager : MonoBehaviour
     public bool IsShowBoss()
     {
         return scorePoint >= SHOW_BOSS_POINT;
+    }
+
+    public bool IsClear()
+    {
+        return scorePoint >= CREAR_SCORE_POINT;
     }
 
     private void Unlock()
@@ -209,15 +214,5 @@ public class ScoreManager : MonoBehaviour
         scorePoint += point;
         ompObj.transform.rotation = Quaternion.Euler(defaultOmpPos);
         ompCount = 0;
-    }
-
-    public bool CrearCheck()
-    {
-        if (CREAR_SCORE_POINT <= scorePoint)
-        {
-            return true;
-        }
-
-        return false;
     }
 }

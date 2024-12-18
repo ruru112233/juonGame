@@ -23,8 +23,6 @@ public class EndingPlayer : Player
     private void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        
-        GameManager.crearFlag = true;
         anime = this.GetComponent<Animator>();
     }
 
