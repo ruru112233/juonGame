@@ -7,6 +7,7 @@ using System.IO;
 public class SaveData
 {
     public int msgSpeed = 2;
+    public List<float> rankingTime;
 }
 
 public static class SaveAndLoader

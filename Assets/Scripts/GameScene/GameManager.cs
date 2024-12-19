@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public ItemStock itemStock;
     public Player player;
     public GameObject joystick;
+    public TimeManager timeManager;
 
     public int PlayerLv { get; set; }
 

@@ -12,6 +12,11 @@ public class TimeManager : MonoBehaviour
 
     private float timer = 0.0f;
 
+    public float GetTimer
+    {
+        get { return timer; }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
