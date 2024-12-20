@@ -10,11 +10,13 @@ public class RankingManager : MonoBehaviour
 
     private void OnEnable()
     {
-        SaveData data = SaveAndLoader.Load();
+        RankingSaveData data = SaveAndLoader.Load<RankingSaveData>();
 
-        data.rankingTime.Add(GameManager.instance.timeManager.GetTimer);
+        data.rankingData.Add(GameManager.instance.timeManager.GetTimer);
 
-        Debug.Log(data.rankingTime[0]);
+        Debug.Log(data.rankingData[0]);
+
+        SaveAndLoader.Save(data);
     }
 
     private void Start()
