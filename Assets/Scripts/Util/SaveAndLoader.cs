@@ -4,37 +4,69 @@ using UnityEngine;
 using System.IO;
 
 [System.Serializable]
-public class SaveData
+public class SettingSaveData
 {
     public int msgSpeed = 2;
-    public List<float> rankingTime;
+}
+
+[System.Serializable]
+public class RankingSaveData
+{
+    public List<float> rankingData;
 }
 
 public static class SaveAndLoader
 {
-    private static string FILE_NAME = "/savefile.json";
+    private static string SETTINGS_FILE_NAME = "/settingSavefile.json";
+    private static string RANKING_FILE_NAME = "/settingSavefile.json";
 
-
-    public static void Save(SaveData saveData)
+    public static void Save<T>(T saveData)
     {
         string jsonStr = JsonUtility.ToJson(saveData);
 
-        File.WriteAllText(Application.persistentDataPath + FILE_NAME, jsonStr);
+        File.WriteAllText(Application.persistentDataPath + GetSaveFileName<T>(), jsonStr);
+
+        Debug.Log(Application.persistentDataPath);
     }
 
-    public static SaveData Load()
+    public static T Load<T>() where T : class, new()
     {
-        string path = Application.persistentDataPath + FILE_NAME;
+        string path = Application.persistentDataPath + GetSaveFileName<T>();
 
-        SaveData data = new SaveData();
+        T data = GetSaveData<T>();
 
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
-            data = JsonUtility.FromJson<SaveData>(json);
+            data = JsonUtility.FromJson<T>(json);
         }
 
         return data;
+    }
+
+    private static string GetSaveFileName<T>()
+    {
+        if (typeof(T) == typeof(SettingSaveData))
+        {
+            return SETTINGS_FILE_NAME;
+        }
+        else
+        {
+            return RANKING_FILE_NAME;
+        }
+    }
+
+    private static T GetSaveData<T>() where T : class, new()
+    {
+        if (typeof(T) == typeof(SettingSaveData))
+        {
+            return new SettingSaveData() as T;
+        }
+        else
+        {
+            return new RankingSaveData() as T;
+        }
+
     }
 
 }

@@ -102,4 +102,10 @@ public static class EnumData
         LEFT,
         BACK,
     }
+
+    public enum SaveDataType
+    {
+        SETTINGS,
+        RANKING,
+    }
 }

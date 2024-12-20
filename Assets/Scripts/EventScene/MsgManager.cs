@@ -89,9 +89,7 @@ public class MsgManager : Msg
             if (scoreHandImage) scoreHandImage.SetActive(false);
         }
 
-
-
-        SaveData data = SaveAndLoader.Load();
+        SettingSaveData data = SaveAndLoader.Load<SettingSaveData>();
 
         delay = (float)data.msgSpeed / 15;
 

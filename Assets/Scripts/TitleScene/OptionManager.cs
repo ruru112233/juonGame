@@ -20,7 +20,7 @@ public class OptionManager : MonoBehaviour
     {
         SpeedColorInit();
 
-        SaveData data = SaveAndLoader.Load();
+        SettingSaveData data = SaveAndLoader.Load<SettingSaveData>();
 
         msgSpeedSelectNum = data.msgSpeed;
 
@@ -64,7 +64,7 @@ public class OptionManager : MonoBehaviour
 
     void OptionSave(EnumData.MsgSpeedType msgSpeedType)
     {
-        SaveData data = SaveAndLoader.Load();
+        SettingSaveData data = SaveAndLoader.Load<SettingSaveData>();
 
         data.msgSpeed = (int)msgSpeedType;
 
