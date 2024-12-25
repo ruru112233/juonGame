@@ -78,7 +78,6 @@ public class MsgManager : Msg
     {
         if (GameManager.instance.eventSceneType == EnumData.EventSceneType.OPNING)
         {
-            Debug.Log("Opning");
             SetOpningMessageList();
             if (messageList.Count > 0) StartCoroutine(ShowText(messageList));
         }
