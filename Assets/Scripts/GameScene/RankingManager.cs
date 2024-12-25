@@ -12,9 +12,28 @@ public class RankingManager : MonoBehaviour
     {
         RankingSaveData data = SaveAndLoader.Load<RankingSaveData>();
 
+        if (data.rankingData == null)
+        {
+            data.rankingData = new List<float>();
+        }
+
         data.rankingData.Add(GameManager.instance.timeManager.GetTimer);
 
-        Debug.Log(data.rankingData[0]);
+        data.rankingData.Sort();
+
+        for (int i = 0; i < data.rankingData.Count; i++)
+        {
+            int rankingNumber = i + 1;
+            float rankingValue = data.rankingData[i];
+
+            TextMeshProUGUI rankingNumberText = rankingTextObj.GetComponent<TextMeshProUGUI>();
+            rankingNumberText.text = rankingNumber.ToString() + "ˆÊ:";
+            
+            TextMeshProUGUI rankingValueText = rankingTextObj.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            rankingValueText.text = rankingValue.ToString("F2") + "•b";
+            
+            Instantiate(rankingNumberText.gameObject, parentContent.transform);
+        }
 
         SaveAndLoader.Save(data);
     }
