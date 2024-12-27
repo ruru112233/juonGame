@@ -34,6 +34,11 @@ public class MoveSceneManager : MonoBehaviour
         }
     }
 
+    public void OnEnding()
+    {
+        GameManager.instance.isEnding = true;
+    }
+
     private void RetryButtonHidden()
     {
         GameObject retryButton = GameObject.FindGameObjectWithTag("RetryButton");

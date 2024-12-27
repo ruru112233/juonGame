@@ -2534,6 +2534,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1841584865}
+        m_TargetAssemblyTypeName: MoveSceneManager, Assembly-CSharp
+        m_MethodName: OnEnding
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1272824428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3884,6 +3896,7 @@ MonoBehaviour:
   joystick: {fileID: 137516920}
   timeManager: {fileID: 554097100}
   rankingManager: {fileID: 1428834763}
+  isEnding: 0
   eventSceneType: 0
 --- !u!4 &1909403157
 Transform:
@@ -4208,11 +4221,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 37521685436419681, guid: 510942784dbd111498d25f7c93a28fd4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.03
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 37521685436419681, guid: 510942784dbd111498d25f7c93a28fd4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.05
+      value: -4.05
       objectReference: {fileID: 0}
     - target: {fileID: 37521685436419681, guid: 510942784dbd111498d25f7c93a28fd4, type: 3}
       propertyPath: m_LocalPosition.z
