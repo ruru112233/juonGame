@@ -17,6 +17,9 @@ TagManager:
   - EndingPlayer
   - EndingEvent
   - ScoreManager
+  - RankingPanel
+  - RetryButton
+  - EndingButton
   layers:
   - Default
   - TransparentFX

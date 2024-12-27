@@ -25,8 +25,6 @@ public static class SaveAndLoader
         string jsonStr = JsonUtility.ToJson(saveData);
 
         File.WriteAllText(Application.persistentDataPath + GetSaveFileName<T>(), jsonStr);
-
-        Debug.Log(Application.persistentDataPath);
     }
 
     public static T Load<T>() where T : class, new()

@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     public EnumData.EventSceneType eventSceneType;
 
+    private bool isClear = false; // 一度クリアしたら、update関数で処理しないようにするために用意
+
     private void Awake()
     {
         if (instance == null)
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         isStopped = false;
+        isClear = false;
 
         PlayerLv = 1;
 
@@ -41,11 +44,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // ゲームクリアか判定
-        if (scoreManager && scoreManager.IsClear())
+        if (scoreManager && scoreManager.IsClear() && !isClear)
         {
-            if(joystick) joystick.SetActive(false);
+            isClear = true;
+            if (joystick) joystick.SetActive(false);
             if(rankingManager) rankingManager.gameObject.SetActive(true);
-            // StartCoroutine(MoveGameCrear());
         }
     }
 

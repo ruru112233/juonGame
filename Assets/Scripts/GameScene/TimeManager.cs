@@ -6,7 +6,6 @@ using TMPro;
 public class TimeManager : MonoBehaviour
 {
     const string TIME_MSG = "Time:";
-    const float BlinkingTime = 0.5f;
 
     public TextMeshProUGUI timerText;
 
