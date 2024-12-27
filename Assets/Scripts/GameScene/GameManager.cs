@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Player player;
     public GameObject joystick;
     public TimeManager timeManager;
+    public RankingManager rankingManager;
 
     public int PlayerLv { get; set; }
 
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
         if (scoreManager && scoreManager.IsClear())
         {
             if(joystick) joystick.SetActive(false);
+            if(rankingManager) rankingManager.gameObject.SetActive(true);
             // StartCoroutine(MoveGameCrear());
         }
     }

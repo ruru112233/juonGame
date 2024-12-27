@@ -20,51 +20,18 @@ public class TimeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timerText.text = TIME_MSG + timer.ToString("F1");
+        timerText.text = TIME_MSG + timer.ToString("F2");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.scoreManager.IsClear())
-        {
-            //StartCoroutine(BlinkingTimerText());
-            timerText.text = TIME_MSG + timer.ToString("F1");
-        }
-        else
+        if (!GameManager.instance.scoreManager.IsClear())
         {
             timer += Time.deltaTime;
-            timerText.text = TIME_MSG + timer.ToString("F1");
         }
-    }
 
-    private IEnumerator BlinkingTimerText()
-    {
-        timerText.text = TIME_MSG + "";
-        yield return new WaitForSeconds(BlinkingTime);
-
-        timerText.text = TIME_MSG + timer.ToString("F1");
-        yield return new WaitForSeconds(BlinkingTime);
-
-        //timerText.gameObject.SetActive(false);
-        //yield return new WaitForSeconds(BlinkingTime);
-
-        //timerText.gameObject.SetActive(true);
-
-        //yield return new WaitForSeconds(BlinkingTime);
-
-        //timerText.gameObject.SetActive(false);
-        //yield return new WaitForSeconds(BlinkingTime);
-
-        //timerText.gameObject.SetActive(true);
-
-        //yield return new WaitForSeconds(BlinkingTime);
-
-        //timerText.gameObject.SetActive(false);
-        //yield return new WaitForSeconds(BlinkingTime);
-
-        //timerText.gameObject.SetActive(true);
-
+        timerText.text = TIME_MSG + timer.ToString("F2");
     }
 
 }
