@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public TimeManager timeManager;
     public RankingManager rankingManager;
 
+    public bool isEnding = false;
+
     public int PlayerLv { get; set; }
 
     public EnumData.EventSceneType eventSceneType;

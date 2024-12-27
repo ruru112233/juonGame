@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     const float SHOT_TIME = 0.3f;
     const float PARALYSIS_TIME = 2.0f;
     const float SIDE_SHOT_ANGLE = 1.0f;
+    private Vector3 GORL_POS = new Vector3(0, 10, 0);
 
     // レベルごとの攻撃パターン
     private const int SIDE_FIRE_LV = 2;
@@ -73,6 +74,9 @@ public class Player : MonoBehaviour
         get { return stopFlag; }
     }
 
+    private float duration = 15.0f; // クリア後の移動時間
+    private float elapsedTime = 0f;
+
     // ボム関係
     [SerializeField] private GameObject bom;
     private float bomShotTime = 5.0f;
@@ -101,11 +105,34 @@ public class Player : MonoBehaviour
         breakdownPanel.SetActive(false);
 
         powerUpTextObj.SetActive(false);
+
+    }
+
+    private IEnumerator EndingStart()
+    {
+        transform.position = Vector3.Lerp(transform.position, new Vector3(0, 0, 0), 1.0f * Time.deltaTime);
+
+        yield return new WaitForSeconds(1.3f);
+
+        if (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+
+            float t = elapsedTime / duration;
+            float easpdT = Mathf.Pow(t, 2);
+
+            transform.position = Vector3.Lerp(transform.position, GORL_POS, easpdT);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.instance.isEnding)
+        {
+            StartCoroutine(EndingStart());
+        }
+
         // 故障中のパネルを表示させる 
         if (ParalysisTimer())
         {
