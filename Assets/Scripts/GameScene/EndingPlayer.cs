@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EndingPlayer : Player
 {
@@ -29,6 +30,18 @@ public class EndingPlayer : Player
     // Update is called once per frame
     void Update()
     {
+        GameObject backPanel = GameObject.FindGameObjectWithTag("BackPanel");
+        if (backPanel)
+        {
+            Image backPanelImage = backPanel.GetComponent<Image>();
+            backPanelImage.color -= new Color(0, 0, 0, Time.deltaTime * 0.5f);
+
+            if (backPanelImage.color.a <= 0.1f)
+            {
+                backPanel.SetActive(false);
+            }
+        }
+
         PlayerMove();
 
         if (eventStartFlag)
