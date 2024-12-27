@@ -5,6 +5,8 @@ using TMPro;
 
 public class RankingManager : MonoBehaviour
 {
+    private const int RANKING_MAX_DATA = 15;
+
     [SerializeField] private TextMeshProUGUI bestTimeText, clearTimeText;
     [SerializeField] private GameObject rankingTextObj, parentContent;
 
@@ -20,6 +22,12 @@ public class RankingManager : MonoBehaviour
         data.rankingData.Add(GameManager.instance.timeManager.GetTimer);
 
         data.rankingData.Sort();
+
+        // ランキング数がマックスデータを超えていたらマックスデータになるまで削除する
+        while (data.rankingData.Count > RANKING_MAX_DATA)
+        {
+            data.rankingData.RemoveAt(data.rankingData.Count - 1);
+        }
 
         for (int i = 0; i < data.rankingData.Count; i++)
         {
