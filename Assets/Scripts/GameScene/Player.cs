@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -122,6 +123,14 @@ public class Player : MonoBehaviour
             float easpdT = Mathf.Pow(t, 2);
 
             transform.position = Vector3.Lerp(transform.position, GORL_POS, easpdT);
+        }
+        yield return new WaitForSeconds(1.0f);
+
+        GameObject backPanel = GameObject.FindGameObjectWithTag("BackPanel");
+        if (backPanel)
+        {
+            Image backPanelImage = backPanel.GetComponent<Image>();
+            backPanelImage.color += new Color(0, 0, 0, Time.deltaTime * 0.5f);
         }
     }
 
