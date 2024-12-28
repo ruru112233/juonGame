@@ -18,7 +18,7 @@ public class RankingSaveData
 public static class SaveAndLoader
 {
     private static string SETTINGS_FILE_NAME = "/settingSavefile.json";
-    private static string RANKING_FILE_NAME = "/settingSavefile.json";
+    private static string RANKING_FILE_NAME = "/RankingSavefile.json";
 
     public static void Save<T>(T saveData)
     {
