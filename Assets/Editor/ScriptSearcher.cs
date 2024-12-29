@@ -34,6 +34,8 @@ public class ScriptSearcher : EditorWindow
 
             foreach (GameObject obj in foundObjects)
             {
+                if (!obj) continue;
+                
                 if (GUILayout.Button(obj.name, GUILayout.ExpandWidth(true)))
                 {
                     Selection.activeGameObject = obj;
