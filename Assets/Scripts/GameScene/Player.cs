@@ -28,10 +28,6 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 変数
     /// </summary>
-
-    private GameObject playerGeneretorObj;
-    private PlayerGeneretor playerGeneretor;
-
     public GameObject picRight, picLeft;
 
     // ジョイスティック
@@ -39,18 +35,11 @@ public class Player : MonoBehaviour
 
     private float speed = 2.0f;
     private float attackPt = 1.0f;
+    private float bounsForce = 3.0f;
 
-    public float Speed
-    {
-        get { return speed; }
-        set { speed = value; }
-    }
+    public float Speed { get { return speed; } set { speed = value; } }
+    public float AttackPt { get { return attackPt; } set { attackPt = value; } }
 
-    public float AttackPt
-    {
-        get { return attackPt; }
-        set { attackPt = value; }
-    }
     float reviveTime = 2.0f;
     float reviveCounter = 0;
 
@@ -58,6 +47,7 @@ public class Player : MonoBehaviour
     private float colorChengeTime = 0.05f;
     private float colorChengeCounter = 0;
     private bool colorChengeFlag = false;
+    private Rigidbody2D rb2D;
     
     [SerializeField] private Transform bulletSpawnPoint, bulletLeftPoint, bulletRightPoint;
     private float pickSpeed = 10f;
@@ -94,6 +84,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb2D = GetComponent<Rigidbody2D>();
+
         picRight.SetActive(false);
         picLeft.SetActive(false);
 
@@ -300,13 +292,30 @@ public class Player : MonoBehaviour
 
         paralysisTime += Time.deltaTime;
 
+        if (!IsMoveRange()) StopVelocity();
+
         if (paralysisTime >= PARALYSIS_TIME)
         {
+            StopVelocity();
             paralysisTime = 0;
             stopFlag = false;
         }
 
         return true;
+    }
+
+    private void StopVelocity()
+    {
+        rb2D.velocity = Vector2.zero;
+        rb2D.angularVelocity = 0f;
+    }
+
+    private bool IsMoveRange()
+    {
+        return (transform.position.y < UP_MOVE_LIMIT &&
+                transform.position.y > DOWN_MOVE_LIMIT &&
+                transform.position.x < RIGHT_MOVE_LIMIT &&
+                transform.position.x > LEFT_MOVE_LIMIT);
     }
 
     // 弾の発射
@@ -387,7 +396,6 @@ public class Player : MonoBehaviour
         {
             newPosition.x += joyconX * speed * Time.deltaTime;
         }
-
     }
 
     protected virtual void VerticalPosSetting(float joyconY, ref Vector3 newPosition)
@@ -407,12 +415,28 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Thunder"))
         {
-            if (blinkingPanelCoroutine != null)
-            {
-                StopCoroutine(blinkingPanelCoroutine);
-                blinkingPanelCoroutine = null;
-            }
+            ShowBlinkingPanel();
             stopFlag = true;
+        }
+
+        if (collision.gameObject.CompareTag("Enemy") && collision.gameObject.name.IndexOf("JimiBoss") >= 0)
+        {
+            Vector2 direction = (transform.position - collision.transform.position).normalized;
+
+            rb2D.velocity = Vector2.zero;
+            rb2D.AddForce(direction * bounsForce, ForceMode2D.Impulse);
+
+            ShowBlinkingPanel();
+            stopFlag = true;
+        }
+    }
+
+    private void ShowBlinkingPanel()
+    {
+        if (blinkingPanelCoroutine != null)
+        {
+            StopCoroutine(blinkingPanelCoroutine);
+            blinkingPanelCoroutine = null;
         }
     }
 }

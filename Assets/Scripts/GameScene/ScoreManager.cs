@@ -15,7 +15,7 @@ public class ScoreManager : MonoBehaviour
     private const int LV_5_POINT = 4000;
     //private const int SHOW_BOSS_POINT = 6000;
     private const int SHOW_BOSS_POINT = 0;
-    private const int CREAR_SCORE_POINT = 100;
+    private const int CREAR_SCORE_POINT = 10000;
     private const float FADE_DURATION = 1.2f;
     private Color COLOR_YELLOW = new Color(1f, 0.9f, 0.1f, 1f); // â©êF
     private Color COLOR_SHOU_CLEAR_JOUKEN_TEXT = new Color(1, 0.390566f, 0.6449661f, 1);
