@@ -50,8 +50,14 @@ public class GameManager : MonoBehaviour
         {
             isClear = true;
             if (joystick) joystick.SetActive(false);
-            if(rankingManager) rankingManager.gameObject.SetActive(true);
+            StartCoroutine(ShowRankingPanel());
         }
+    }
+
+    private IEnumerator ShowRankingPanel()
+    {
+        yield return new WaitForSeconds(3.0f);
+        if (rankingManager) rankingManager.gameObject.SetActive(true);
     }
 
     IEnumerator MoveGameCrear()
