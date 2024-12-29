@@ -137,10 +137,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.isEnding)
-        {
-            StartCoroutine(EndingStart());
-        }
+        if (GameManager.instance.isEnding) StartCoroutine(EndingStart());
+
+        if (GameManager.instance.scoreManager.IsClear()) return;
 
         // ŒÌá’†‚Ìƒpƒlƒ‹‚ğ•\¦‚³‚¹‚é 
         if (ParalysisTimer())

@@ -11,7 +11,7 @@ public class JimiAction : MonoBehaviour
 
     private float MOVE_LR_END_TIME = 3.0f;
     private float RASH_START = 2.0f;
-
+    private bool isClear = false;
 
     private EnumData.MoveAction moveAction;
     private EnumData.ActionPattern actionPattern;
@@ -50,10 +50,26 @@ public class JimiAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateActionPattern();
+        if (GameManager.instance.scoreManager.IsClear() && !isClear)
+        {
+            isClear = true;
+            StartCoroutine(GameClearAction());
+        }
+        else if(!isClear)
+        {
+            UpdateActionPattern();
+            BossAction();
+        }
         BossMove();
+    }
 
-        BossAction();
+    private IEnumerator GameClearAction()
+    {
+        moveAction = EnumData.MoveAction.STOP;
+
+        yield return new WaitForSeconds(1.0f);
+
+        moveAction = EnumData.MoveAction.UP;
     }
 
 
@@ -61,6 +77,9 @@ public class JimiAction : MonoBehaviour
     {
         switch (moveAction)
         {
+            case EnumData.MoveAction.UP:
+                transform.position += new Vector3(0, speed * Time.deltaTime, 0);
+                break;
             case EnumData.MoveAction.DOWN:
                 transform.position += new Vector3(0, -speed * Time.deltaTime, 0);
                 break;
