@@ -46,9 +46,9 @@ public class Item : MonoBehaviour
 
     [SerializeField] private GameObject scoreBall;
 
-
-
     public EnumData.ItemPattern itemPattern;
+
+
 
     private void OnEnable()
     {
@@ -69,7 +69,14 @@ public class Item : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // PlayerItemMove();
+        if (GameManager.instance.IsItemMove)
+        {
+            if ((itemPattern == EnumData.ItemPattern.JIMI_GUITAR) ||
+                (itemPattern == EnumData.ItemPattern.JOHN_GUITAR))
+            {
+                PlayerItemMove();
+            }
+        }
 
         if (this.transform.position.y <= DOWN_ITEM_LIMIT)
         {
@@ -82,51 +89,30 @@ public class Item : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             // スコアの加算
-            //uiManager.SetScore(itemPoint);
             // ItemPatternが未確定意外はアイテムをスコアのアイテムを出現させる
             if ((itemPattern == EnumData.ItemPattern.JIMI_GUITAR) || 
                 (itemPattern == EnumData.ItemPattern.JOHN_GUITAR) )
             {
-                GameObject scoreBallObj = (GameObject)Instantiate(scoreBall, this.transform.position, Quaternion.identity);
-                // アイテムのイメージを更新
-                SpriteRenderer spriteRnd = scoreBallObj.GetComponent<SpriteRenderer>();
-                ItemInfo itemInfo = SetScoreImage();
-                spriteRnd.sprite = itemInfo.sprite;
-                spriteRnd.color = itemInfo.color;
-                scoreBallObj.transform.localScale = itemInfo.imageScale;
-
-                // スコアを更新
-                ScoreBall scoreBallScript = scoreBallObj.GetComponent<ScoreBall>();
-                scoreBallScript.SetScorePoint(ItemCheckValue());
+                GuitarInstanceAndScoreUp();
             }
 
             // 攻撃力アップ
             if (itemPattern == EnumData.ItemPattern.AT_POWER_UP && GameManager.instance.player.AttackPt < AT_MAX_PT)
             {
-                GameManager.instance.player.AttackPt += 0.1f;
-                if (GameManager.instance.player.AttackPt >= AT_MAX_PT)
-                {
-                    GameManager.instance.player.ShowText(AT_MAX, COLOR_RED);
-                }
-                else
-                {
-                    GameManager.instance.player.ShowText(AT_UP, COLOR_RED);
-                }
-
+                AtUp();
             }
 
             // スピードアップ
             if (itemPattern == EnumData.ItemPattern.SP_POWER_UP && GameManager.instance.player.Speed < SP_MAX_PT)
             {
-                GameManager.instance.player.Speed += 0.2f;
-                if (GameManager.instance.player.Speed >= SP_MAX_PT)
-                {
-                    GameManager.instance.player.ShowText(SP_MAX, COLOR_GREEN);
-                }
-                else
-                {
-                    GameManager.instance.player.ShowText(SP_UP, COLOR_GREEN);
-                }
+                SpUp();
+            }
+
+            // マグネット
+            if (itemPattern == EnumData.ItemPattern.MAGNET)
+            {
+                GameManager.instance.CurrentItemMoveSec = 0.0f;
+                GameManager.instance.IsItemMove = true;
             }
 
             // Itemオブジェクトを削除する
@@ -134,23 +120,65 @@ public class Item : MonoBehaviour
         }
     }
 
+    private void GuitarInstanceAndScoreUp()
+    {
+        GameObject scoreBallObj = (GameObject)Instantiate(scoreBall, this.transform.position, Quaternion.identity);
+        // アイテムのイメージを更新
+        SpriteRenderer spriteRnd = scoreBallObj.GetComponent<SpriteRenderer>();
+        ItemInfo itemInfo = SetScoreImage();
+        spriteRnd.sprite = itemInfo.sprite;
+        spriteRnd.color = itemInfo.color;
+        scoreBallObj.transform.localScale = itemInfo.imageScale;
+
+        // スコアを更新
+        ScoreBall scoreBallScript = scoreBallObj.GetComponent<ScoreBall>();
+        scoreBallScript.SetScorePoint(ItemCheckValue());
+    }
+
+    private void AtUp()
+    {
+        GameManager.instance.player.AttackPt += 0.1f;
+        if (GameManager.instance.player.AttackPt >= AT_MAX_PT)
+        {
+            GameManager.instance.player.ShowText(AT_MAX, COLOR_RED);
+        }
+        else
+        {
+            GameManager.instance.player.ShowText(AT_UP, COLOR_RED);
+        }
+    }
+
+    private void SpUp()
+    {
+        GameManager.instance.player.Speed += 0.2f;
+        if (GameManager.instance.player.Speed >= SP_MAX_PT)
+        {
+            GameManager.instance.player.ShowText(SP_MAX, COLOR_GREEN);
+        }
+        else
+        {
+            GameManager.instance.player.ShowText(SP_UP, COLOR_GREEN);
+        }
+    }
+
+
     private void PlayerItemMove()
     {
-        float movePoint = 2.0f;
-        float itemMoveSpeed = 1.5f;
+        //float movePoint = 2.0f;
+        float itemMoveSpeed = 5.5f;
         // プレイヤーのオブジェクトを取得
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
         {
             // プレイヤーとItemの距離を計測
-            float distance = Vector3.Distance(playerObj.transform.position, transform.position);
+            //float distance = Vector3.Distance(playerObj.transform.position, transform.position);
             // プレイヤーとアイテムの間隔が一定より小さくなったら
-            if (distance < movePoint)
-            {
+            //if (distance < movePoint)
+            //{
                 // プレイヤーの方に向かって進む
                 Vector3 playerDistance = (playerObj.transform.position - transform.position).normalized;
                 transform.position += playerDistance * itemMoveSpeed * Time.deltaTime;
-            }
+            //}
         }
     }
 
