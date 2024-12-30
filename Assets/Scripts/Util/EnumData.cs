@@ -31,6 +31,7 @@ public static class EnumData
         THUNDER_ITEM,
         AT_UP_ITEM,
         SP_UP_ITEM,
+        MAGNET_ITEM,
     }
 
     public enum Speaker
@@ -55,6 +56,7 @@ public static class EnumData
         THUNDER,        // 稲妻
         AT_POWER_UP,    // 攻撃力アップ
         SP_POWER_UP,    // スピードアップ
+        MAGNET,         // マグネット
         UNSETTILED,     // 未確定 
     }
 

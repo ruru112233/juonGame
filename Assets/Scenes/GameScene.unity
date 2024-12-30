@@ -3394,6 +3394,7 @@ MonoBehaviour:
   thunderItem: {fileID: 2055522432152348701, guid: 0a51055bfb1d3fc4b810ea1add85a917, type: 3}
   atUpItem: {fileID: 806838505496643798, guid: 0d1751e99596acd4791088099b86d641, type: 3}
   spUpItem: {fileID: 806838505496643798, guid: ef6070f9cd37d994bbcffd8c8d6b12ec, type: 3}
+  magnetItem: {fileID: 1011948643906367019, guid: 512f09b2105c7684988803bd3d642252, type: 3}
 --- !u!1001 &1825741949
 PrefabInstance:
   m_ObjectHideFlags: 0

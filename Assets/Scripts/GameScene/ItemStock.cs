@@ -40,9 +40,12 @@ public class ItemStock : MonoBehaviour
                 }
                 break;
             case 4:
-                obj = BulletPool.Instance.GetPooledObject(EnumData.InstanceObjType.THUNDER_ITEM);
+                obj = BulletPool.Instance.GetPooledObject(EnumData.InstanceObjType.MAGNET_ITEM);
                 break;
             case 5:
+                obj = BulletPool.Instance.GetPooledObject(EnumData.InstanceObjType.THUNDER_ITEM);
+                break;
+            case 6:
                 if (GameManager.instance.player.Speed >= AT_MAX_PT)
                 {
                     obj = BulletPool.Instance.GetPooledObject(EnumData.InstanceObjType.JIMI_ITEM);
@@ -67,13 +70,13 @@ public class ItemStock : MonoBehaviour
             case 1:
                 return Random.Range(0, 3);
             case 2:
-                return Random.Range(0, 4);
-            case 3:
                 return Random.Range(0, 5);
-            case 4:
+            case 3:
                 return Random.Range(0, 6);
+            case 4:
+                return Random.Range(0, 7);
             default:
-                return 7;
+                return 8;
         }
     }
 }

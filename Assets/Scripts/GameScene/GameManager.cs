@@ -17,6 +17,14 @@ public class GameManager : MonoBehaviour
 
     public bool isEnding = false;
 
+    // アイテムがプレイヤーの方向に移動する
+    private const float ITEM_MOVE_SEC = 15.0f;
+    private float currentItemMoveSec = 0.0f;
+    private bool isItemMove = false;
+
+    public bool IsItemMove { get { return isItemMove; } set { isItemMove = value; } }
+    public float CurrentItemMoveSec { get { return currentItemMoveSec; } set { currentItemMoveSec = value; } }
+
     public int PlayerLv { get; set; }
 
     public EnumData.EventSceneType eventSceneType;
@@ -51,6 +59,17 @@ public class GameManager : MonoBehaviour
             isClear = true;
             if (joystick) joystick.SetActive(false);
             StartCoroutine(ShowRankingPanel());
+        }
+
+        // アイテム移動の管理
+        if (isItemMove)
+        {
+            currentItemMoveSec += Time.deltaTime;
+            if (ITEM_MOVE_SEC <= currentItemMoveSec)
+            {
+                currentItemMoveSec = 0;
+                isItemMove = false;
+            }
         }
     }
 

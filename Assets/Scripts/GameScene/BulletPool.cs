@@ -13,6 +13,7 @@ public class BulletPool : MonoBehaviour
     public GameObject thunderItem;
     public GameObject atUpItem;
     public GameObject spUpItem;
+    public GameObject magnetItem;
 
     private int pooledAmount = 10;
 
@@ -23,6 +24,7 @@ public class BulletPool : MonoBehaviour
     private List<GameObject> thunderObjects;
     private List<GameObject> atUpObjects;
     private List<GameObject> spUpObjects;
+    private List<GameObject> magnetObjects;
 
     private void Awake()
     {
@@ -43,6 +45,7 @@ public class BulletPool : MonoBehaviour
         CreateObjectPoole(thunderItem, pooledAmount, ref thunderObjects); 
         CreateObjectPoole(atUpItem, pooledAmount, ref atUpObjects); 
         CreateObjectPoole(spUpItem, pooledAmount, ref spUpObjects);
+        CreateObjectPoole(magnetItem, pooledAmount, ref magnetObjects);
     }
 
     // オブジェクトプールの初期作成
@@ -98,6 +101,8 @@ public class BulletPool : MonoBehaviour
                 return atUpItem;
             case EnumData.InstanceObjType.SP_UP_ITEM:
                 return spUpItem;
+            case EnumData.InstanceObjType.MAGNET_ITEM:
+                return magnetItem;
             default:
                 break;
         }
@@ -123,6 +128,8 @@ public class BulletPool : MonoBehaviour
                 return atUpObjects;
             case EnumData.InstanceObjType.SP_UP_ITEM:
                 return spUpObjects;
+            case EnumData.InstanceObjType.MAGNET_ITEM:
+                return magnetObjects;
             default:
                 break;
         }
