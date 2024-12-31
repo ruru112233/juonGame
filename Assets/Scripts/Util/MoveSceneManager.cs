@@ -7,9 +7,30 @@ using TMPro;
 
 public class MoveSceneManager : MonoBehaviour
 {
+    public GameObject selectviewPanel;
+    public TextMeshProUGUI selectTitleText;
+    public Button yesButton, noButton;
+
+    private void Start()
+    {
+        if(selectviewPanel) selectviewPanel.SetActive(false);
+    }
+
+    public void SelfSceneButton()
+    {
+        float time = 0;
+        StartCoroutine(MoveScene(time, SceneManager.GetActiveScene().name));
+    }
+
     public void SelfSceneButton(float time)
     {
         StartCoroutine(MoveScene(time, SceneManager.GetActiveScene().name));
+    }
+
+    public void TitleSceneButton()
+    {
+        float time = 0;
+        StartCoroutine(MoveScene(time, "TitleScene"));
     }
 
     public void TitleSceneButton(float time)
@@ -77,5 +98,34 @@ public class MoveSceneManager : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void CloseSelectPanelView()
+    {
+        selectviewPanel.SetActive(false);
+    }
+
+
+    public void ShowSecletPanel(int num)
+    {
+        if (selectviewPanel)
+        {
+            switch (num)
+            {
+                case 0:
+                    selectTitleText.text = "タイトルに戻りますか？";
+                    yesButton.onClick.AddListener(TitleSceneButton);
+                    break;
+                case 1:
+                    selectTitleText.text = "リトライしますか？";
+                    yesButton.onClick.AddListener(SelfSceneButton);
+                    break;
+                default:
+                    break;
+            }
+            noButton.onClick.AddListener(CloseSelectPanelView);
+
+            selectviewPanel.SetActive(true);
+        }
     }
 }
