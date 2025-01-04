@@ -7,13 +7,13 @@ using TMPro;
 
 public class MoveSceneManager : MonoBehaviour
 {
-    public GameObject selectviewPanel;
-    public TextMeshProUGUI selectTitleText;
-    public Button yesButton, noButton;
+    public GameObject titleSelectviewPanel, retrySelectviewPanel;
+    public GameObject joyPad;
 
     private void Start()
     {
-        if(selectviewPanel) selectviewPanel.SetActive(false);
+        if(titleSelectviewPanel) titleSelectviewPanel.SetActive(false);
+        if(retrySelectviewPanel) retrySelectviewPanel.SetActive(false);
     }
 
     public void SelfSceneButton()
@@ -102,30 +102,31 @@ public class MoveSceneManager : MonoBehaviour
 
     public void CloseSelectPanelView()
     {
-        selectviewPanel.SetActive(false);
+        titleSelectviewPanel.SetActive(false);
+        retrySelectviewPanel.SetActive(false);
+        joyPad.SetActive(true);
+        Time.timeScale = 1;
     }
 
 
     public void ShowSecletPanel(int num)
     {
-        if (selectviewPanel)
+        joyPad.SetActive(false);
+        Time.timeScale = 0;
+        if (titleSelectviewPanel && retrySelectviewPanel)
         {
+            CloseSelectPanelView();
             switch (num)
             {
                 case 0:
-                    selectTitleText.text = "タイトルに戻りますか？";
-                    yesButton.onClick.AddListener(TitleSceneButton);
+                    titleSelectviewPanel.SetActive(true);
                     break;
                 case 1:
-                    selectTitleText.text = "リトライしますか？";
-                    yesButton.onClick.AddListener(SelfSceneButton);
+                    retrySelectviewPanel.SetActive(true);
                     break;
                 default:
                     break;
             }
-            noButton.onClick.AddListener(CloseSelectPanelView);
-
-            selectviewPanel.SetActive(true);
         }
     }
 }
