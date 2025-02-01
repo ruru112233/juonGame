@@ -7,13 +7,14 @@ using TMPro;
 
 public class MoveSceneManager : MonoBehaviour
 {
-    public GameObject titleSelectviewPanel, retrySelectviewPanel;
+    public GameObject titleSelectviewPanel, retrySelectviewPanel, volumePanel;
     public GameObject joyPad;
 
     private void Start()
     {
-        if(titleSelectviewPanel) titleSelectviewPanel.SetActive(false);
-        if(retrySelectviewPanel) retrySelectviewPanel.SetActive(false);
+        if (titleSelectviewPanel) titleSelectviewPanel.SetActive(false);
+        if (retrySelectviewPanel) retrySelectviewPanel.SetActive(false);
+        if (volumePanel) volumePanel.SetActive(false);
     }
 
     public void SelfSceneButton()
@@ -109,6 +110,7 @@ public class MoveSceneManager : MonoBehaviour
     {
         titleSelectviewPanel.SetActive(false);
         retrySelectviewPanel.SetActive(false);
+        volumePanel.SetActive(false);
         joyPad.SetActive(true);
         Time.timeScale = 1;
     }
@@ -116,7 +118,7 @@ public class MoveSceneManager : MonoBehaviour
 
     public void ShowSecletPanel(int num)
     {
-        if (titleSelectviewPanel && retrySelectviewPanel)
+        if (titleSelectviewPanel && retrySelectviewPanel && volumePanel)
         {
             CloseSelectPanelView();
             switch (num)
@@ -126,6 +128,9 @@ public class MoveSceneManager : MonoBehaviour
                     break;
                 case 1:
                     retrySelectviewPanel.SetActive(true);
+                    break;
+                case 2:
+                    volumePanel.SetActive(true);
                     break;
                 default:
                     break;
