@@ -51,18 +51,14 @@ public class OptionManager : MonoBehaviour
 
     void SpeedColorInit()
     {
+        if (!IsMsgObj()) return;
+
         msgSpd1.color = colorInit;
         msgSpd2.color = colorInit;
         msgSpd3.color = colorInit;
         msgSpd4.color = colorInit;
         msgSpd5.color = colorInit;
         msgSpd6.color = colorInit;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void RightSelectButton()
@@ -172,10 +168,17 @@ public class OptionManager : MonoBehaviour
         SaveAndLoader.Save(data);
     }
 
+    private bool IsMsgObj()
+    {
+        return msgSpd1 || msgSpd2 || msgSpd3 || msgSpd4 || msgSpd5 || msgSpd6;
+    }
+
 
     void SettingMsgSpeed(int msgSpeed)
     {
         SpeedColorInit();
+
+        if (!IsMsgObj()) return;
 
         switch (msgSpeed)
         {
