@@ -7,18 +7,44 @@ using TMPro;
 
 public class MoveSceneManager : MonoBehaviour
 {
+    public GameObject titleSelectviewPanel, retrySelectviewPanel;
+    public GameObject joyPad;
+
+    private void Start()
+    {
+        if(titleSelectviewPanel) titleSelectviewPanel.SetActive(false);
+        if(retrySelectviewPanel) retrySelectviewPanel.SetActive(false);
+    }
+
+    public void SelfSceneButton()
+    {
+        float time = 0;
+        CloseSelectPanelView();
+        StartCoroutine(MoveScene(time, SceneManager.GetActiveScene().name));
+    }
+
     public void SelfSceneButton(float time)
     {
+        CloseSelectPanelView();
         StartCoroutine(MoveScene(time, SceneManager.GetActiveScene().name));
+    }
+
+    public void TitleSceneButton()
+    {
+        float time = 0;
+        CloseSelectPanelView();
+        StartCoroutine(MoveScene(time, "TitleScene"));
     }
 
     public void TitleSceneButton(float time)
     {
+        CloseSelectPanelView();
         StartCoroutine(MoveScene(time, "TitleScene"));
     }
 
     public void EndingSceneButton(float time)
     {
+        CloseSelectPanelView();
         StartCoroutine(MoveScene(time, "GameCrearScene"));
     }
 
@@ -77,5 +103,44 @@ public class MoveSceneManager : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void CloseWindow()
+    {
+        titleSelectviewPanel.SetActive(false);
+        retrySelectviewPanel.SetActive(false);
+        joyPad.SetActive(true);
+        Time.timeScale = 1;
+    }
+
+    public void CloseSelectPanelView()
+    {
+        titleSelectviewPanel.SetActive(false);
+        retrySelectviewPanel.SetActive(false);
+        joyPad.SetActive(true);
+        Time.timeScale = 1;
+    }
+
+
+    public void ShowSecletPanel(int num)
+    {
+        if (titleSelectviewPanel && retrySelectviewPanel)
+        {
+            CloseSelectPanelView();
+            switch (num)
+            {
+                case 0:
+                    titleSelectviewPanel.SetActive(true);
+                    break;
+                case 1:
+                    retrySelectviewPanel.SetActive(true);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        Time.timeScale = 0;
+        joyPad.SetActive(false);
     }
 }

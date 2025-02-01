@@ -48,6 +48,12 @@ public static class EnumData
         LEFT,
     }
 
+    public enum SelectPanelType
+    {
+        TITLE,
+        RETRY,
+    }
+
     // ƒAƒCƒeƒ€‚ÌŽí—Þ
     public enum ItemPattern
     {
