@@ -19,27 +19,32 @@ public class MoveSceneManager : MonoBehaviour
     public void SelfSceneButton()
     {
         float time = 0;
+        CloseSelectPanelView();
         StartCoroutine(MoveScene(time, SceneManager.GetActiveScene().name));
     }
 
     public void SelfSceneButton(float time)
     {
+        CloseSelectPanelView();
         StartCoroutine(MoveScene(time, SceneManager.GetActiveScene().name));
     }
 
     public void TitleSceneButton()
     {
         float time = 0;
+        CloseSelectPanelView();
         StartCoroutine(MoveScene(time, "TitleScene"));
     }
 
     public void TitleSceneButton(float time)
     {
+        CloseSelectPanelView();
         StartCoroutine(MoveScene(time, "TitleScene"));
     }
 
     public void EndingSceneButton(float time)
     {
+        CloseSelectPanelView();
         StartCoroutine(MoveScene(time, "GameCrearScene"));
     }
 
@@ -100,6 +105,14 @@ public class MoveSceneManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    public void CloseWindow()
+    {
+        titleSelectviewPanel.SetActive(false);
+        retrySelectviewPanel.SetActive(false);
+        joyPad.SetActive(true);
+        Time.timeScale = 1;
+    }
+
     public void CloseSelectPanelView()
     {
         titleSelectviewPanel.SetActive(false);
@@ -111,8 +124,6 @@ public class MoveSceneManager : MonoBehaviour
 
     public void ShowSecletPanel(int num)
     {
-        joyPad.SetActive(false);
-        Time.timeScale = 0;
         if (titleSelectviewPanel && retrySelectviewPanel)
         {
             CloseSelectPanelView();
@@ -128,5 +139,8 @@ public class MoveSceneManager : MonoBehaviour
                     break;
             }
         }
+
+        Time.timeScale = 0;
+        joyPad.SetActive(false);
     }
 }
