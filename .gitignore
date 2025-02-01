@@ -72,3 +72,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 Assets/Music/WE ARE 1219.wav
 Assets/Music/WE ARE 1219.wav.meta
+
+#Asset
+UiSet_*
