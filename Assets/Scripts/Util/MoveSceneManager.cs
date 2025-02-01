@@ -105,14 +105,6 @@ public class MoveSceneManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    public void CloseWindow()
-    {
-        titleSelectviewPanel.SetActive(false);
-        retrySelectviewPanel.SetActive(false);
-        joyPad.SetActive(true);
-        Time.timeScale = 1;
-    }
-
     public void CloseSelectPanelView()
     {
         titleSelectviewPanel.SetActive(false);

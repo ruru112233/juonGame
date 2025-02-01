@@ -77,7 +77,7 @@ public class AudioManager : MonoBehaviour
     */
     public void SeVolume(float volumeSize)
     {
-        if (se[0] != null)
+        if (se != null)
         {
             for (int i = 0; i < se.Length; i++)
             {
@@ -89,7 +89,7 @@ public class AudioManager : MonoBehaviour
     // SEのスライダー
     public void SeSliderVolume(float volume)
     {
-        if (se[0] != null)
+        if (se != null)
         {
             for (int i = 0; i < se.Length; i++)
             {
@@ -117,7 +117,7 @@ public class AudioManager : MonoBehaviour
     */
     public void BgmVolume(float volumeSize)
     {
-        if (bgm[0] != null)
+        if (bgm != null)
         {
             for (int i = 0; i < bgm.Length; i++)
             {
@@ -130,7 +130,7 @@ public class AudioManager : MonoBehaviour
     public void BgmSliderVolume(float volume)
     {
 
-        if (bgm[0] != null)
+        if (bgm != null)
         {
             for (int i = 0; i < bgm.Length; i++)
             {

@@ -7,6 +7,8 @@ using System.IO;
 public class SettingSaveData
 {
     public int msgSpeed = 2;
+    public float bgmVolume = 0.6f;
+    public float seVolume = 0.6f;
 }
 
 [System.Serializable]
