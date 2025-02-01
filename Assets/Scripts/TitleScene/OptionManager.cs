@@ -69,6 +69,8 @@ public class OptionManager : MonoBehaviour
     {
         if (MIN_MSG_SPEED >= msgSpeedSelectNum) return;
 
+        AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
+
         msgSpeedSelectNum--;
 
         SettingMsgSpeed(msgSpeedSelectNum);
@@ -79,6 +81,8 @@ public class OptionManager : MonoBehaviour
     {
         if (MAX_MSG_SPEED <= msgSpeedSelectNum) return;
 
+        AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
+
         msgSpeedSelectNum++;
 
         SettingMsgSpeed(msgSpeedSelectNum);
@@ -87,6 +91,8 @@ public class OptionManager : MonoBehaviour
     public void LeftBgmSelectButton()
     {
         if (MIN_VOLUME >= bgmVolumeNum) return;
+
+        AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
 
         bgmVolumeNum -= VOLUME_DISTANCE;
 
@@ -97,6 +103,8 @@ public class OptionManager : MonoBehaviour
     {
         if (MAX_VOLUME <= bgmVolumeNum) return;
 
+        AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
+
         bgmVolumeNum += VOLUME_DISTANCE;
 
         VolumeSave();
@@ -106,6 +114,8 @@ public class OptionManager : MonoBehaviour
     {
         if (MIN_VOLUME >= seVolumeNum) return;
 
+        AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
+
         seVolumeNum -= VOLUME_DISTANCE;
 
         VolumeSave();
@@ -114,6 +124,8 @@ public class OptionManager : MonoBehaviour
     public void RightSeSelectButton()
     {
         if (MAX_VOLUME <= seVolumeNum) return;
+
+        AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
 
         seVolumeNum += VOLUME_DISTANCE;
 

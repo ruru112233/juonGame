@@ -116,4 +116,13 @@ public static class EnumData
         SETTINGS,
         RANKING,
     }
+
+    public enum SeType
+    {
+        CANCEL,
+        HIT,
+        POWER_UP,
+        SCENE_SENI,
+        SELECT,
+    }
 }
