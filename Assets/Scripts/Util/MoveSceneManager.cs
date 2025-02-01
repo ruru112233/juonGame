@@ -21,12 +21,14 @@ public class MoveSceneManager : MonoBehaviour
     {
         float time = 0;
         CloseSelectPanelView();
+        AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
         StartCoroutine(MoveScene(time, SceneManager.GetActiveScene().name));
     }
 
     public void SelfSceneButton(float time)
     {
         CloseSelectPanelView();
+        AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
         StartCoroutine(MoveScene(time, SceneManager.GetActiveScene().name));
     }
 
@@ -34,18 +36,21 @@ public class MoveSceneManager : MonoBehaviour
     {
         float time = 0;
         CloseSelectPanelView();
+        AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
         StartCoroutine(MoveScene(time, "TitleScene"));
     }
 
     public void TitleSceneButton(float time)
     {
         CloseSelectPanelView();
+        AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
         StartCoroutine(MoveScene(time, "TitleScene"));
     }
 
     public void EndingSceneButton(float time)
     {
         CloseSelectPanelView();
+        AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
         StartCoroutine(MoveScene(time, "GameCrearScene"));
     }
 
@@ -108,6 +113,7 @@ public class MoveSceneManager : MonoBehaviour
 
     public void CloseSelectPanelView()
     {
+        AudioManager.instance.PlaySE((int)EnumData.SeType.CANCEL);
         titleSelectviewPanel.SetActive(false);
         retrySelectviewPanel.SetActive(false);
         volumePanel.SetActive(false);
