@@ -121,7 +121,8 @@ public class MinionEnemy : EnemyShotPattern
 
             if (enemyHp_ <= 0)
             {
-            
+                AudioManager.instance.PlaySE((int)EnumData.SeType.DROP);
+
                 // MaxHp‚ÌXV
                 enemyHp_ = enemyMaxHp_;
                 Common.ScatterItem(this.transform);

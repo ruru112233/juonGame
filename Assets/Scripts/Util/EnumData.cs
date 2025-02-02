@@ -120,7 +120,7 @@ public static class EnumData
     public enum SeType
     {
         CANCEL,
-        HIT,
+        DROP,
         POWER_UP,
         SCENE_SENI,
         SELECT,

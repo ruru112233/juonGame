@@ -153,6 +153,7 @@ public class ScoreManager : MonoBehaviour
 
         if (currentLv != lv)
         {
+            AudioManager.instance.PlaySE((int)EnumData.SeType.POWER_UP);
             // レベルアップ
             GameManager.instance.PlayerLv = lv;
 
