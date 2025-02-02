@@ -2269,7 +2269,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 363656758, guid: 926d9ae61c4d78a4b8db13f93bc6fe6c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 926d9ae61c4d78a4b8db13f93bc6fe6c, type: 3}
 --- !u!1 &1192516325
 GameObject:
@@ -3457,10 +3458,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1341146050}
-    - target: {fileID: 3607860316740339926, guid: 3b31e552262f4d94ba1c02e957ee125b, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3607860316993316263, guid: 3b31e552262f4d94ba1c02e957ee125b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3552,10 +3549,6 @@ PrefabInstance:
     - target: {fileID: 3607860317052685997, guid: 3b31e552262f4d94ba1c02e957ee125b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3607860317267414647, guid: 3b31e552262f4d94ba1c02e957ee125b, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3607860317550225167, guid: 3b31e552262f4d94ba1c02e957ee125b, type: 3}
       propertyPath: m_AnchorMax.x

@@ -856,7 +856,6 @@ MonoBehaviour:
   - {fileID: 221365187}
   - {fileID: 1933467555}
   - {fileID: 1567758792}
-  - {fileID: 0}
   bgm:
   - {fileID: 1962522933}
 --- !u!1 &6175181162510043304
