@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Direction: 0
   m_Value: 0.927
   m_Size: 0.066
-  m_NumberOfSteps: 6
+  m_NumberOfSteps: 11
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -789,7 +789,7 @@ MonoBehaviour:
   m_Direction: 0
   m_Value: 0.927
   m_Size: 0.066
-  m_NumberOfSteps: 6
+  m_NumberOfSteps: 11
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1531,7 +1531,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3607860317052685994}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.25, y: 2.25, z: 2.25}
   m_ConstrainProportionsScale: 1

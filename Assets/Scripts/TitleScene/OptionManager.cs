@@ -8,9 +8,8 @@ public class OptionManager : MonoBehaviour
 {
     private const int MAX_MSG_SPEED = 3;
     private const int MIN_MSG_SPEED = 1;
-    private const float MAX_VOLUME = 0.9f;
-    private const float MIN_VOLUME = 0.1f;
-    private const float VOLUME_DISTANCE = 0.2f;
+    private const int MAX_VOLUME = 10;
+    private const int MIN_VOLUME = 0;
 
     [SerializeField] TextMeshProUGUI msgSpd1, msgSpd2, msgSpd3, msgSpd4, msgSpd5, msgSpd6;
 
@@ -20,13 +19,13 @@ public class OptionManager : MonoBehaviour
     Color decisionColor = new Color32(255, 255, 255, 255);
 
     private int msgSpeedSelectNum = 0;
-    private float bgmVolumeNum = 0.6f;
-    private float seVolumeNum = 0.6f;
+    private int bgmVolumeNum = 3;
+    private int seVolumeNum = 3;
 
     struct VolumeData
     {
-        public float bgmVolume;
-        public float seVolume;
+        public int bgmVolume;
+        public int seVolume;
     }
 
     // Start is called before the first frame update
@@ -40,11 +39,11 @@ public class OptionManager : MonoBehaviour
         bgmVolumeNum = data.bgmVolume;
         seVolumeNum = data.seVolume;
 
-        bgmVolumeScrollbar.value = bgmVolumeNum;
-        seVolumeScrollbar.value = seVolumeNum;
+        bgmVolumeScrollbar.value = SetVolume(bgmVolumeNum) ;
+        seVolumeScrollbar.value = SetVolume(seVolumeNum);
 
-        AudioManager.instance.BgmSliderVolume(bgmVolumeNum);
-        AudioManager.instance.SeSliderVolume(seVolumeNum);
+        AudioManager.instance.BgmSliderVolume(bgmVolumeScrollbar.value);
+        AudioManager.instance.SeSliderVolume(seVolumeScrollbar.value);
 
         SettingMsgSpeed(data.msgSpeed);
     }
@@ -90,7 +89,7 @@ public class OptionManager : MonoBehaviour
 
         AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
 
-        bgmVolumeNum -= VOLUME_DISTANCE;
+        bgmVolumeNum--;
 
         VolumeSave();
     }
@@ -101,7 +100,7 @@ public class OptionManager : MonoBehaviour
 
         AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
 
-        bgmVolumeNum += VOLUME_DISTANCE;
+        bgmVolumeNum++;
 
         VolumeSave();
     }
@@ -112,7 +111,7 @@ public class OptionManager : MonoBehaviour
 
         AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
 
-        seVolumeNum -= VOLUME_DISTANCE;
+        seVolumeNum--;
 
         VolumeSave();
     }
@@ -123,18 +122,18 @@ public class OptionManager : MonoBehaviour
 
         AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
 
-        seVolumeNum += VOLUME_DISTANCE;
+        seVolumeNum++;
 
         VolumeSave();
     }
 
     void SetVolumeScrollBar(VolumeData volumeData)
     {
-        bgmVolumeScrollbar.value = volumeData.bgmVolume;
-        seVolumeScrollbar.value = volumeData.seVolume;
+        bgmVolumeScrollbar.value = SetVolume(volumeData.bgmVolume);
+        seVolumeScrollbar.value = SetVolume(volumeData.seVolume);
 
-        AudioManager.instance.BgmSliderVolume(volumeData.bgmVolume);
-        AudioManager.instance.SeSliderVolume(volumeData.seVolume);
+        AudioManager.instance.BgmSliderVolume(bgmVolumeScrollbar.value);
+        AudioManager.instance.SeSliderVolume(seVolumeScrollbar.value);
     }
 
     void VolumeSave()
@@ -171,6 +170,36 @@ public class OptionManager : MonoBehaviour
     private bool IsMsgObj()
     {
         return msgSpd1 || msgSpd2 || msgSpd3 || msgSpd4 || msgSpd5 || msgSpd6;
+    }
+
+    private float SetVolume(int num)
+    {
+        switch (num)
+        {
+            case 0:
+                return 0.0f;
+            case 1:
+                return 0.1f;
+            case 2:
+                return 0.2f;
+            case 3:
+                return 0.3f;
+            case 4:
+                return 0.4f;
+            case 5:
+                return 0.5f;
+            case 6:
+                return 0.6f;
+            case 7:
+                return 0.7f;
+            case 8:
+                return 0.8f;
+            case 9:
+                return 0.9f;
+            case 10:
+                return 1.0f;
+        }
+        return 0.0f;
     }
 
 

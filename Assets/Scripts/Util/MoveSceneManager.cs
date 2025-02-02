@@ -114,19 +114,19 @@ public class MoveSceneManager : MonoBehaviour
     public void CloseButton()
     {
         AudioManager.instance.PlaySE((int)EnumData.SeType.CANCEL);
-        titleSelectviewPanel.SetActive(false);
-        retrySelectviewPanel.SetActive(false);
-        volumePanel.SetActive(false);
-        joyPad.SetActive(true);
+        if (titleSelectviewPanel) titleSelectviewPanel.SetActive(false);
+        if (retrySelectviewPanel) retrySelectviewPanel.SetActive(false);
+        if (volumePanel) volumePanel.SetActive(false);
+        if (joyPad) joyPad.SetActive(true);
         Time.timeScale = 1;
     }
 
     public void CloseSelectPanelView()
     {
-        titleSelectviewPanel.SetActive(false);
-        retrySelectviewPanel.SetActive(false);
-        volumePanel.SetActive(false);
-        joyPad.SetActive(true);
+        if (titleSelectviewPanel) titleSelectviewPanel.SetActive(false);
+        if (retrySelectviewPanel) retrySelectviewPanel.SetActive(false);
+        if (volumePanel) volumePanel.SetActive(false);
+        if (joyPad) joyPad.SetActive(true);
         Time.timeScale = 1;
     }
 
