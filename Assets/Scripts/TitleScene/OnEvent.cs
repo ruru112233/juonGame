@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class OnEvent : MonoBehaviour
 {
@@ -9,7 +11,7 @@ public class OnEvent : MonoBehaviour
 
     private void Start()
     {
-        optionPanel.SetActive(false);
+        if(optionPanel) optionPanel.SetActive(false);
     }
 
     public void StartBtn()
@@ -30,5 +32,4 @@ public class OnEvent : MonoBehaviour
         AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
         optionPanel.SetActive(false);
     }
-
 }
