@@ -3308,6 +3308,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionPanel: {fileID: 1233621913}
+  bgmScrollber: {fileID: 897916975}
+  seScrollber: {fileID: 667501585}
 --- !u!1 &2127594446
 GameObject:
   m_ObjectHideFlags: 0

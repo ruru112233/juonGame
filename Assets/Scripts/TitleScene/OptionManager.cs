@@ -28,6 +28,8 @@ public class OptionManager : MonoBehaviour
         public int seVolume;
     }
 
+    float prevValue = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,14 +41,43 @@ public class OptionManager : MonoBehaviour
         bgmVolumeNum = data.bgmVolume;
         seVolumeNum = data.seVolume;
 
-        bgmVolumeScrollbar.value = SetVolume(bgmVolumeNum) ;
+        bgmVolumeScrollbar.value = SetVolume(bgmVolumeNum);
         seVolumeScrollbar.value = SetVolume(seVolumeNum);
 
         AudioManager.instance.BgmSliderVolume(bgmVolumeScrollbar.value);
         AudioManager.instance.SeSliderVolume(seVolumeScrollbar.value);
 
         SettingMsgSpeed(data.msgSpeed);
+
+        bgmVolumeScrollbar.onValueChanged.AddListener(BgmVolumeChange);
+        seVolumeScrollbar.onValueChanged.AddListener(SeVolumeChange);
+
+        prevValue = seVolumeScrollbar.value;
     }
+
+    public void BgmVolumeChange(float value)
+    {
+        AudioManager.instance.BgmSliderVolume(value);
+        bgmVolumeNum = Mathf.RoundToInt(value * 10);
+
+        AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
+
+        VolumeSave();
+    }
+
+    public void SeVolumeChange(float value)
+    {
+        // 0.05以内の誤差ならスキップ
+        if (Mathf.Abs(prevValue - value) < 0.05f) return;
+
+        AudioManager.instance.SeSliderVolume(seVolumeScrollbar.value);
+        seVolumeNum = Mathf.RoundToInt(value * 10);
+
+        AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
+        prevValue = seVolumeScrollbar.value;
+        VolumeSave();
+    }
+
 
     void SpeedColorInit()
     {
@@ -64,23 +95,27 @@ public class OptionManager : MonoBehaviour
     {
         if (MIN_MSG_SPEED >= msgSpeedSelectNum) return;
 
+        bgmVolumeScrollbar.onValueChanged.RemoveListener(BgmVolumeChange);
         AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
 
         msgSpeedSelectNum--;
 
         SettingMsgSpeed(msgSpeedSelectNum);
 
+        bgmVolumeScrollbar.onValueChanged.AddListener(BgmVolumeChange); // ここを有効化
     }
 
     public void LeftSelectButton()
     {
         if (MAX_MSG_SPEED <= msgSpeedSelectNum) return;
 
-        AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
+        seVolumeScrollbar.onValueChanged.RemoveListener(SeVolumeChange);
 
+        AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
         msgSpeedSelectNum++;
 
         SettingMsgSpeed(msgSpeedSelectNum);
+        bgmVolumeScrollbar.onValueChanged.RemoveListener(BgmVolumeChange);
     }
 
     public void LeftBgmSelectButton()
@@ -97,10 +132,12 @@ public class OptionManager : MonoBehaviour
     public void RightBgmSelectButton()
     {
         if (MAX_VOLUME <= bgmVolumeNum) return;
-
+        
         AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
 
         bgmVolumeNum++;
+
+        Debug.Log("Rightボタン:" + bgmVolumeNum);
 
         VolumeSave();
     }
