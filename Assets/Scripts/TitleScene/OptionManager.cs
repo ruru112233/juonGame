@@ -28,7 +28,8 @@ public class OptionManager : MonoBehaviour
         public int seVolume;
     }
 
-    float prevValue = 0.0f;
+    float prevBgmValue = 0.0f;
+    float prevSeValue = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -52,15 +53,21 @@ public class OptionManager : MonoBehaviour
         bgmVolumeScrollbar.onValueChanged.AddListener(BgmVolumeChange);
         seVolumeScrollbar.onValueChanged.AddListener(SeVolumeChange);
 
-        prevValue = seVolumeScrollbar.value;
+        prevBgmValue = bgmVolumeScrollbar.value;
+        prevSeValue = seVolumeScrollbar.value;
     }
 
     public void BgmVolumeChange(float value)
     {
+        // 0.05以内の誤差ならスキップ
+        if (Mathf.Abs(prevBgmValue - value) < 0.05f) return;
+
         AudioManager.instance.BgmSliderVolume(value);
         bgmVolumeNum = Mathf.RoundToInt(value * 10);
 
         AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
+
+        prevBgmValue = bgmVolumeScrollbar.value;
 
         VolumeSave();
     }
@@ -68,13 +75,13 @@ public class OptionManager : MonoBehaviour
     public void SeVolumeChange(float value)
     {
         // 0.05以内の誤差ならスキップ
-        if (Mathf.Abs(prevValue - value) < 0.05f) return;
+        if (Mathf.Abs(prevSeValue - value) < 0.05f) return;
 
         AudioManager.instance.SeSliderVolume(seVolumeScrollbar.value);
         seVolumeNum = Mathf.RoundToInt(value * 10);
 
         AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
-        prevValue = seVolumeScrollbar.value;
+        prevSeValue = seVolumeScrollbar.value;
         VolumeSave();
     }
 
