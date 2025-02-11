@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -15,7 +16,13 @@ public class GameManager : MonoBehaviour
     public TimeManager timeManager;
     public RankingManager rankingManager;
 
+    public GameObject loadingPanel;
+
     public bool isEnding = false;
+    public bool isStart = false;
+
+    private float startTime = 6.0f;
+    private float latestTime = 0f;
 
     // アイテムがプレイヤーの方向に移動する
     private const float ITEM_MOVE_SEC = 15.0f;
@@ -47,12 +54,28 @@ public class GameManager : MonoBehaviour
 
         PlayerLv = 1;
 
-        //if (joystick) joystick.SetActive(true);
+        if(loadingPanel) loadingPanel.SetActive(true);
+        if(joystick) joystick.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isStart)
+        {
+            if (loadingPanel) loadingPanel.SetActive(false);
+            if (joystick) joystick.SetActive(true);
+        }
+
+        if (latestTime > startTime)
+        {
+            isStart = true;
+        }
+        else
+        {
+            latestTime += Time.deltaTime;
+        }
+
         // ゲームクリアか判定
         if (scoreManager && scoreManager.IsClear() && !isClear)
         {

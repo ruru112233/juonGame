@@ -30,7 +30,7 @@ public class Item : MonoBehaviour
 
     private const string SP_UP = "ªSpeed";
     private const string SP_MAX = "Max Speed";
-    private const float SP_MAX_PT = 6.0f;
+    private const float SP_MAX_PT = 7.0f;
 
     // itemî•ñ‚ÌŠi”[—p\‘¢‘Ì
     struct ItemInfo

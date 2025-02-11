@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     // ジョイスティック
     [SerializeField] protected FloatingJoystick joystick;
 
-    private float speed = 2.0f;
+    private float speed = 3.0f;
     private float attackPt = 1.0f;
     private float bounsForce = 3.0f;
 
@@ -130,7 +130,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (GameManager.instance.isEnding) StartCoroutine(EndingStart());
-
+        if (!GameManager.instance.isStart) return;
         if (GameManager.instance.scoreManager.IsClear()) return;
 
         // 故障中のパネルを表示させる 
