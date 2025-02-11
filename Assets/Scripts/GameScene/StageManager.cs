@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class StageManager : EnemyMove
@@ -91,8 +92,13 @@ public class StageManager : EnemyMove
 
         yield return new WaitForSeconds(0.1f);
 
+        while (!GameManager.instance.isStart)
+        {
+            yield return null;
+        }
+
         //while (GameManager.instance.unlockCounter == 1)
-        while (true)
+        while (GameManager.instance.isStart)
         {
             // 1êw
             SetEnemyInfo(enemys[0], SetEnemyGenInfo(EnumData.MoveDirectionType.BOTTOM, 0));
