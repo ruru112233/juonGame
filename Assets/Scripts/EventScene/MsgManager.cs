@@ -20,6 +20,12 @@ public class MsgManager : Msg
     private bool isClicked = false;
     private bool isMsgFullText = false;
 
+    public bool IsMsgFullText
+    {
+        get { return isMsgFullText; }
+        set { isMsgFullText = value; }
+    }
+
     public EventManager eventManager;
 
     public GameObject TextFieldObj
@@ -67,7 +73,7 @@ public class MsgManager : Msg
         SetMessage(EnumData.Speaker.SATOKO, "ぼくらのお父さんとお母さんはどこ？");
         SetMessage(EnumData.Speaker.JUON, "あれ？上の方から何か音が聞こえる…");
         SetMessage(EnumData.Speaker.SATOKO, "行ってみましょう");
-        SetMessage(EnumData.Speaker.NONE, "WAIT");
+        SetMessage(EnumData.Speaker.NONE, "STOP");
         SetMessage(EnumData.Speaker.JUON, "あっ！ジミ？@あそこにいるのはブライアンジョーンズ？");
         SetMessage(EnumData.Speaker.SATOKO, "あそこに座ってるのはジャニスじゃない？@あれは…うそ！ジムモリソン？");
         SetMessage(EnumData.Speaker.JUON, "カートもいるぞ？");
@@ -91,7 +97,12 @@ public class MsgManager : Msg
         else if (GameManager.instance.eventSceneType == EnumData.EventSceneType.ENDING)
         {
             SetEndingMessageList();
-            if (textField) textField.SetActive(false);
+            if (textField) textField.SetActive(true);
+            if (eventManager) eventManager.CharImageOn();
+            isMsgFullText = true;
+            EndingPlayer player = GameObject.FindGameObjectWithTag("EndingPlayer").GetComponent<EndingPlayer>();
+            player.OffJoyStick();
+            StartMessage(messageList);
             if (scoreHandImage) scoreHandImage.SetActive(false);
         }
 
@@ -161,7 +172,7 @@ public class MsgManager : Msg
                 }
                 else
                 {
-                    if(GameManager.instance) GameManager.instance.isStopped = false;
+                    if (GameManager.instance) GameManager.instance.isStopped = false;
                     if(textField) textField.SetActive(false);
                     if(scoreHandImage) scoreHandImage.SetActive(false);
                 }
@@ -195,7 +206,7 @@ public class MsgManager : Msg
 
     public IEnumerator ShowText(List<MessageData> messages)
     {
-        Debug.Log("ShowText");
+        if (eventManager) eventManager.CharImageOn();
         if (nextText) nextText.SetActive(false);
 
         // 1フレーム止める
@@ -216,6 +227,17 @@ public class MsgManager : Msg
             currentLine ++;
             fullText = messages[currentLine].message;
             yield return null;
+        }
+
+        if (messages[currentLine].message == "STOP")
+        {
+            if (GameManager.instance) GameManager.instance.isStopped = false;
+            EndingPlayer player = GameObject.FindGameObjectWithTag("EndingPlayer").GetComponent<EndingPlayer>();
+            player.OnJoyStick();
+            currentLine++;
+            if (eventManager) eventManager.CharImageOff();
+            if (textField) textField.SetActive(false);
+            yield break;
         }
 
         SetImage(messages[currentLine].speaker);
@@ -273,7 +295,7 @@ public class MsgManager : Msg
         if ((SceneManager.GetActiveScene().name == "EventScene") && (currentLine == 0))
         {
             yield return new WaitForSeconds(1.0f);
-            eventManager.ToGameScene();
+            if (eventManager) eventManager.ToGameScene();
         }
 
         isMsgFullText = true;
@@ -285,16 +307,16 @@ public class MsgManager : Msg
         switch (speaker)
         {
             case EnumData.Speaker.JUON:
-                eventManager.ChengeImage(0, "ジュオン");
+                if (eventManager) eventManager.ChengeImage(0, "ジュオン");
                 break;
             case EnumData.Speaker.SATOKO:
-                eventManager.ChengeImage(1, "サトコ");
+                if (eventManager) eventManager.ChengeImage(1, "サトコ");
                 break;
             case EnumData.Speaker.PLAYER3:
-                eventManager.ChengeImage(2, "Player");
+                if (eventManager) eventManager.ChengeImage(2, "Player");
                 break;
             case EnumData.Speaker.NONE:
-                eventManager.NoneImage();
+                if (eventManager) eventManager.NoneImage();
                 break;
             default:
                 break;

@@ -6,6 +6,7 @@ public class LastEndingPlayer : MonoBehaviour
 {
     [SerializeField] private Transform earthPoint;
     [SerializeField] private GameObject hoshi;
+
     private float angle;
     private float angleSpeed = 300;
 

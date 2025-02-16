@@ -74,12 +74,20 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    private void CharImageOff()
+    public void CharImageOff()
     {
         charImageRight.SetActive(false);
         charImageLeft.SetActive(false);
         charNameRight.SetActive(false);
         charNameLeft.SetActive(false);
+    }
+
+    public void CharImageOn()
+    {
+        charImageRight.SetActive(true);
+        charImageLeft.SetActive(true);
+        charNameRight.SetActive(true);
+        charNameLeft.SetActive(true);
     }
 
     private void ImagePosCheck( string msgPlayer )
