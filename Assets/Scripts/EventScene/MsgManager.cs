@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MsgManager : Msg
 {
     [SerializeField] private GameObject scoreHandImage;
-    [SerializeField] private GameObject textField;
+    [SerializeField] private GameObject textField,nextText;
 
     private List<MessageData> messageList = new List<MessageData>();
 
@@ -64,11 +65,15 @@ public class MsgManager : Msg
     {
         SetMessage(EnumData.Speaker.JUON, "やっとここまできたぞ");
         SetMessage(EnumData.Speaker.SATOKO, "ぼくらのお父さんとお母さんはどこ？");
+        SetMessage(EnumData.Speaker.JUON, "あれ？上の方から何か音が聞こえる…");
+        SetMessage(EnumData.Speaker.SATOKO, "行ってみましょう");
+        SetMessage(EnumData.Speaker.NONE, "WAIT");
         SetMessage(EnumData.Speaker.JUON, "あっ！ジミ？@あそこにいるのはブライアンジョーンズ？");
         SetMessage(EnumData.Speaker.SATOKO, "あそこに座ってるのはジャニスじゃない？@あれは…うそ！ジムモリソン？");
         SetMessage(EnumData.Speaker.JUON, "カートもいるぞ？");
         SetMessage(EnumData.Speaker.SATOKO, "あっ！");
         SetMessage(EnumData.Speaker.NONE, "君たちにはまだ早いよ…。");
+        SetMessage(EnumData.Speaker.NONE, "WAIT");
         SetMessage(EnumData.Speaker.JUON, "わあーーーー！！！！！");
         SetMessage(EnumData.Speaker.NONE, "やっとその場所を見つけたと思ったのに@僕らはまたふりだしに戻されてしまった！@@つづく…");
     }
@@ -76,6 +81,8 @@ public class MsgManager : Msg
     // Start is called before the first frame update
     void Start()
     {
+        if (nextText) nextText.SetActive(false);
+
         if (GameManager.instance.eventSceneType == EnumData.EventSceneType.OPNING)
         {
             SetOpningMessageList();
@@ -93,9 +100,6 @@ public class MsgManager : Msg
         delay = (float)data.msgSpeed / 15;
 
         msgText.text = "";
-
-        //if (messageList.Count > 0) StartCoroutine(ShowText(messageList));
-
     }
 
     public void StartMessage(List<MessageData> messageListData)
@@ -103,9 +107,25 @@ public class MsgManager : Msg
         if (messageListData.Count > 0) StartCoroutine(ShowText(messageListData));
     }
 
+    [SerializeField] private GameObject backPanel;
+
     // Update is called once per frame
     void Update()
     {
+        //GameObject backPanel = GameObject.FindGameObjectWithTag("BackPanel");
+        if (backPanel && isLastEnding)
+        {
+            backPanel.SetActive(true);
+            Image backPanelImage = backPanel.GetComponent<Image>();
+
+            backPanelImage.color += new Color(0, 0, 0, Time.deltaTime * 0.5f);
+            if (backPanelImage.color.a >= 0.99f)
+            {
+                isLastMessage = true;
+                backPanel.SetActive(false);
+            }
+        }
+
         MessageStart();
     }
 
@@ -119,16 +139,25 @@ public class MsgManager : Msg
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if (isTitle)
+            {
+                AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
+                SceneManager.LoadScene("TitleScene");
+            }
+
             if (!isMsgFullText)
             {
                 isClicked = true;
             }
             else
             {
-                StopAllCoroutines();
+                if (!isWaitMessage) StopAllCoroutines();
                 if(messageList.Count > 0)
                 {
-                    StartCoroutine(ShowText(messageList));
+                    if (!isWaitMessage)
+                    {
+                        StartCoroutine(ShowText(messageList));
+                    }
                 }
                 else
                 {
@@ -136,13 +165,39 @@ public class MsgManager : Msg
                     if(textField) textField.SetActive(false);
                     if(scoreHandImage) scoreHandImage.SetActive(false);
                 }
-
             }
         }
     }
 
+    private bool isLastMessage = false;
+    private bool isWaitMessage = false;
+    private bool isLastEnding = false;
+    private bool isTitle = false;
+
+    public bool IsWaitMessage
+    {
+        get { return isLastMessage; }
+        set { isWaitMessage = value; }
+    }
+
+    private IEnumerator LastEnding()
+    {
+        while (!isLastEnding)
+        {
+            yield return null;
+        }
+
+        if(GameManager.instance.lastEndingPanel) GameManager.instance.lastEndingPanel.SetActive(true);
+
+        isWaitMessage = true;
+        isLastMessage = true;
+    }
+
     public IEnumerator ShowText(List<MessageData> messages)
     {
+        Debug.Log("ShowText");
+        if (nextText) nextText.SetActive(false);
+
         // 1フレーム止める
         yield return null;
 
@@ -153,6 +208,15 @@ public class MsgManager : Msg
 
         string fullText = messages[currentLine].message;
         msgText.text = "";
+
+        while (messages[currentLine].message == "WAIT" && !isLastMessage)
+        {
+            StartCoroutine(LastEnding());
+            isLastEnding = true;
+            currentLine ++;
+            fullText = messages[currentLine].message;
+            yield return null;
+        }
 
         SetImage(messages[currentLine].speaker);
 
@@ -180,11 +244,30 @@ public class MsgManager : Msg
             yield return new WaitForSeconds(delay);
         }
 
+        while (isWaitMessage)
+        {
+            yield return null;
+        }
+
+
+
         currentLine = (currentLine + 1) % messages.Count;
 
         if (currentLine == 0)
         {
+            if (GameManager.instance.eventSceneType == EnumData.EventSceneType.ENDING)
+            {
+                isTitle = true;
+            }
+            
             messageList.Clear();
+        }
+
+        if (nextText)
+        {
+            string msg = isTitle ? "Go To Title >>" : "Next >>";
+            nextText.GetComponent<TextMeshProUGUI>().text = msg;
+            nextText.SetActive(true);
         }
 
         if ((SceneManager.GetActiveScene().name == "EventScene") && (currentLine == 0))

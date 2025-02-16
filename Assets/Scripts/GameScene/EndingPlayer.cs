@@ -27,17 +27,20 @@ public class EndingPlayer : Player
         anime = this.GetComponent<Animator>();
     }
 
+    private bool isEnd = true;
+
     // Update is called once per frame
     void Update()
     {
         GameObject backPanel = GameObject.FindGameObjectWithTag("BackPanel");
-        if (backPanel)
+        if (backPanel && isEnd)
         {
             Image backPanelImage = backPanel.GetComponent<Image>();
             backPanelImage.color -= new Color(0, 0, 0, Time.deltaTime * 0.5f);
 
             if (backPanelImage.color.a <= 0.1f)
             {
+                isEnd = false;
                 backPanel.SetActive(false);
             }
         }
@@ -61,6 +64,10 @@ public class EndingPlayer : Player
                 msgManager.MessageStart();
 
             }
+        }
+        else
+        {
+            msgManager.MessageStart();
         }
     }
 

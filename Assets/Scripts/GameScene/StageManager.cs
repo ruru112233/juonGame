@@ -50,39 +50,39 @@ public class StageManager : EnemyMove
         enemys.Add(SpawnEnemy(bossObj, new Vector3(0, 10, 0))); // 21
     }
 
-    public IEnumerator EnemyPatternTutorial()
-    {
-        AddEnemyListTutorial();
+    //public IEnumerator EnemyPatternTutorial()
+    //{
+    //    AddEnemyListTutorial();
 
-        yield return new WaitForSeconds(0.1f);
+    //    yield return new WaitForSeconds(0.1f);
 
-        // 最初のコメント
-        GameManager.instance.isStopped = true;
+    //    // 最初のコメント
+    //    GameManager.instance.isStopped = true;
 
-        msgManager.StartMessage(msgManager.MessageList);
+    //    msgManager.StartMessage(msgManager.MessageList);
 
-        yield return new WaitWhile(() => GameManager.instance.isStopped);
+    //    yield return new WaitWhile(() => GameManager.instance.isStopped);
 
-        // 1対出撃
-        SetMessage(EnumData.Speaker.JUON, "あいうえお");
-        SetMessage(EnumData.Speaker.JUON, "かきくけこ");
-        SetMessage(EnumData.Speaker.JUON, "ｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗ");
+    //    // 1対出撃
+    //    SetMessage(EnumData.Speaker.JUON, "あいうえお");
+    //    SetMessage(EnumData.Speaker.JUON, "かきくけこ");
+    //    SetMessage(EnumData.Speaker.JUON, "ｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗ");
 
-        msgManager.StartMessage(msgManager.MessageList);
+    //    msgManager.StartMessage(msgManager.MessageList);
 
-        SetEnemyInfo(enemys[0], SetEnemyGenInfo(EnumData.MoveDirectionType.BOTTOM, 0));
+    //    SetEnemyInfo(enemys[0], SetEnemyGenInfo(EnumData.MoveDirectionType.BOTTOM, 0));
 
-        GameManager.instance.isStopped = true;
+    //    GameManager.instance.isStopped = true;
 
-        msgManager.ActiveHandArrow(new Vector3(0,0,0));
+    //    msgManager.ActiveHandArrow(new Vector3(0,0,0));
 
-        yield return new WaitWhile(() => GameManager.instance.isStopped);
+    //    yield return new WaitWhile(() => GameManager.instance.isStopped);
 
 
-        yield return Wait_Y_PositionCheck(enemys[0], 1.8f);
+    //    yield return Wait_Y_PositionCheck(enemys[0], 1.8f);
 
-        SetEnemyInfo(enemys[0], SetEnemyGenInfo(EnumData.MoveDirectionType.NO_MOVE, 0));
-    }
+    //    SetEnemyInfo(enemys[0], SetEnemyGenInfo(EnumData.MoveDirectionType.NO_MOVE, 0));
+    //}
 
 
     public IEnumerator EnemyPattern1Stage()
