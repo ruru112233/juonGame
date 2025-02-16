@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject joystick;
     public TimeManager timeManager;
     public RankingManager rankingManager;
+    public GameObject lastEndingPanel;
 
     public GameObject loadingPanel;
 
@@ -54,8 +55,9 @@ public class GameManager : MonoBehaviour
 
         PlayerLv = 1;
 
-        if(loadingPanel) loadingPanel.SetActive(true);
-        if(joystick) joystick.SetActive(false);
+        if (loadingPanel) loadingPanel.SetActive(true);
+        if (joystick) joystick.SetActive(false);
+        if (lastEndingPanel) lastEndingPanel.SetActive(false);
     }
 
     // Update is called once per frame

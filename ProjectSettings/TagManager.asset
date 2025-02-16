@@ -21,6 +21,8 @@ TagManager:
   - RetryButton
   - EndingButton
   - BackPanel
+  - EndingPanel
+  - MsgManager
   layers:
   - Default
   - TransparentFX
