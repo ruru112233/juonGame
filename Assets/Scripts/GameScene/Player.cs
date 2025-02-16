@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
 
     // ジョイスティック
     [SerializeField] protected FloatingJoystick joystick;
-
+    
     private float speed = 3.0f;
     private float attackPt = 1.0f;
     private float bounsForce = 3.0f;
@@ -100,6 +100,17 @@ public class Player : MonoBehaviour
         powerUpTextObj.SetActive(false);
 
     }
+
+    public void OnJoyStick()
+    {
+        joystick.gameObject.SetActive(true);
+    }
+
+    public void OffJoyStick()
+    {
+        joystick.gameObject.SetActive(false);
+    }
+
 
     private IEnumerator EndingStart()
     {

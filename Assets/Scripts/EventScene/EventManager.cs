@@ -74,7 +74,7 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    private void CharImageOff()
+    public void CharImageOff()
     {
         charImageRight.SetActive(false);
         charImageLeft.SetActive(false);
@@ -93,6 +93,7 @@ public class EventManager : MonoBehaviour
 
     public void ToGameScene()
     {
+        AudioManager.instance.PlaySE((int)EnumData.SeType.SELECT);
         SceneManager.LoadScene("GameScene");
     }
 
