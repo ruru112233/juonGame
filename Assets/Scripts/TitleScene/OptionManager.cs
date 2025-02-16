@@ -144,8 +144,6 @@ public class OptionManager : MonoBehaviour
 
         bgmVolumeNum++;
 
-        Debug.Log("Rightƒ{ƒ^ƒ“:" + bgmVolumeNum);
-
         VolumeSave();
     }
 

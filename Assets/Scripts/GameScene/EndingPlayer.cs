@@ -42,6 +42,12 @@ public class EndingPlayer : Player
             {
                 isEnd = false;
                 backPanel.SetActive(false);
+
+                MsgManager msgManager = GameObject.FindGameObjectWithTag("MsgManager").GetComponent<MsgManager>();
+                msgManager.IsMsgFullText = true;
+                EndingPlayer player = GameObject.FindGameObjectWithTag("EndingPlayer").GetComponent<EndingPlayer>();
+                player.OffJoyStick();
+                msgManager.StartMessage(msgManager.MessageList);
             }
         }
 

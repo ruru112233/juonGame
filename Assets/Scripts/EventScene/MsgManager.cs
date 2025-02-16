@@ -98,11 +98,6 @@ public class MsgManager : Msg
         {
             SetEndingMessageList();
             if (textField) textField.SetActive(true);
-            if (eventManager) eventManager.CharImageOn();
-            isMsgFullText = true;
-            EndingPlayer player = GameObject.FindGameObjectWithTag("EndingPlayer").GetComponent<EndingPlayer>();
-            player.OffJoyStick();
-            StartMessage(messageList);
             if (scoreHandImage) scoreHandImage.SetActive(false);
         }
 
@@ -124,18 +119,26 @@ public class MsgManager : Msg
     void Update()
     {
         //GameObject backPanel = GameObject.FindGameObjectWithTag("BackPanel");
-        if (backPanel && isLastEnding)
-        {
-            backPanel.SetActive(true);
-            Image backPanelImage = backPanel.GetComponent<Image>();
+        //if (backPanel && isLastEnding)
+        //{
+        //    backPanel.SetActive(true);
+        //    Image backPanelImage = backPanel.GetComponent<Image>();
 
-            backPanelImage.color += new Color(0, 0, 0, Time.deltaTime * 0.5f);
-            if (backPanelImage.color.a >= 0.99f)
-            {
-                isLastMessage = true;
-                backPanel.SetActive(false);
-            }
-        }
+        //    backPanelImage.color += new Color(0, 0, 0, Time.deltaTime * 0.5f);
+        //    if (backPanelImage.color.a >= 0.99f)
+        //    {
+        //        isLastMessage = true;
+        //        backPanel.SetActive(false);
+
+        //        Debug.Log("aaaaa");
+
+        //        //isMsgFullText = true;
+        //        //EndingPlayer player = GameObject.FindGameObjectWithTag("EndingPlayer").GetComponent<EndingPlayer>();
+        //        //player.OffJoyStick();
+        //        //StartMessage(messageList);
+
+        //    }
+        //}
 
         MessageStart();
     }
@@ -175,6 +178,11 @@ public class MsgManager : Msg
                     if (GameManager.instance) GameManager.instance.isStopped = false;
                     if(textField) textField.SetActive(false);
                     if(scoreHandImage) scoreHandImage.SetActive(false);
+
+                    if ((SceneManager.GetActiveScene().name == "EventScene") && (currentLine == 0))
+                    {
+                        if (eventManager) eventManager.ToGameScene();
+                    }
                 }
             }
         }
@@ -206,7 +214,6 @@ public class MsgManager : Msg
 
     public IEnumerator ShowText(List<MessageData> messages)
     {
-        if (eventManager) eventManager.CharImageOn();
         if (nextText) nextText.SetActive(false);
 
         // 1ƒtƒŒ[ƒ€Ž~‚ß‚é
@@ -275,27 +282,27 @@ public class MsgManager : Msg
 
         currentLine = (currentLine + 1) % messages.Count;
 
+        string msg = "Next >>";
+
         if (currentLine == 0)
         {
             if (GameManager.instance.eventSceneType == EnumData.EventSceneType.ENDING)
             {
                 isTitle = true;
+                msg = "Go To Title >>";
             }
-            
+            else
+            {
+                msg = "Go To Play >>";
+            }
+
             messageList.Clear();
         }
 
         if (nextText)
         {
-            string msg = isTitle ? "Go To Title >>" : "Next >>";
             nextText.GetComponent<TextMeshProUGUI>().text = msg;
             nextText.SetActive(true);
-        }
-
-        if ((SceneManager.GetActiveScene().name == "EventScene") && (currentLine == 0))
-        {
-            yield return new WaitForSeconds(1.0f);
-            if (eventManager) eventManager.ToGameScene();
         }
 
         isMsgFullText = true;
