@@ -5346,7 +5346,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6175181162085075502, guid: 926d9ae61c4d78a4b8db13f93bc6fe6c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 363656758, guid: 926d9ae61c4d78a4b8db13f93bc6fe6c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 926d9ae61c4d78a4b8db13f93bc6fe6c, type: 3}
 --- !u!1 &1470309214
 GameObject:
@@ -7184,6 +7189,7 @@ MonoBehaviour:
   joystick: {fileID: 1810581408}
   timeManager: {fileID: 554097100}
   rankingManager: {fileID: 1428834763}
+  lastEndingPanel: {fileID: 0}
   loadingPanel: {fileID: 1727066832}
   isEnding: 0
   isStart: 0
@@ -8035,8 +8041,10 @@ MonoBehaviour:
   messages: []
   scoreHandImage: {fileID: 1470309214}
   textField: {fileID: 5564422500012319368}
+  nextText: {fileID: 0}
   msgText: {fileID: 5564422499916061297}
   eventManager: {fileID: 5153650994071556130}
+  backPanel: {fileID: 0}
 --- !u!1 &5153650994071556128
 GameObject:
   m_ObjectHideFlags: 0
@@ -9209,7 +9217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9247,7 +9255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
