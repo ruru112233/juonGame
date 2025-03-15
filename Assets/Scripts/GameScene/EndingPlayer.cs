@@ -33,6 +33,7 @@ public class EndingPlayer : Player
     void Update()
     {
         GameObject backPanel = GameObject.FindGameObjectWithTag("BackPanel");
+
         if (backPanel && isEnd)
         {
             Image backPanelImage = backPanel.GetComponent<Image>();
