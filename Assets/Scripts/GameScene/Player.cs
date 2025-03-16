@@ -99,6 +99,22 @@ public class Player : MonoBehaviour
 
         powerUpTextObj.SetActive(false);
 
+        StartCoroutine(LvMax());
+    }
+
+    IEnumerator LvMax()
+    {
+        yield return null;
+
+        FullMaxFlag fullMaxFlag = GameObject.FindGameObjectWithTag("FullMaxFlag").GetComponent<FullMaxFlag>();
+
+        if (fullMaxFlag && fullMaxFlag.FullMax)
+        {
+            GameManager.instance.PlayerLv = 5;
+            GameManager.instance.unlockCounter = 4;
+            speed = 7.0f;
+            attackPt = 3.0f;
+        }
     }
 
     public void OnJoyStick()
@@ -142,7 +158,14 @@ public class Player : MonoBehaviour
     {
         if (GameManager.instance.isEnding) StartCoroutine(EndingStart());
         if (!GameManager.instance.isStart) return;
-        if (GameManager.instance.scoreManager.IsClear()) return;
+        if (GameManager.instance.scoreManager.IsClear())
+        {
+            FullMaxFlag fullMaxFlag = GameObject.FindGameObjectWithTag("FullMaxFlag").GetComponent<FullMaxFlag>();
+            fullMaxFlag.FullMax = false;
+            return;
+        }
+
+        
 
         // åÃè·íÜÇÃÉpÉlÉãÇï\é¶Ç≥ÇπÇÈ 
         if (ParalysisTimer())

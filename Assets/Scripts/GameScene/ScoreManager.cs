@@ -52,6 +52,9 @@ public class ScoreManager : MonoBehaviour
 
     private void Unlock()
     {
+        FullMaxFlag fullMaxFlag = GameObject.FindGameObjectWithTag("FullMaxFlag").GetComponent<FullMaxFlag>();
+        if (fullMaxFlag && fullMaxFlag.FullMax) return;
+
         if (LV_5_POINT <= scorePoint)
         {
             LvUp(5);
