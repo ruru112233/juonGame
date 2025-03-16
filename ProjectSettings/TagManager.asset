@@ -23,6 +23,7 @@ TagManager:
   - BackPanel
   - EndingPanel
   - MsgManager
+  - FullMaxFlag
   layers:
   - Default
   - TransparentFX

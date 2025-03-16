@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject loadingPanel;
 
+    public GameObject swipeObj;
+
     public bool isEnding = false;
     public bool isStart = false;
 
@@ -58,6 +60,7 @@ public class GameManager : MonoBehaviour
         if (loadingPanel) loadingPanel.SetActive(true);
         if (joystick) joystick.SetActive(false);
         if (lastEndingPanel) lastEndingPanel.SetActive(false);
+        if (swipeObj) swipeObj.SetActive(false);
     }
 
     // Update is called once per frame
@@ -67,6 +70,7 @@ public class GameManager : MonoBehaviour
         {
             if (loadingPanel) loadingPanel.SetActive(false);
             if (joystick) joystick.SetActive(true);
+            if (swipeObj) swipeObj.SetActive(true);
         }
 
         if (latestTime > startTime)
